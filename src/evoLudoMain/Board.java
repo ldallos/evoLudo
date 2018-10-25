@@ -15,6 +15,13 @@ public class Board extends JFrame {
     private JPanel greenRoute = new JPanel();
     private JPanel redRoute = new JPanel();
     private JPanel blueRoute = new JPanel();
+    private GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+    private double WIDTH = gd.getDisplayMode().getWidth();
+    private double HEIGHT = gd.getDisplayMode().getHeight();
+    private int scaleUnitWidth = (int) (WIDTH / 5);
+    private int scaleUnitHeight = (int) (HEIGHT / 5);
+
+
 
     public Board() {
         initBoard();
@@ -28,70 +35,71 @@ public class Board extends JFrame {
          * Setting up the basic informations about the frame.
          */
         setTitle("Ludo");
-        setBounds(0, 0, 1000, 1000);
+        setBounds(0, 0, (int)WIDTH, (int)HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
         setLocationRelativeTo(null);
-        setResizable(false);
         setVisible(true);
 
         /**
          * Setting up the red player's yard, where the tokens stand.
          */
-        redsYard.setBounds(0, 0, 350, 350);
+        redsYard.setBounds(0, 0, scaleUnitWidth, scaleUnitHeight);
         redsYard.setBackground(new Color(255, 0, 0));
         redsYard.setVisible(true);
 
         /**
          * Setting up the blue player's yard, where the tokens stand.
          */
-        bluesYard.setBounds(650, 0, 350, 350);
+        bluesYard.setBounds(scaleUnitWidth /2*3, (int) (0*HEIGHT), scaleUnitWidth, scaleUnitHeight);
         bluesYard.setBackground(new Color(0, 0, 255));
         bluesYard.setVisible(true);
 
         /**
          * Setting up the green player's yard, where the tokens stand.
          */
-        greensYard.setBounds(650, 650, 350, 350);
+        greensYard.setBounds(scaleUnitWidth /2*3, scaleUnitHeight /2*3, scaleUnitWidth, scaleUnitHeight);
         greensYard.setBackground(new Color(0, 255, 0));
         greensYard.setVisible(true);
+
 
 
         /**
          * Setting up the yellow player's yard, where the tokens stand.
          */
-        yellowsYard.setBounds(0, 650, 350, 350);
+        yellowsYard.setBounds((int) (0*WIDTH), scaleUnitHeight /2*3, scaleUnitWidth, scaleUnitHeight);
         yellowsYard.setBackground(new Color(255, 255, 0));
         yellowsYard.setVisible(true);
+
 
         /**
          * Setting up the home yard.
          */
-        homeYard.setBounds(350, 350, 300, 300);
+        homeYard.setBounds(scaleUnitWidth, scaleUnitHeight, scaleUnitWidth /2, scaleUnitHeight /2);
         homeYard.setVisible(true);
 
         /**
          * The route under red's yard.
          */
-        redRoute.setBounds(0, 350, 350, 300);
+        redRoute.setBounds(0, scaleUnitHeight, scaleUnitWidth, scaleUnitHeight /2);
         redRoute.setVisible(true);
 
         /**
          * The route on the left of blue's yard.
          */
-        blueRoute.setBounds(350, 0, 300, 350);
+        blueRoute.setBounds(scaleUnitWidth, 0, scaleUnitWidth /2, scaleUnitHeight);
         blueRoute.setVisible(true);
 
         /**
          * The route above green's yard.
          */
-        greenRoute.setBounds(650, 350, 350, 300);
+        greenRoute.setBounds((scaleUnitWidth /2)*3, scaleUnitHeight, scaleUnitWidth, scaleUnitHeight /2);
         greenRoute.setVisible(true);
 
         /**
          * The route on the right of yellow's yard.
          */
-        yellowRoute.setBounds(350, 650, 300, 350);
+        yellowRoute.setBounds(scaleUnitWidth, (scaleUnitHeight /2)*3, scaleUnitWidth /2, scaleUnitHeight);
         yellowRoute.setVisible(true);
 
 
@@ -107,6 +115,27 @@ public class Board extends JFrame {
         add(greenRoute);
         add(yellowRoute);
         add(homeYard);
+        refreshSizes();
+
+    }
+
+
+
+    public void refreshSizes() {
+        this.WIDTH = getWidth();
+        this.HEIGHT = getHeight();
+        this.scaleUnitWidth = (int) (this.WIDTH / 5 * 2);
+        this.scaleUnitHeight = (int) (this.HEIGHT / 5 * 2);
+        redsYard.setBounds(0, 0, scaleUnitWidth, scaleUnitHeight);
+        bluesYard.setBounds(scaleUnitWidth /2*3, (int) (0*HEIGHT), scaleUnitWidth, scaleUnitHeight);
+        greensYard.setBounds(scaleUnitWidth /2*3, scaleUnitHeight /2*3, scaleUnitWidth, scaleUnitHeight);
+        yellowsYard.setBounds((int) (0*WIDTH), scaleUnitHeight /2*3, scaleUnitWidth, scaleUnitHeight);
+        homeYard.setBounds(scaleUnitWidth, scaleUnitHeight, scaleUnitWidth /2, scaleUnitHeight /2);
+        redRoute.setBounds(0, scaleUnitHeight, scaleUnitWidth, scaleUnitHeight /2);
+        blueRoute.setBounds(scaleUnitWidth, 0, scaleUnitWidth /2, scaleUnitHeight);
+        greenRoute.setBounds((scaleUnitWidth /2)*3, scaleUnitHeight, scaleUnitWidth, scaleUnitHeight /2);
+        yellowRoute.setBounds(scaleUnitWidth, (scaleUnitHeight /2)*3, scaleUnitWidth /2, scaleUnitHeight);
+
     }
 }
 
