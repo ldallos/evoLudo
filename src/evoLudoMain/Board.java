@@ -115,8 +115,10 @@ public class Board extends JFrame {
         add(greenRoute);
         add(yellowRoute);
         add(homeYard);
+        refreshSizes();
 
     }
+
 
 
     public void refreshSizes() {
