@@ -4,8 +4,11 @@ package evoLudoMain;
 import javax.swing.*;
 import java.awt.*;
 
+import static javax.swing.GroupLayout.Alignment.CENTER;
+
 public class Board extends JFrame {
 
+    private JPanel containingPanel= new JPanel();
     private JPanel redsYard = new JPanel();
     private JPanel bluesYard = new JPanel();
     private JPanel greensYard = new JPanel();
@@ -102,19 +105,23 @@ public class Board extends JFrame {
         yellowRoute.setBounds(scaleUnitWidth, (scaleUnitHeight /2)*3, scaleUnitWidth /2, scaleUnitHeight);
         yellowRoute.setVisible(true);
 
+        containingPanel.setBounds(0, 0, (int)WIDTH, (int)HEIGHT);
+        containingPanel.setVisible(true);
+
 
         /**
          * Adding all elements to the JFrame.
          */
-        add(redsYard);
-        add(bluesYard);
-        add(greensYard);
-        add(yellowsYard);
-        add(redRoute);
-        add(blueRoute);
-        add(greenRoute);
-        add(yellowRoute);
-        add(homeYard);
+        add(containingPanel);
+        containingPanel.add(redsYard);
+        containingPanel.add(bluesYard);
+        containingPanel.add(greensYard);
+        containingPanel.add(yellowsYard);
+        containingPanel.add(redRoute);
+        containingPanel.add(blueRoute);
+        containingPanel.add(greenRoute);
+        containingPanel.add(yellowRoute);
+        containingPanel.add(homeYard);
         refreshSizes();
 
     }
@@ -124,6 +131,17 @@ public class Board extends JFrame {
     public void refreshSizes() {
         this.WIDTH = getWidth();
         this.HEIGHT = getHeight();
+        double shiftWidth = 0;
+        double shiftHeight = 0;
+        if (WIDTH < HEIGHT) {
+            shiftHeight = (HEIGHT - WIDTH) /2;
+            HEIGHT = WIDTH;
+        }else {
+            shiftWidth = (WIDTH - HEIGHT) /2;
+            WIDTH = HEIGHT;
+        }
+
+        containingPanel.setBounds((int)shiftWidth, (int)shiftHeight, (int)WIDTH, (int)HEIGHT);
         this.scaleUnitWidth = (int) (this.WIDTH / 5 * 2);
         this.scaleUnitHeight = (int) (this.HEIGHT / 5 * 2);
         redsYard.setBounds(0, 0, scaleUnitWidth, scaleUnitHeight);
