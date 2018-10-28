@@ -8,7 +8,7 @@ import static javax.swing.GroupLayout.Alignment.CENTER;
 
 public class Board extends JFrame {
 
-    private JPanel containingPanel= new JPanel();
+    private MyContainingJPanel myContainingJPanel = new MyContainingJPanel();
     private JPanel redsYard = new JPanel();
     private JPanel bluesYard = new JPanel();
     private JPanel greensYard = new JPanel();
@@ -25,71 +25,59 @@ public class Board extends JFrame {
     private int scaleUnitHeight = (int) (HEIGHT / 5);
 
 
-    public void paint(Graphics g) {
-        super.paint(g);
-        this.WIDTH = getWidth();
-        this.HEIGHT = getHeight();
-        int shiftWidth = 0;
-        int shiftHeight = 0;
-        if (WIDTH < HEIGHT) {
-            shiftHeight = (int) ((HEIGHT - WIDTH) /2);
-            HEIGHT = WIDTH;
-        }else {
-            shiftWidth = (int) ((WIDTH - HEIGHT) /2);
-            WIDTH = HEIGHT;
-        }
-        refreshSizes();
-        /**
-         * Squares for route on the left of blue's yard.
-         */
-        for(int i = 1; i <= 6 ; i++) {
-            for(int j = 1; j <= 3; j++) {
-
-                //blue route
-                g.setColor(new Color(0, 0, 0));
-                g.drawRect(scaleUnitWidth+shiftWidth, shiftHeight, (scaleUnitWidth/6) * j, (scaleUnitHeight/6) * i);
-                g.setColor(new Color(0, 0, 255));
-                g.fillRect((scaleUnitWidth*15)/13 +shiftWidth, shiftHeight, (scaleUnitWidth/5) , (scaleUnitHeight/6) * i);
-                //red route
-                g.setColor(new Color(255, 0, 0));
-                g.fillRect(shiftWidth, (scaleUnitHeight*15)/13 + shiftHeight, (scaleUnitWidth/6) * i, scaleUnitHeight/5);
-                g.setColor(new Color(0, 0, 0));
-                g.drawRect(shiftWidth, scaleUnitHeight + shiftHeight, (scaleUnitWidth/6) * i, (scaleUnitHeight/6) * j);
-                //green route
-                g.setColor(new Color(0, 255, 0));
-                g.fillRect((scaleUnitWidth /2)*3 + shiftWidth, (scaleUnitHeight*15)/13 + shiftHeight, (scaleUnitWidth/6) * i, (scaleUnitHeight/5));
-                g.setColor(new Color(0, 0, 0));
-                g.drawRect((scaleUnitWidth /2)*3 + shiftWidth, scaleUnitHeight + shiftHeight, (scaleUnitWidth/6) * i, (scaleUnitHeight/6) * j);
-                //yellow route
-                g.setColor(new Color(255, 255, 0));
-                g.fillRect((scaleUnitWidth*15)/13 + shiftWidth, (scaleUnitHeight /2)*3 + shiftHeight, scaleUnitWidth/5, (scaleUnitHeight/6) * i);
-                g.setColor(new Color(0, 0, 0));
-                g.drawRect(scaleUnitWidth + shiftWidth, (scaleUnitHeight /2)*3 + shiftHeight, (scaleUnitWidth/6) * j, (scaleUnitHeight/6) * i);
-
-            }
-        }
-    }
-
 
 
     public Board() {
-        initBoard();
-    }
-
-    /**
-     * The method init the board with the panels on it.
-     */
-    private void initBoard() {
         /**
          * Setting up the basic informations about the frame.
          */
         setTitle("Ludo");
-        setBounds(0, 0, (int)WIDTH, (int)HEIGHT);
+        setBounds(0, 0, (int) WIDTH, (int) HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
         setLocationRelativeTo(null);
         setVisible(true);
 
+        init();
+
+    }
+
+    public void refreshSizes() {
+        this.WIDTH = getWidth();
+        this.HEIGHT = getHeight();
+        double shiftWidth = 0;
+        double shiftHeight = 0;
+        if (this.WIDTH < this.HEIGHT) {
+            shiftHeight = (this.HEIGHT - this.WIDTH) /2;
+            this.HEIGHT = this.WIDTH;
+        }else {
+            shiftWidth = (this.WIDTH - this.HEIGHT) /2;
+            this.WIDTH = this.HEIGHT;
+        }
+
+
+
+        myContainingJPanel.setSizes((int)this.WIDTH, (int)this.HEIGHT, this.scaleUnitWidth, this.scaleUnitHeight);
+        myContainingJPanel.setBounds((int)shiftWidth, (int)shiftHeight, (int)WIDTH, (int)HEIGHT);
+
+        this.scaleUnitWidth = (int) (this.WIDTH / 5 * 2);
+        this.scaleUnitHeight = (int) (this.HEIGHT / 5 * 2);
+        redsYard.setBounds(0, 0, this.scaleUnitWidth, this.scaleUnitHeight);
+        bluesYard.setBounds(this.scaleUnitWidth /2*3, (int) (0*HEIGHT), this.scaleUnitWidth, this.scaleUnitHeight);
+        greensYard.setBounds(this.scaleUnitWidth /2*3, this.scaleUnitHeight /2*3, this.scaleUnitWidth, this.scaleUnitHeight);
+        yellowsYard.setBounds((int) (0*WIDTH), this.scaleUnitHeight /2*3, this.scaleUnitWidth, this.scaleUnitHeight);
+        homeYard.setBounds(this.scaleUnitWidth, this.scaleUnitHeight, this.scaleUnitWidth /2, this.scaleUnitHeight /2);
+        redRoute.setBounds(0, this.scaleUnitHeight, this.scaleUnitWidth, this.scaleUnitHeight /2);
+        blueRoute.setBounds(this.scaleUnitWidth, 0, this.scaleUnitWidth /2, this.scaleUnitHeight);
+        greenRoute.setBounds((this.scaleUnitWidth /2)*3, this.scaleUnitHeight, this.scaleUnitWidth, this.scaleUnitHeight /2);
+        yellowRoute.setBounds(this.scaleUnitWidth, (this.scaleUnitHeight /2)*3, this.scaleUnitWidth /2, this.scaleUnitHeight);
+
+
+    }
+    /**
+     * The method init the board with the panels on it.
+     */
+    private void init() {
         /**
          * Setting up the red player's yard, where the tokens stand.
          */
@@ -151,56 +139,29 @@ public class Board extends JFrame {
         yellowRoute.setBounds(scaleUnitWidth, (scaleUnitHeight /2)*3, scaleUnitWidth /2, scaleUnitHeight);
         yellowRoute.setVisible(true);
 
-        containingPanel.setBounds(0, 0, (int)WIDTH, (int)HEIGHT);
-        containingPanel.setVisible(true);
+        myContainingJPanel.setBounds(0, 0, (int)WIDTH, (int)HEIGHT);
+        myContainingJPanel.setVisible(true);
+
 
 
         /**
          * Adding all elements to the JFrame.
          */
-        add(containingPanel);
-        containingPanel.add(redsYard);
-        containingPanel.add(bluesYard);
-        containingPanel.add(greensYard);
-        containingPanel.add(yellowsYard);
-        containingPanel.add(redRoute);
-        containingPanel.add(blueRoute);
-        containingPanel.add(greenRoute);
-        containingPanel.add(yellowRoute);
-        containingPanel.add(homeYard);
-        refreshSizes();
+        myContainingJPanel.add(redsYard);
+        myContainingJPanel.add(bluesYard);
+        myContainingJPanel.add(greensYard);
+        myContainingJPanel.add(yellowsYard);
+        myContainingJPanel.add(redRoute);
+        myContainingJPanel.add(blueRoute);
+        myContainingJPanel.add(greenRoute);
+        myContainingJPanel.add(yellowRoute);
+        myContainingJPanel.add(homeYard);
+        add(myContainingJPanel);
+
 
     }
 
 
-
-    public void refreshSizes() {
-        this.WIDTH = getWidth();
-        this.HEIGHT = getHeight();
-        double shiftWidth = 0;
-        double shiftHeight = 0;
-        if (WIDTH < HEIGHT) {
-            shiftHeight = (HEIGHT - WIDTH) /2;
-            HEIGHT = WIDTH;
-        }else {
-            shiftWidth = (WIDTH - HEIGHT) /2;
-            WIDTH = HEIGHT;
-        }
-
-        containingPanel.setBounds((int)shiftWidth, (int)shiftHeight, (int)WIDTH, (int)HEIGHT);
-        this.scaleUnitWidth = (int) (this.WIDTH / 5 * 2);
-        this.scaleUnitHeight = (int) (this.HEIGHT / 5 * 2);
-        redsYard.setBounds(0, 0, scaleUnitWidth, scaleUnitHeight);
-        bluesYard.setBounds(scaleUnitWidth /2*3, (int) (0*HEIGHT), scaleUnitWidth, scaleUnitHeight);
-        greensYard.setBounds(scaleUnitWidth /2*3, scaleUnitHeight /2*3, scaleUnitWidth, scaleUnitHeight);
-        yellowsYard.setBounds((int) (0*WIDTH), scaleUnitHeight /2*3, scaleUnitWidth, scaleUnitHeight);
-        homeYard.setBounds(scaleUnitWidth, scaleUnitHeight, scaleUnitWidth /2, scaleUnitHeight /2);
-        redRoute.setBounds(0, scaleUnitHeight, scaleUnitWidth, scaleUnitHeight /2);
-        blueRoute.setBounds(scaleUnitWidth, 0, scaleUnitWidth /2, scaleUnitHeight);
-        greenRoute.setBounds((scaleUnitWidth /2)*3, scaleUnitHeight, scaleUnitWidth, scaleUnitHeight /2);
-        yellowRoute.setBounds(scaleUnitWidth, (scaleUnitHeight /2)*3, scaleUnitWidth /2, scaleUnitHeight);
-
-    }
 
 }
 
