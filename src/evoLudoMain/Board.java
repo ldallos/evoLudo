@@ -57,11 +57,10 @@ public class Board extends JFrame {
 
 
 
-        myContainingJPanel.setSizes((int)this.WIDTH, (int)this.HEIGHT, this.scaleUnitWidth, this.scaleUnitHeight);
-        myContainingJPanel.setBounds((int)shiftWidth, (int)shiftHeight, (int)WIDTH, (int)HEIGHT);
-
         this.scaleUnitWidth = (int) (this.WIDTH / 5 * 2);
         this.scaleUnitHeight = (int) (this.HEIGHT / 5 * 2);
+        myContainingJPanel.setSizes((int)this.WIDTH, (int)this.HEIGHT, this.scaleUnitWidth, this.scaleUnitHeight);
+        myContainingJPanel.setBounds((int)shiftWidth, (int)shiftHeight, (int)WIDTH, (int)HEIGHT);
         redsYard.setBounds(0, 0, this.scaleUnitWidth, this.scaleUnitHeight);
         bluesYard.setBounds(this.scaleUnitWidth /2*3, (int) (0*HEIGHT), this.scaleUnitWidth, this.scaleUnitHeight);
         greensYard.setBounds(this.scaleUnitWidth /2*3, this.scaleUnitHeight /2*3, this.scaleUnitWidth, this.scaleUnitHeight);
