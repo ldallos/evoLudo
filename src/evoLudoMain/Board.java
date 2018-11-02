@@ -35,8 +35,8 @@ public class Board extends JFrame {
 
         init();
 
-        getContentPane().setLayout(null);
         setContentPane(myContainingJPanel);
+        getContentPane().setLayout(null);
         setLocationRelativeTo(null);
         setVisible(true);
 
