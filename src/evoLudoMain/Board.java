@@ -6,6 +6,7 @@ import java.awt.*;
 
 public class Board extends JFrame {
 
+    private MyContainingJPanel myContainingJPanel = new MyContainingJPanel();
     private JPanel redsYard = new JPanel();
     private JPanel bluesYard = new JPanel();
     private JPanel greensYard = new JPanel();
@@ -54,24 +55,59 @@ public class Board extends JFrame {
 
 
 
-    public Board() {
-        initBoard();
-    }
 
-    /**
-     * The method init the board with the panels on it.
-     */
-    private void initBoard() {
+    public Board() {
         /**
-         * Setting up the basic informations about the frame.
+         * Setting up the basic information about the frame.
          */
         setTitle("Ludo");
-        setBounds(0, 0, (int)WIDTH, (int)HEIGHT);
+        setBounds(0, 0, (int) WIDTH, (int) HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        init();
+
+        setContentPane(myContainingJPanel);
         getContentPane().setLayout(null);
         setLocationRelativeTo(null);
         setVisible(true);
 
+
+    }
+
+    public void refreshSizes() {
+        this.WIDTH = getWidth();
+        this.HEIGHT = getHeight();
+        double shiftWidth = 0;
+        double shiftHeight = 0;
+        if (this.WIDTH < this.HEIGHT) {
+            shiftHeight = (this.HEIGHT - this.WIDTH) /2;
+            this.HEIGHT = this.WIDTH;
+        }else {
+            shiftWidth = (this.WIDTH - this.HEIGHT) /2;
+            this.WIDTH = this.HEIGHT;
+        }
+
+
+
+        this.scaleUnitWidth = (int) (this.WIDTH / 5 * 2);
+        this.scaleUnitHeight = (int) (this.HEIGHT / 5 * 2);
+        myContainingJPanel.setSizes((int)this.WIDTH, (int)this.HEIGHT, this.scaleUnitWidth, this.scaleUnitHeight, shiftWidth, shiftHeight);
+        redsYard.setBounds((int) shiftWidth, (int) shiftHeight, this.scaleUnitWidth, this.scaleUnitHeight);
+        bluesYard.setBounds((int) (this.scaleUnitWidth /2*3 + shiftWidth),(int) ((0*HEIGHT) + shiftHeight), this.scaleUnitWidth, this.scaleUnitHeight);
+        greensYard.setBounds((int) (this.scaleUnitWidth /2*3 + shiftWidth), (int) (this.scaleUnitHeight /2*3 + shiftHeight), this.scaleUnitWidth, this.scaleUnitHeight);
+        yellowsYard.setBounds((int) ((int) (0*WIDTH) + shiftWidth), (int) (this.scaleUnitHeight /2*3 + shiftHeight), this.scaleUnitWidth, this.scaleUnitHeight);
+        homeYard.setBounds((int) (this.scaleUnitWidth + shiftWidth), (int) (this.scaleUnitHeight + shiftHeight), this.scaleUnitWidth /2, this.scaleUnitHeight /2);
+        redRoute.setBounds((int) shiftWidth, (int) (this.scaleUnitHeight + shiftHeight), this.scaleUnitWidth, this.scaleUnitHeight /2);
+        blueRoute.setBounds((int) (this.scaleUnitWidth + shiftWidth), (int) shiftHeight, this.scaleUnitWidth /2, this.scaleUnitHeight);
+        greenRoute.setBounds((int) ((this.scaleUnitWidth /2)*3 + shiftWidth), (int) (this.scaleUnitHeight + shiftHeight), this.scaleUnitWidth, this.scaleUnitHeight /2);
+        yellowRoute.setBounds((int) (this.scaleUnitWidth + shiftWidth), (int) ((this.scaleUnitHeight /2)*3 + shiftHeight), this.scaleUnitWidth /2, this.scaleUnitHeight);
+
+
+    }
+    /**
+     * The method init the board with the panels on it.
+     */
+    private void init() {
         /**
          * Setting up the red player's yard, where the tokens stand.
          */
@@ -133,10 +169,24 @@ public class Board extends JFrame {
         yellowRoute.setBounds(scaleUnitWidth, (scaleUnitHeight /2)*3, scaleUnitWidth /2, scaleUnitHeight);
         yellowRoute.setVisible(true);
 
+        myContainingJPanel.setBounds(0, 0, (int)WIDTH, (int)HEIGHT);
+        myContainingJPanel.setVisible(true);
+
+
 
         /**
          * Adding all elements to the JFrame.
          */
+        myContainingJPanel.add(redsYard);
+        myContainingJPanel.add(bluesYard);
+        myContainingJPanel.add(greensYard);
+        myContainingJPanel.add(yellowsYard);
+        myContainingJPanel.add(redRoute);
+        myContainingJPanel.add(blueRoute);
+        myContainingJPanel.add(greenRoute);
+        myContainingJPanel.add(yellowRoute);
+        myContainingJPanel.add(homeYard);
+        /*
         add(redsYard);
         add(bluesYard);
         add(greensYard);
@@ -145,28 +195,13 @@ public class Board extends JFrame {
         add(blueRoute);
         add(greenRoute);
         add(yellowRoute);
-        add(homeYard);
-        refreshSizes();
+        add(homeYard);*/
+        add(myContainingJPanel);
+
 
     }
 
 
 
-    public void refreshSizes() {
-        this.WIDTH = getWidth();
-        this.HEIGHT = getHeight();
-        this.scaleUnitWidth = (int) (this.WIDTH / 5 * 2);
-        this.scaleUnitHeight = (int) (this.HEIGHT / 5 * 2);
-        redsYard.setBounds(0, 0, scaleUnitWidth, scaleUnitHeight);
-        bluesYard.setBounds(scaleUnitWidth /2*3, (int) (0*HEIGHT), scaleUnitWidth, scaleUnitHeight);
-        greensYard.setBounds(scaleUnitWidth /2*3, scaleUnitHeight /2*3, scaleUnitWidth, scaleUnitHeight);
-        yellowsYard.setBounds((int) (0*WIDTH), scaleUnitHeight /2*3, scaleUnitWidth, scaleUnitHeight);
-        homeYard.setBounds(scaleUnitWidth, scaleUnitHeight, scaleUnitWidth /2, scaleUnitHeight /2);
-        redRoute.setBounds(0, scaleUnitHeight, scaleUnitWidth, scaleUnitHeight /2);
-        blueRoute.setBounds(scaleUnitWidth, 0, scaleUnitWidth /2, scaleUnitHeight);
-        greenRoute.setBounds((scaleUnitWidth /2)*3, scaleUnitHeight, scaleUnitWidth, scaleUnitHeight /2);
-        yellowRoute.setBounds(scaleUnitWidth, (scaleUnitHeight /2)*3, scaleUnitWidth /2, scaleUnitHeight);
-
-    }
 }
 
