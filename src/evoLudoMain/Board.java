@@ -4,8 +4,6 @@ package evoLudoMain;
 import javax.swing.*;
 import java.awt.*;
 
-import static javax.swing.GroupLayout.Alignment.CENTER;
-
 public class Board extends JFrame {
 
     private MyContainingJPanel myContainingJPanel = new MyContainingJPanel();
@@ -29,16 +27,19 @@ public class Board extends JFrame {
 
     public Board() {
         /**
-         * Setting up the basic informations about the frame.
+         * Setting up the basic information about the frame.
          */
         setTitle("Ludo");
         setBounds(0, 0, (int) WIDTH, (int) HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        init();
+
         getContentPane().setLayout(null);
+        setContentPane(myContainingJPanel);
         setLocationRelativeTo(null);
         setVisible(true);
 
-        init();
 
     }
 
@@ -59,17 +60,16 @@ public class Board extends JFrame {
 
         this.scaleUnitWidth = (int) (this.WIDTH / 5 * 2);
         this.scaleUnitHeight = (int) (this.HEIGHT / 5 * 2);
-        myContainingJPanel.setSizes((int)this.WIDTH, (int)this.HEIGHT, this.scaleUnitWidth, this.scaleUnitHeight);
-        myContainingJPanel.setBounds((int)shiftWidth, (int)shiftHeight, (int)WIDTH, (int)HEIGHT);
-        redsYard.setBounds(0, 0, this.scaleUnitWidth, this.scaleUnitHeight);
-        bluesYard.setBounds(this.scaleUnitWidth /2*3, (int) (0*HEIGHT), this.scaleUnitWidth, this.scaleUnitHeight);
-        greensYard.setBounds(this.scaleUnitWidth /2*3, this.scaleUnitHeight /2*3, this.scaleUnitWidth, this.scaleUnitHeight);
-        yellowsYard.setBounds((int) (0*WIDTH), this.scaleUnitHeight /2*3, this.scaleUnitWidth, this.scaleUnitHeight);
-        homeYard.setBounds(this.scaleUnitWidth, this.scaleUnitHeight, this.scaleUnitWidth /2, this.scaleUnitHeight /2);
-        redRoute.setBounds(0, this.scaleUnitHeight, this.scaleUnitWidth, this.scaleUnitHeight /2);
-        blueRoute.setBounds(this.scaleUnitWidth, 0, this.scaleUnitWidth /2, this.scaleUnitHeight);
-        greenRoute.setBounds((this.scaleUnitWidth /2)*3, this.scaleUnitHeight, this.scaleUnitWidth, this.scaleUnitHeight /2);
-        yellowRoute.setBounds(this.scaleUnitWidth, (this.scaleUnitHeight /2)*3, this.scaleUnitWidth /2, this.scaleUnitHeight);
+        myContainingJPanel.setSizes((int)this.WIDTH, (int)this.HEIGHT, this.scaleUnitWidth, this.scaleUnitHeight, shiftWidth, shiftHeight);
+        redsYard.setBounds((int) shiftWidth, (int) shiftHeight, this.scaleUnitWidth, this.scaleUnitHeight);
+        bluesYard.setBounds((int) (this.scaleUnitWidth /2*3 + shiftWidth),(int) ((0*HEIGHT) + shiftHeight), this.scaleUnitWidth, this.scaleUnitHeight);
+        greensYard.setBounds((int) (this.scaleUnitWidth /2*3 + shiftWidth), (int) (this.scaleUnitHeight /2*3 + shiftHeight), this.scaleUnitWidth, this.scaleUnitHeight);
+        yellowsYard.setBounds((int) ((int) (0*WIDTH) + shiftWidth), (int) (this.scaleUnitHeight /2*3 + shiftHeight), this.scaleUnitWidth, this.scaleUnitHeight);
+        homeYard.setBounds((int) (this.scaleUnitWidth + shiftWidth), (int) (this.scaleUnitHeight + shiftHeight), this.scaleUnitWidth /2, this.scaleUnitHeight /2);
+        redRoute.setBounds((int) shiftWidth, (int) (this.scaleUnitHeight + shiftHeight), this.scaleUnitWidth, this.scaleUnitHeight /2);
+        blueRoute.setBounds((int) (this.scaleUnitWidth + shiftWidth), (int) shiftHeight, this.scaleUnitWidth /2, this.scaleUnitHeight);
+        greenRoute.setBounds((int) ((this.scaleUnitWidth /2)*3 + shiftWidth), (int) (this.scaleUnitHeight + shiftHeight), this.scaleUnitWidth, this.scaleUnitHeight /2);
+        yellowRoute.setBounds((int) (this.scaleUnitWidth + shiftWidth), (int) ((this.scaleUnitHeight /2)*3 + shiftHeight), this.scaleUnitWidth /2, this.scaleUnitHeight);
 
 
     }
@@ -155,6 +155,16 @@ public class Board extends JFrame {
         myContainingJPanel.add(greenRoute);
         myContainingJPanel.add(yellowRoute);
         myContainingJPanel.add(homeYard);
+        /*
+        add(redsYard);
+        add(bluesYard);
+        add(greensYard);
+        add(yellowsYard);
+        add(redRoute);
+        add(blueRoute);
+        add(greenRoute);
+        add(yellowRoute);
+        add(homeYard);*/
         add(myContainingJPanel);
 
 

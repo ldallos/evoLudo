@@ -10,22 +10,16 @@ public class MyContainingJPanel extends JPanel {
     private double HEIGHT = gd.getDisplayMode().getHeight();
     private int scaleUnitWidth = (int) (WIDTH / 5);
     private int scaleUnitHeight = (int) (HEIGHT / 5);
+    private int shiftWidth;
+    private int shiftHeight;
 
+    public MyContainingJPanel() {
+        setBounds(0, 0, (int)WIDTH, (int)HEIGHT);
+    }
 
 
     public void paint(Graphics g) {
         super.paint(g);
-        this.WIDTH = getWidth();
-        this.HEIGHT = getHeight();
-        int shiftWidth = 0;
-        int shiftHeight = 0;
-        if (WIDTH < HEIGHT) {
-            shiftHeight = (int) ((HEIGHT - WIDTH) /2);
-            HEIGHT = WIDTH;
-        }else {
-            shiftWidth = (int) ((WIDTH - HEIGHT) /2);
-            WIDTH = HEIGHT;
-        }
         /**
          * Squares for route on the left of blue's yard.
          */
@@ -58,11 +52,13 @@ public class MyContainingJPanel extends JPanel {
     }
 
 
-    public void setSizes(int WIDTH, int HEIGHT, int scaleUnitWidth, int scaleUnitHeight) {
+    public void setSizes(int WIDTH, int HEIGHT, int scaleUnitWidth, int scaleUnitHeight, double shiftWidth, double shiftHeight) {
         this.WIDTH = WIDTH;
         this.HEIGHT = HEIGHT;
         this.scaleUnitWidth = scaleUnitWidth;
         this.scaleUnitHeight = scaleUnitHeight;
+        this.shiftWidth = (int) shiftWidth;
+        this.shiftHeight = (int) shiftHeight;
 
     }
 
