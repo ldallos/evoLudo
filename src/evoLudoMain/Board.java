@@ -22,40 +22,6 @@ public class Board extends JFrame {
     private int scaleUnitWidth = (int) (WIDTH / 5);
     private int scaleUnitHeight = (int) (HEIGHT / 5);
 
-    public void paint(Graphics g) {
-        super.paint(g);
-        /**
-         * Squares for route on the left of blue's yard.
-         */
-        for(int i = 1; i <= 6 ; i++) {
-            for(int j = 1; j <= 3; j++) {
-                //blue route
-                g.setColor(new Color(0, 0, 0));
-                g.drawRect(scaleUnitWidth, 0, (scaleUnitWidth/6) * j, (scaleUnitHeight/6) * i);
-                g.setColor(new Color(0, 0, 255));
-                g.fillRect((scaleUnitWidth*15)/13, 0, (scaleUnitWidth/5) , (scaleUnitHeight/6) * i);
-                //yellow route
-                g.setColor(new Color(255, 0, 0));
-                g.fillRect(0, (scaleUnitHeight*15)/13, (scaleUnitWidth/6) * i, scaleUnitHeight/5);
-                g.setColor(new Color(0, 0, 0));
-                g.drawRect(0, scaleUnitHeight, (scaleUnitWidth/6) * i, (scaleUnitHeight/6) * j);
-                //green route
-                g.setColor(new Color(0, 255, 0));
-                g.fillRect((scaleUnitWidth /2)*3, (scaleUnitHeight*15)/13, (scaleUnitWidth/6) * i, (scaleUnitHeight/5));
-                g.setColor(new Color(0, 0, 0));
-                g.drawRect((scaleUnitWidth /2)*3, scaleUnitHeight, (scaleUnitWidth/6) * i, (scaleUnitHeight/6) * j);
-                //yellow route
-                g.setColor(new Color(255, 255, 0));
-                g.fillRect((scaleUnitWidth*15)/13, (scaleUnitHeight /2)*3, scaleUnitWidth/5, (scaleUnitHeight/6) * i);
-                g.setColor(new Color(0, 0, 0));
-                g.drawRect(scaleUnitWidth, (scaleUnitHeight /2)*3, (scaleUnitWidth/6) * j, (scaleUnitHeight/6) * i);
-            }
-        }
-    }
-
-
-
-
     public Board() {
         /**
          * Setting up the basic information about the frame.
