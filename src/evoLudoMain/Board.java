@@ -58,15 +58,27 @@ public class Board extends JFrame {
         this.scaleUnitWidth = (int) (this.WIDTH / 5 * 2);
         this.scaleUnitHeight = (int) (this.HEIGHT / 5 * 2);
         myContainingJPanel.setSizes((int)this.WIDTH, (int)this.HEIGHT, this.scaleUnitWidth, this.scaleUnitHeight, shiftWidth, shiftHeight);
+        //yards
+
         redsYard.setBounds((int) shiftWidth, (int) shiftHeight, this.scaleUnitWidth, this.scaleUnitHeight);
+
         bluesYard.setBounds((int) (this.scaleUnitWidth /2*3 + shiftWidth),(int) ((0*HEIGHT) + shiftHeight), this.scaleUnitWidth, this.scaleUnitHeight);
+
         greensYard.setBounds((int) (this.scaleUnitWidth /2*3 + shiftWidth), (int) (this.scaleUnitHeight /2*3 + shiftHeight), this.scaleUnitWidth, this.scaleUnitHeight);
+
         yellowsYard.setBounds((int) ((int) (0*WIDTH) + shiftWidth), (int) (this.scaleUnitHeight /2*3 + shiftHeight), this.scaleUnitWidth, this.scaleUnitHeight);
+
         homeYard.setBounds((int) (this.scaleUnitWidth + shiftWidth), (int) (this.scaleUnitHeight + shiftHeight), this.scaleUnitWidth /2, this.scaleUnitHeight /2);
-        redRoute.setBounds((int) shiftWidth, (int) (this.scaleUnitHeight + shiftHeight), this.scaleUnitWidth, this.scaleUnitHeight /2);
-        blueRoute.setBounds((int) (this.scaleUnitWidth + shiftWidth), (int) shiftHeight, this.scaleUnitWidth /2, this.scaleUnitHeight);
-        greenRoute.setBounds((int) ((this.scaleUnitWidth /2)*3 + shiftWidth), (int) (this.scaleUnitHeight + shiftHeight), this.scaleUnitWidth, this.scaleUnitHeight /2);
-        yellowRoute.setBounds((int) (this.scaleUnitWidth + shiftWidth), (int) ((this.scaleUnitHeight /2)*3 + shiftHeight), this.scaleUnitWidth /2, this.scaleUnitHeight);
+
+        //routes
+
+        redRoute.setBounds((int) shiftWidth + scaleUnitWidth/6, (int) (this.scaleUnitHeight + shiftHeight) + scaleUnitWidth/6, this.scaleUnitWidth / 6 * 5, this.scaleUnitHeight / 6);
+
+        blueRoute.setBounds((int) (this.scaleUnitWidth + shiftWidth) + scaleUnitWidth/6, (int) shiftHeight + scaleUnitWidth/6, this.scaleUnitWidth / 6, this.scaleUnitHeight/ 6 *5);
+
+        greenRoute.setBounds((int) ((this.scaleUnitWidth /2)*3 + shiftWidth), (int) (this.scaleUnitHeight + shiftHeight) + scaleUnitWidth/6, this.scaleUnitWidth / 6 * 5, this.scaleUnitHeight /6);
+
+        yellowRoute.setBounds((int) (this.scaleUnitWidth + shiftWidth) + scaleUnitWidth/6, (int) ((this.scaleUnitHeight /2)*3 + shiftHeight) + scaleUnitWidth/6, this.scaleUnitWidth /6, this.scaleUnitHeight/6 * 5);
 
 
     }
@@ -115,24 +127,28 @@ public class Board extends JFrame {
          * The route under red's yard.
          */
         redRoute.setBounds(0, scaleUnitHeight, scaleUnitWidth, scaleUnitHeight /2);
+        redRoute.setBackground(new Color(255, 0, 0));
         redRoute.setVisible(true);
 
         /**
          * The route on the left of blue's yard.
          */
-        blueRoute.setBounds(scaleUnitWidth, 0, scaleUnitWidth /2, scaleUnitHeight);
+        blueRoute.setBounds(scaleUnitWidth, 0, scaleUnitWidth / 2, scaleUnitHeight);
+        blueRoute.setBackground(new Color(0, 0, 225));
         blueRoute.setVisible(true);
 
         /**
          * The route above green's yard.
          */
         greenRoute.setBounds((scaleUnitWidth /2)*3, scaleUnitHeight, scaleUnitWidth, scaleUnitHeight /2);
+        greenRoute.setBackground(new Color(0, 255, 0));
         greenRoute.setVisible(true);
 
         /**
          * The route on the right of yellow's yard.
          */
         yellowRoute.setBounds(scaleUnitWidth, (scaleUnitHeight /2)*3, scaleUnitWidth /2, scaleUnitHeight);
+        yellowRoute.setBackground(new Color(255, 255, 0));
         yellowRoute.setVisible(true);
 
         myContainingJPanel.setBounds(0, 0, (int)WIDTH, (int)HEIGHT);
