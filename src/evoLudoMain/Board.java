@@ -7,15 +7,19 @@ import java.awt.*;
 public class Board extends JFrame {
 
     private MyContainingJPanel myContainingJPanel = new MyContainingJPanel();
-    private JPanel redsYard = new JPanel();
-    private JPanel bluesYard = new JPanel();
-    private JPanel greensYard = new JPanel();
-    private JPanel yellowsYard = new JPanel();
+    private RedYard redsYard = new RedYard();
+    private BlueYard bluesYard = new BlueYard();
+    private GreenYard greensYard = new GreenYard();
+    private YellowYard yellowsYard = new YellowYard();
     private JPanel homeYard = new JPanel();
     private JPanel yellowRoute = new JPanel();
     private JPanel greenRoute = new JPanel();
     private JPanel redRoute = new JPanel();
     private JPanel blueRoute = new JPanel();
+    private JButton redDiceButton = new JButton("Dice me!");
+    private JButton blueDiceButton = new JButton("Dice me!");
+    private JButton yellowDiceButton = new JButton("Dice me!");
+    private JButton greenDiceButton = new JButton("Dice me!");
     private GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
     private double WIDTH = gd.getDisplayMode().getWidth();
     private double HEIGHT = gd.getDisplayMode().getHeight();
@@ -58,6 +62,7 @@ public class Board extends JFrame {
         this.scaleUnitWidth = (int) (this.WIDTH / 5 * 2);
         this.scaleUnitHeight = (int) (this.HEIGHT / 5 * 2);
         myContainingJPanel.setSizes((int)this.WIDTH, (int)this.HEIGHT, this.scaleUnitWidth, this.scaleUnitHeight, shiftWidth, shiftHeight);
+
         //yards
 
         redsYard.setBounds((int) shiftWidth, (int) shiftHeight, this.scaleUnitWidth, this.scaleUnitHeight);
@@ -80,6 +85,10 @@ public class Board extends JFrame {
 
         yellowRoute.setBounds((int) (this.scaleUnitWidth + shiftWidth) + scaleUnitWidth/6, (int) ((this.scaleUnitHeight /2)*3 + shiftHeight) + scaleUnitWidth/6, this.scaleUnitWidth /6, this.scaleUnitHeight/6 * 5);
 
+        redsYard.refreshSizes();
+        bluesYard.refreshSizes();
+        greensYard.refreshSizes();
+        yellowsYard.refreshSizes();
 
     }
     /**
@@ -90,21 +99,21 @@ public class Board extends JFrame {
          * Setting up the red player's yard, where the tokens stand.
          */
         redsYard.setBounds(0, 0, scaleUnitWidth, scaleUnitHeight);
-        redsYard.setBackground(new Color(255, 0, 0));
+        //redsYard.setBackground(new Color(255, 0, 0));
         redsYard.setVisible(true);
 
         /**
          * Setting up the blue player's yard, where the tokens stand.
          */
         bluesYard.setBounds(scaleUnitWidth /2*3, (int) (0*HEIGHT), scaleUnitWidth, scaleUnitHeight);
-        bluesYard.setBackground(new Color(0, 0, 255));
+        //bluesYard.setBackground(new Color(0, 0, 255));
         bluesYard.setVisible(true);
 
         /**
          * Setting up the green player's yard, where the tokens stand.
          */
         greensYard.setBounds(scaleUnitWidth /2*3, scaleUnitHeight /2*3, scaleUnitWidth, scaleUnitHeight);
-        greensYard.setBackground(new Color(0, 255, 0));
+        //greensYard.setBackground(new Color(0, 255, 0));
         greensYard.setVisible(true);
 
 
@@ -113,7 +122,7 @@ public class Board extends JFrame {
          * Setting up the yellow player's yard, where the tokens stand.
          */
         yellowsYard.setBounds((int) (0*WIDTH), scaleUnitHeight /2*3, scaleUnitWidth, scaleUnitHeight);
-        yellowsYard.setBackground(new Color(255, 255, 0));
+       // yellowsYard.setBackground(new Color(255, 255, 0));
         yellowsYard.setVisible(true);
 
 
@@ -151,8 +160,13 @@ public class Board extends JFrame {
         yellowRoute.setBackground(new Color(255, 255, 0));
         yellowRoute.setVisible(true);
 
+
+
         myContainingJPanel.setBounds(0, 0, (int)WIDTH, (int)HEIGHT);
         myContainingJPanel.setVisible(true);
+
+
+
 
 
 
@@ -168,16 +182,6 @@ public class Board extends JFrame {
         myContainingJPanel.add(greenRoute);
         myContainingJPanel.add(yellowRoute);
         myContainingJPanel.add(homeYard);
-        /*
-        add(redsYard);
-        add(bluesYard);
-        add(greensYard);
-        add(yellowsYard);
-        add(redRoute);
-        add(blueRoute);
-        add(greenRoute);
-        add(yellowRoute);
-        add(homeYard);*/
         add(myContainingJPanel);
 
 
