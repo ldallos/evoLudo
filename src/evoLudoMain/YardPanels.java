@@ -12,19 +12,40 @@ public class YardPanels extends JPanel {
     private int ovalDiameter = 0;
     private JButton diceRollerButton = new JButton("Dice me!");
     private JLabel diceRollingResult = new JLabel();
+    private int panelWidth = (int) getSize().getWidth();
+    private int panelHeight = (int) getSize().getHeight();
+
 
 
     public YardPanels() {
+
+        setLayout(null);
+
+        diceRollerButton.setBounds(panelWidth / 10 , 5 , panelWidth/10 * 5, panelHeight / 10 );
+        diceRollingResult.setBounds(panelWidth / 10 * 8, 5, panelWidth / 10 * 3, panelHeight / 10);
         diceRollerButton.setVisible(true);
         diceRollingResult.setVisible(true);
+
+
+
+        diceRollerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                Random rand = new Random();
+                int n = rand.nextInt(6) + 1;
+                diceRollingResult.setText(String.valueOf(n));
+            }
+        });
+
         add(diceRollerButton);
         add(diceRollingResult);
     }
 
 
     public void refreshSizes() {
-        int panelWidth = (int) getSize().getWidth();
-        int panelHeight = (int) getSize().getHeight();
+
+        panelWidth = (int) getSize().getWidth();
+        panelHeight = (int) getSize().getHeight();
 
         xCoordinates[0] = (panelWidth / 10 * 3) - (ovalDiameter/2);
         xCoordinates[1] = (panelWidth / 10 * 7) - (ovalDiameter/2);
@@ -38,18 +59,8 @@ public class YardPanels extends JPanel {
 
         this.ovalDiameter = panelWidth / 5;
 
-        diceRollerButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                Random rand = new Random();
-                int n = rand.nextInt(6) + 1;
-                diceRollingResult.setText(String.valueOf(n));
-                diceRollerButton.setBounds(panelWidth / 10 , panelHeight / 10 , panelWidth/10 * 5, panelHeight / 10 );
-                diceRollingResult.setBounds(panelWidth / 10 * 8, panelHeight / 10, panelWidth / 10 * 3, panelHeight / 10);
 
-            }
-        });
-
+        System.out.println("Button position: " + (panelWidth / 10) + "\t" + 5 + "\t" + (panelWidth/10 * 5) + "\t"+ (panelHeight / 10));
         diceRollerButton.setBounds(panelWidth / 10 , 5 , panelWidth/10 * 5, panelHeight / 10 );
         diceRollingResult.setBounds(panelWidth / 10 * 8, 5, panelWidth / 10 * 3, panelHeight / 10);
     }
@@ -78,11 +89,4 @@ public class YardPanels extends JPanel {
         this.ovalDiameter = ovalDiameter;
     }
 
-    public JButton getDiceRollerButton() {
-        return diceRollerButton;
-    }
-
-    public void setDiceRollerButton(JButton diceRollerButton) {
-        this.diceRollerButton = diceRollerButton;
-    }
 }
