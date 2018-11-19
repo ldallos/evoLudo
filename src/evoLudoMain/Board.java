@@ -7,19 +7,15 @@ import java.awt.*;
 public class Board extends JFrame {
 
     private MyContainingJPanel myContainingJPanel = new MyContainingJPanel();
-    private RedYard redsYard = new RedYard();
-    private BlueYard bluesYard = new BlueYard();
-    private GreenYard greensYard = new GreenYard();
-    private YellowYard yellowsYard = new YellowYard();
+    private YardPanels redsYard = new YardPanels();
+    private YardPanels bluesYard = new YardPanels();
+    private YardPanels greensYard = new YardPanels();
+    private YardPanels yellowsYard = new YardPanels();
     private JPanel homeYard = new JPanel();
     private JPanel yellowRoute = new JPanel();
     private JPanel greenRoute = new JPanel();
     private JPanel redRoute = new JPanel();
     private JPanel blueRoute = new JPanel();
-    private JButton redDiceButton = new JButton("Dice me!");
-    private JButton blueDiceButton = new JButton("Dice me!");
-    private JButton yellowDiceButton = new JButton("Dice me!");
-    private JButton greenDiceButton = new JButton("Dice me!");
     private GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
     private double WIDTH = gd.getDisplayMode().getWidth();
     private double HEIGHT = gd.getDisplayMode().getHeight();

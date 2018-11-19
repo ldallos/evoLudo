@@ -1,6 +1,7 @@
 package evoLudoMain;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
@@ -15,6 +16,12 @@ public class YardPanels extends JPanel {
     private int panelWidth = (int) getSize().getWidth();
     private int panelHeight = (int) getSize().getHeight();
 
+
+    public void paint(Graphics g) {
+        super.paint(g);
+
+        //TODO Elődnek ide kell rajzolnia a köröket.
+    }
 
 
     public YardPanels() {
@@ -60,7 +67,6 @@ public class YardPanels extends JPanel {
         this.ovalDiameter = panelWidth / 5;
 
 
-        System.out.println("Button position: " + (panelWidth / 10) + "\t" + 5 + "\t" + (panelWidth/10 * 5) + "\t"+ (panelHeight / 10));
         diceRollerButton.setBounds(panelWidth / 10 , 5 , panelWidth/10 * 5, panelHeight / 10 );
         diceRollingResult.setBounds(panelWidth / 10 * 8, 5, panelWidth / 10 * 3, panelHeight / 10);
     }
