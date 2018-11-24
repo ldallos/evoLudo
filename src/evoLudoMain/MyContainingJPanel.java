@@ -35,6 +35,14 @@ public class MyContainingJPanel extends JPanel {
                 //yellow route
                 g.drawRect(scaleUnitWidth + shiftWidth, (scaleUnitHeight / 2) * 3 + shiftHeight, (scaleUnitWidth / 6) * j, (scaleUnitHeight / 6) * i);
 
+                /*
+                * Drawing circles
+                * I will need the positions from Krisztián's methods. Now it just draws circles in every route positions!
+                * */
+                g.fillOval(shiftWidth + (scaleUnitHeight / 6)*(i-1), scaleUnitHeight + shiftHeight - (scaleUnitWidth / 6)*(j-3), (scaleUnitWidth / 6), (scaleUnitHeight / 6));
+                g.fillOval(scaleUnitWidth +shiftWidth + (scaleUnitWidth / 6)*(j-1), shiftHeight + (scaleUnitHeight / 6)*(i-1), (scaleUnitWidth / 6), (scaleUnitHeight / 6));
+                g.fillOval((scaleUnitWidth / 2) * 3 + shiftWidth + (scaleUnitHeight / 6)*(i-1), scaleUnitHeight + shiftHeight + (scaleUnitWidth / 6)*(j-1), (scaleUnitWidth / 6), (scaleUnitHeight / 6));
+                g.fillOval(scaleUnitWidth + shiftWidth +(scaleUnitHeight / 6)*(j-1), (scaleUnitHeight / 2) * 3 + shiftHeight + (scaleUnitWidth / 6)*(i-1), (scaleUnitWidth / 6), (scaleUnitHeight / 6));
             }
         }
     }

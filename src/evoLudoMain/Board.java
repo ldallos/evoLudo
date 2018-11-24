@@ -79,7 +79,7 @@ public class Board extends JFrame {
 
         greenRoute.setBounds((int) ((this.scaleUnitWidth /2)*3 + shiftWidth), (int) (this.scaleUnitHeight + shiftHeight) + scaleUnitWidth/6, this.scaleUnitWidth / 6 * 5, this.scaleUnitHeight /6);
 
-        yellowRoute.setBounds((int) (this.scaleUnitWidth + shiftWidth) + scaleUnitWidth/6, (int) ((this.scaleUnitHeight /2)*3 + shiftHeight) + scaleUnitWidth/6, this.scaleUnitWidth /6, this.scaleUnitHeight/6 * 5);
+        yellowRoute.setBounds((int) (this.scaleUnitWidth + shiftWidth) + scaleUnitWidth/6, (int) ((this.scaleUnitHeight /2)*3 + shiftHeight), this.scaleUnitWidth /6, this.scaleUnitHeight/6 * 5);
 
         redsYard.refreshSizes();
         bluesYard.refreshSizes();
