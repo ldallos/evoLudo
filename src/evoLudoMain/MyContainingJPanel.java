@@ -12,6 +12,15 @@ public class MyContainingJPanel extends JPanel {
     private int scaleUnitHeight = (int) (HEIGHT / 5);
     private int shiftWidth;
     private int shiftHeight;
+    private static MyContainingJPanel instance = null;
+
+
+    public static MyContainingJPanel getInstance() {
+        if (instance == null)
+            return new MyContainingJPanel();
+
+        return instance;
+    }
 
     public MyContainingJPanel() {
         setBounds(0, 0, (int)WIDTH, (int)HEIGHT);
@@ -36,14 +45,15 @@ public class MyContainingJPanel extends JPanel {
                 g.drawRect(scaleUnitWidth + shiftWidth, (scaleUnitHeight / 2) * 3 + shiftHeight, (scaleUnitWidth / 6) * j, (scaleUnitHeight / 6) * i);
 
                 /*
-                * Drawing circles
-                * I will need the positions from Krisztián's methods. Now it just draws circles in every route positions!
-                * */
+                 * Drawing circles
+                 * I will need the positions from Krisztián's methods. Now it just draws circles in every route positions!
+                 * */
                 g.fillOval(shiftWidth + (scaleUnitHeight / 6)*(i-1), scaleUnitHeight + shiftHeight - (scaleUnitWidth / 6)*(j-3), (scaleUnitWidth / 6), (scaleUnitHeight / 6));
                 g.fillOval(scaleUnitWidth +shiftWidth + (scaleUnitWidth / 6)*(j-1), shiftHeight + (scaleUnitHeight / 6)*(i-1), (scaleUnitWidth / 6), (scaleUnitHeight / 6));
                 g.fillOval((scaleUnitWidth / 2) * 3 + shiftWidth + (scaleUnitHeight / 6)*(i-1), scaleUnitHeight + shiftHeight + (scaleUnitWidth / 6)*(j-1), (scaleUnitWidth / 6), (scaleUnitHeight / 6));
                 g.fillOval(scaleUnitWidth + shiftWidth +(scaleUnitHeight / 6)*(j-1), (scaleUnitHeight / 2) * 3 + shiftHeight + (scaleUnitWidth / 6)*(i-1), (scaleUnitWidth / 6), (scaleUnitHeight / 6));
-            }
+
+        }
         }
     }
 
@@ -59,4 +69,27 @@ public class MyContainingJPanel extends JPanel {
     }
 
 
+    public double getWIDTH() {
+        return WIDTH;
+    }
+
+    public double getHEIGHT() {
+        return HEIGHT;
+    }
+
+    public int getScaleUnitWidth() {
+        return scaleUnitWidth;
+    }
+
+    public int getScaleUnitHeight() {
+        return scaleUnitHeight;
+    }
+
+    public int getShiftWidth() {
+        return shiftWidth;
+    }
+
+    public int getShiftHeight() {
+        return shiftHeight;
+    }
 }
