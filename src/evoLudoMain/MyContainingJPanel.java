@@ -13,6 +13,8 @@ public class MyContainingJPanel extends JPanel {
     private int shiftWidth;
     private int shiftHeight;
     private static MyContainingJPanel instance = null;
+    private Tokens tokens = Tokens.getInstance();
+    private Route route = Route.getInstance();
 
 
     public static MyContainingJPanel getInstance() {
@@ -46,6 +48,11 @@ public class MyContainingJPanel extends JPanel {
 
             }
         }
+
+        //TODO: ÁRON try to draw all of the positions of tokens, based on the values you can query from tokens and route.
+        //TODO: for example: int place = tokens.getRedTokens().get(1) gives you the red players first token's number, which refers to the route.get(place)
+        //tokens.getRedTokens().get(1) gives back an integer, which represents the number in the route list.
+        //route.get(place) gives back a Position, where you should draw the circle.
     }
 
 
@@ -82,5 +89,15 @@ public class MyContainingJPanel extends JPanel {
 
     public int getShiftHeight() {
         return shiftHeight;
+    }
+
+    //If its called it do nothing, but triggers the paint method with the same size values and the refreshed position values for tokens.
+    public void refreshMoves() {
+        this.WIDTH = getWIDTH();
+        this.HEIGHT = getHEIGHT();
+        this.scaleUnitWidth = getScaleUnitWidth();
+        this.scaleUnitHeight = getShiftHeight();
+        this.shiftWidth = getShiftWidth();
+        this.shiftHeight = getShiftHeight();
     }
 }

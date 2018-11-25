@@ -167,6 +167,8 @@ public class Board extends JFrame {
 
 
 
+
+
         /**
          * Adding all elements to the JFrame.
          */

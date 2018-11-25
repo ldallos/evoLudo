@@ -13,8 +13,10 @@ public class YardPanels extends JPanel {
     private int ovalDiameter = 0;
     private JButton diceRollerButton = new JButton("Dice me!");
     private JLabel diceRollingResult = new JLabel();
+    private int chooseToken;
     private int panelWidth = (int) getSize().getWidth();
     private int panelHeight = (int) getSize().getHeight();
+    private Controller controller = Controller.getInstance();
 
 
     public void paint(Graphics g) {
@@ -41,6 +43,12 @@ public class YardPanels extends JPanel {
                 Random rand = new Random();
                 int n = rand.nextInt(6) + 1;
                 diceRollingResult.setText(String.valueOf(n));
+
+                TokenSelectorWindow tokenSelectorWindow = new TokenSelectorWindow();
+                if (tokenSelectorWindow.getToken1().getModel().isPressed() || tokenSelectorWindow.getToken2().getModel().isPressed() || tokenSelectorWindow.getToken3().getModel().isPressed() || tokenSelectorWindow.getToken4().getModel().isPressed())
+                    chooseToken = tokenSelectorWindow.getChosenToken();
+
+                controller.moveToken(controller.whoseTurn(), chooseToken, Integer.parseInt(diceRollingResult.getText()));
             }
         });
 
@@ -95,4 +103,11 @@ public class YardPanels extends JPanel {
         this.ovalDiameter = ovalDiameter;
     }
 
+    public JLabel getDiceRollingResult() {
+        return diceRollingResult;
+    }
+
+    public int getChooseToken() {
+        return chooseToken;
+    }
 }
