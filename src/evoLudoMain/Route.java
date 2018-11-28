@@ -7,13 +7,9 @@ public class Route {
 
     private ArrayList<Point> route = new ArrayList<>();
     private static Route instance = null;
-    private MyContainingJPanel myContainingJPanel = MyContainingJPanel.getInstance();
 
 
     public Route() {
-
-        resetPointPositions(myContainingJPanel.getScaleUnitWidth(), myContainingJPanel.getScaleUnitHeight(), myContainingJPanel.getShiftWidth(), myContainingJPanel.getShiftHeight());
-
 
     }
 

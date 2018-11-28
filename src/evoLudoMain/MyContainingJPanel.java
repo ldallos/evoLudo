@@ -109,4 +109,13 @@ public class MyContainingJPanel extends JPanel {
         this.shiftWidth = getShiftWidth();
         this.shiftHeight = getShiftHeight();
     }
+
+
+    public Tokens getTokens() {
+        return tokens;
+    }
+
+    public Route getRoute() {
+        return route;
+    }
 }

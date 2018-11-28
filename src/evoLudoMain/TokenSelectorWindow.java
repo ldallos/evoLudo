@@ -5,11 +5,23 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class TokenSelectorWindow extends JFrame {
-    private JButton token1 = new JButton("Token 1");
-    private JButton token2 = new JButton("Token 2");
-    private JButton token3 = new JButton("Token 3");
-    private JButton token4 = new JButton("Token 4");
-    private int chosenToken;
+    private static JButton token1 = new JButton("Token 1");
+    private static JButton token2 = new JButton("Token 2");
+    private static JButton token3 = new JButton("Token 3");
+    private static JButton token4 = new JButton("Token 4");
+    private int chosenToken = 0;
+    //private static TokenSelectorWindow instance = null;
+    private int diceResult = 0;
+/*
+
+    public static TokenSelectorWindow getInstance() {
+        if (instance == null) {
+            return new TokenSelectorWindow();
+        }
+
+        return instance;
+    }
+*/
 
     public TokenSelectorWindow() {
         setTitle("Token selector..");
@@ -34,8 +46,10 @@ public class TokenSelectorWindow extends JFrame {
         token1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                chosenToken = 1;
+                Controller.setChosenToken(1);
+                Controller.moveToken(diceResult);
                 setVisible(false);
+                Controller.nextTurn();
                 dispose();
             }
         });
@@ -43,8 +57,10 @@ public class TokenSelectorWindow extends JFrame {
         token2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                chosenToken = 2;
+                Controller.setChosenToken(2);
+                Controller.moveToken(diceResult);
                 setVisible(false);
+                Controller.nextTurn();
                 dispose();
             }
         });
@@ -52,8 +68,10 @@ public class TokenSelectorWindow extends JFrame {
         token3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                chosenToken = 3;
+                Controller.setChosenToken(3);
+                Controller.moveToken(diceResult);
                 setVisible(false);
+                Controller.nextTurn();
                 dispose();
             }
         });
@@ -61,8 +79,10 @@ public class TokenSelectorWindow extends JFrame {
         token4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                chosenToken = 4;
+                Controller.setChosenToken(4);
+                Controller.moveToken(diceResult);
                 setVisible(false);
+                Controller.nextTurn();
                 dispose();
             }
         });
@@ -80,19 +100,7 @@ public class TokenSelectorWindow extends JFrame {
     }
 
 
-    public JButton getToken1() {
-        return token1;
-    }
-
-    public JButton getToken2() {
-        return token2;
-    }
-
-    public JButton getToken3() {
-        return token3;
-    }
-
-    public JButton getToken4() {
-        return token4;
+    public void setDiceResult(int diceResult) {
+        this.diceResult = diceResult;
     }
 }

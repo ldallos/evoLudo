@@ -21,7 +21,7 @@ public class Board extends JFrame {
     private double HEIGHT = gd.getDisplayMode().getHeight();
     private int scaleUnitWidth = (int) (WIDTH / 5);
     private int scaleUnitHeight = (int) (HEIGHT / 5);
-    private Route route = Route.getInstance();
+
 
     public Board() {
         /**
@@ -87,7 +87,7 @@ public class Board extends JFrame {
         bluesYard.refreshSizes();
         greensYard.refreshSizes();
         yellowsYard.refreshSizes();
-        route.resetPointPositions(scaleUnitWidth, scaleUnitHeight, shiftWidth, shiftHeight);
+        myContainingJPanel.getRoute().resetPointPositions(scaleUnitWidth, scaleUnitHeight, shiftWidth, shiftHeight);
 
     }
     /**
@@ -186,6 +186,68 @@ public class Board extends JFrame {
     }
 
 
+    public MyContainingJPanel getMyContainingJPanel() {
+        return myContainingJPanel;
+    }
 
+    public YardPanels getRedsYard() {
+        return redsYard;
+    }
+
+    public YardPanels getBluesYard() {
+        return bluesYard;
+    }
+
+    public YardPanels getGreensYard() {
+        return greensYard;
+    }
+
+    public YardPanels getYellowsYard() {
+        return yellowsYard;
+    }
+
+    public JPanel getHomeYard() {
+        return homeYard;
+    }
+
+    public JPanel getYellowRoute() {
+        return yellowRoute;
+    }
+
+    public JPanel getGreenRoute() {
+        return greenRoute;
+    }
+
+    public JPanel getRedRoute() {
+        return redRoute;
+    }
+
+    public JPanel getBlueRoute() {
+        return blueRoute;
+    }
+
+    public GraphicsDevice getGd() {
+        return gd;
+    }
+
+    public double getWIDTH() {
+        return WIDTH;
+    }
+
+    public double getHEIGHT() {
+        return HEIGHT;
+    }
+
+    public int getScaleUnitWidth() {
+        return scaleUnitWidth;
+    }
+
+    public int getScaleUnitHeight() {
+        return scaleUnitHeight;
+    }
+
+    public Route getRoute() {
+        return myContainingJPanel.getRoute();
+    }
 }
 
