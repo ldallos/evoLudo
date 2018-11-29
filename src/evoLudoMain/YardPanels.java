@@ -15,6 +15,8 @@ public class YardPanels extends JPanel {
     private JLabel diceRollingResult = new JLabel();
     private int panelWidth = (int) getSize().getWidth();
     private int panelHeight = (int) getSize().getHeight();
+    private Controller controller = Controller.getInstance();
+    private int chosenToken = 0;
 
 
     public void paint(Graphics g) {
@@ -42,11 +44,11 @@ public class YardPanels extends JPanel {
                 Random rand = new Random();
                 int n = rand.nextInt(6) + 1;
                 diceRollingResult.setText(String.valueOf(n));
-
-                TokenSelectorWindow tokenSelectorWindow = new TokenSelectorWindow();
-                tokenSelectorWindow.setDiceResult(n);
+                JOptionPane.showMessageDialog(null, getSelectorJPanel(), "You have " + n + " steps to go. Please choose your token to move.", JOptionPane.INFORMATION_MESSAGE);
+                controller.moveToken(n, chosenToken);
             }
         });
+        diceRollerButton.setEnabled(false);
 
         add(diceRollerButton);
         add(diceRollingResult);
@@ -106,4 +108,67 @@ public class YardPanels extends JPanel {
     public JButton getDiceRollerButton() {
         return diceRollerButton;
     }
+
+    private JPanel getSelectorJPanel() {
+        JButton token1 = new JButton("Token 1");
+        JButton token2 = new JButton("Token 2");
+        JButton token3 = new JButton("Token 3");
+        JButton token4 = new JButton("Token 4");
+        JPanel selector = new JPanel();
+        selector.setBounds(0, 0, 300, 150);
+
+        selector.setVisible(true);
+
+
+        token1.setBounds(10, 10,100, 30);
+        token2.setBounds(160, 10,100, 30);
+        token3.setBounds(10, 70,100, 30);
+        token4.setBounds(160, 70,100, 30);
+
+        token1.setVisible(true);
+        token2.setVisible(true);
+        token3.setVisible(true);
+        token4.setVisible(true);
+
+
+        token1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                setChosenToken(1);
+            }
+        });
+
+        token2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                setChosenToken(2);
+            }
+        });
+
+        token3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                setChosenToken(3);
+            }
+        });
+
+        token4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                setChosenToken(4);
+            }
+        });
+
+
+        selector.add(token1);
+        selector.add(token2);
+        selector.add(token3);
+        selector.add(token4);
+
+
+
+        return selector;
+    }
+
+    private void setChosenToken(int chosen) { this.chosenToken = chosen;}
 }

@@ -37,6 +37,7 @@ public class Board extends JFrame {
         getContentPane().setLayout(null);
         setLocationRelativeTo(null);
         setVisible(true);
+        getRedsYard().getDiceRollerButton().setEnabled(true);
 
 
     }
@@ -88,6 +89,7 @@ public class Board extends JFrame {
         greensYard.refreshSizes();
         yellowsYard.refreshSizes();
         myContainingJPanel.getRoute().resetPointPositions(scaleUnitWidth, scaleUnitHeight, shiftWidth, shiftHeight);
+
 
     }
     /**

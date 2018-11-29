@@ -31,22 +31,22 @@ public class Tokens {
         redTokens.put(4, 0);
 
 
-        blueTokens.put(1, 0);
-        blueTokens.put(2, 0);
-        blueTokens.put(3, 0);
-        blueTokens.put(4, 0);
+        blueTokens.put(1, 14);
+        blueTokens.put(2, 14);
+        blueTokens.put(3, 14);
+        blueTokens.put(4, 14);
 
 
-        yellowTokens.put(1, 0);
-        yellowTokens.put(2, 0);
-        yellowTokens.put(3, 0);
-        yellowTokens.put(4, 0);
+        greenTokens.put(1, 28);
+        greenTokens.put(2, 28);
+        greenTokens.put(3, 28);
+        greenTokens.put(4, 28);
 
 
-        greenTokens.put(1, 0);
-        greenTokens.put(2, 0);
-        greenTokens.put(3, 0);
-        greenTokens.put(4, 0);
+        yellowTokens.put(1, 42);
+        yellowTokens.put(2, 42);
+        yellowTokens.put(3, 42);
+        yellowTokens.put(4, 42);
     }
 
     public Map<Integer, Integer> getRedTokens() {

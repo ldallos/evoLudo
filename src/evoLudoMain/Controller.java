@@ -4,26 +4,27 @@ package evoLudoMain;
 public class Controller {
 
     private static Controller instance = null;
-    private static String[] whoseTurnIsIt = new String[]{"red", "blue", "green", "yellow"};
-    private static int turn = 3;
-    private static Board board = new Board();
-    private static int chosenToken = 0;
+    private  String[] whoseTurnIsIt = new String[]{"red", "blue", "green", "yellow"};
+    private  int turn = 0;
+    private  Board board;
 
     public static Controller getInstance() {
-        if (instance == null) {
+        if (instance == null)
             instance = new Controller();
-            return instance;
-        }
+
+
+
 
         return instance;
     }
 
+
     public Controller() {
-        nextTurn();
+
     }
 
-    public static void moveToken(int whereTo) {
-        String whichPlayers = Controller.whoseTurn();
+    public  void moveToken(int whereTo, int chosenToken) {
+        String whichPlayers = whoseTurn();
         if (whichPlayers.equalsIgnoreCase("red")) {
             whereTo += board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken);
             board.getMyContainingJPanel().getTokens().getRedTokens().replace(chosenToken, whereTo);
@@ -45,22 +46,25 @@ public class Controller {
         }
 
 
-        System.out.println("whoseTurn: \t" + Controller.whoseTurn());
+        System.out.println("whoseTurn: \t" + whoseTurn());
         System.out.println("whichToken: \t" + chosenToken);
         System.out.println("whereTo: \t" + whereTo);
 
-        Controller.drawMove();
+        board.getMyContainingJPanel().repaint();
 
-        if (Controller.turn < 3) {
-            Controller.turn += 1;
+        if (turn < 3) {
+            turn += 1;
         }
 
         else if (turn == 3) {
-            Controller.turn = 0;
+            turn = 0;
         }
+
+        nextTurn();
+
     }
 
-    public static void nextTurn() {
+    public  void nextTurn() {
         if (whoseTurn().equalsIgnoreCase("red")) {
             board.getRedsYard().getDiceRollerButton().setEnabled(true);
             board.getBluesYard().getDiceRollerButton().setEnabled(false);
@@ -84,20 +88,17 @@ public class Controller {
         }
     }
 
-    public static void drawMove() {
+    public  void drawMove() {
         board.getMyContainingJPanel().refreshMoves();
     }
 
 
-    public static String whoseTurn() {
+    public  String whoseTurn() {
         return whoseTurnIsIt[turn];
     }
 
-    public static void setChosenToken(int chosenToken) {
-        Controller.chosenToken = chosenToken;
-    }
 
-    public Board createBoard() {
-        return this.board;
+    public void setBoard(Board board) {
+        this.board = board;
     }
 }

@@ -59,7 +59,7 @@ public class Route {
             route.add(new Point((shiftWidth + scaleUnitWidth + scaleUnitWidth / 2.0) + scaleUnitWidth / 6.0 * i, shiftHeight + scaleUnitHeight));
 
         //GREEN MIDDLE RIGHT
-        route.add(new Point(shiftWidth + scaleUnitWidth * 3 / 2.0, shiftHeight + scaleUnitHeight / 6.0 *7));
+        route.add(new Point(shiftWidth + scaleUnitWidth + scaleUnitWidth / 2.0 + scaleUnitWidth /6.0 *5 , shiftHeight + scaleUnitHeight / 6.0 *7));
 
 
         //GREEN DOWN LEFT
@@ -68,26 +68,23 @@ public class Route {
 
         //YELLOW RIGHT DOWN
         for (int i = 0; i <= 5; i++)
-            route.add(new Point(shiftWidth + scaleUnitWidth + scaleUnitWidth / 6.0 * 2, (shiftHeight + scaleUnitHeight + scaleUnitHeight / 2.0) / 6 * i));
+            route.add(new Point(shiftWidth + scaleUnitWidth + scaleUnitWidth / 6.0 * 2, (shiftHeight + scaleUnitHeight + scaleUnitHeight / 2.0) + scaleUnitHeight / 6.0 * i));
 
         //YELLOW MIDDLE DOWN
-        route.add(new Point(shiftWidth + scaleUnitWidth + scaleUnitWidth / 6.0, shiftHeight + scaleUnitHeight + scaleUnitHeight / 2.0 + scaleUnitHeight / 6.0 * 4));
+        route.add(new Point(shiftWidth + scaleUnitWidth + scaleUnitWidth / 6.0, shiftHeight + scaleUnitHeight + scaleUnitHeight / 2.0 + scaleUnitHeight / 6.0 * 5));
 
 
         //YELLOW LEFT UP
         for (int i = 6; i >= 0; i--)
-            route.add(new Point(shiftWidth + scaleUnitWidth / 6.0, (scaleUnitHeight + shiftHeight + scaleUnitHeight / 6.0 * 2) + scaleUnitHeight / 6.0 * i));
+            route.add(new Point(shiftWidth + scaleUnitWidth, (scaleUnitHeight + shiftHeight + scaleUnitHeight / 6.0 * 2) + scaleUnitHeight / 6.0 * i));
 
         //RED DOWN LEFT
         for (int i = 5; i >= 0; i--)
-            route.add(new Point(shiftWidth + scaleUnitWidth + scaleUnitWidth / 6.0 * i, shiftHeight + scaleUnitHeight + scaleUnitHeight / 6.0 * 2));
+            route.add(new Point(shiftWidth + scaleUnitWidth / 6.0 * i, shiftHeight + scaleUnitHeight + scaleUnitHeight / 6.0 * 2));
 
         //RED MIDDLE LEFT
         route.add(new Point(shiftWidth, scaleUnitHeight + shiftHeight + scaleUnitHeight / 6.0));
 
-
-        for (int i = 0; i < route.size(); i++)
-            System.out.println(route.get(i).toString());
 
     }
 

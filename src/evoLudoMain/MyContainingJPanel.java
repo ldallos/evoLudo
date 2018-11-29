@@ -50,10 +50,7 @@ public class MyContainingJPanel extends JPanel {
                  * Drawing circles
                  * I will need the positions from Krisztián's methods. Now it just draws circles in every route positions!
                  * */
-                g.fillOval(shiftWidth + (scaleUnitHeight / 6)*(i-1), scaleUnitHeight + shiftHeight - (scaleUnitWidth / 6)*(j-3), (scaleUnitWidth / 6), (scaleUnitHeight / 6));
-                g.fillOval(scaleUnitWidth +shiftWidth + (scaleUnitWidth / 6)*(j-1), shiftHeight + (scaleUnitHeight / 6)*(i-1), (scaleUnitWidth / 6), (scaleUnitHeight / 6));
-                g.fillOval((scaleUnitWidth / 2) * 3 + shiftWidth + (scaleUnitHeight / 6)*(i-1), scaleUnitHeight + shiftHeight + (scaleUnitWidth / 6)*(j-1), (scaleUnitWidth / 6), (scaleUnitHeight / 6));
-                g.fillOval(scaleUnitWidth + shiftWidth +(scaleUnitHeight / 6)*(j-1), (scaleUnitHeight / 2) * 3 + shiftHeight + (scaleUnitWidth / 6)*(i-1), (scaleUnitWidth / 6), (scaleUnitHeight / 6));
+
 
         }
         }
@@ -62,6 +59,7 @@ public class MyContainingJPanel extends JPanel {
         //TODO: for example: int place = tokens.getRedTokens().get(1) gives you the red players first token's number, which refers to the route.get(place)
         //tokens.getRedTokens().get(1) gives back an integer, which represents the number in the route list.
         //route.get(place) gives back a Position, where you should draw the circle.
+
     }
 
 
