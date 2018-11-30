@@ -28,22 +28,37 @@ public class Controller {
         if (whichPlayers.equalsIgnoreCase("red")) {
 
 
-            if (board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken) == 76 || board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken) == 77 ||
-                    board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken) == 78 || board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken) == 79) {
-                board.getMyContainingJPanel().getTokens().getRedTokens().replace(chosenToken, 0);
+            if ((board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken) == 76 || board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken) == 77 ||
+                    board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken) == 78 || board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken) == 79) && whereTo != 6) {
+                whereTo = 0;
             }
+
+
+            else if ((board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken) == 76 || board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken) == 77 ||
+                    board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken) == 78 || board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken) == 79) && whereTo == 6) {
+                board.getMyContainingJPanel().getTokens().getRedTokens().replace(chosenToken, 0);
+                whereTo = 0;
+            }
+
 
             whereTo += board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken);
             board.getMyContainingJPanel().getTokens().getRedTokens().replace(chosenToken, whereTo);
+
         }
 
         else if (whichPlayers.equalsIgnoreCase("blue")) {
 
 
-            if (board.getMyContainingJPanel().getTokens().getBlueTokens().get(chosenToken) == 80 || board.getMyContainingJPanel().getTokens().getBlueTokens().get(chosenToken) == 81 ||
-                    board.getMyContainingJPanel().getTokens().getBlueTokens().get(chosenToken) == 82 || board.getMyContainingJPanel().getTokens().getBlueTokens().get(chosenToken) == 83) {
-                board.getMyContainingJPanel().getTokens().getBlueTokens().replace(chosenToken, 14);
+            if ((board.getMyContainingJPanel().getTokens().getBlueTokens().get(chosenToken) == 80 || board.getMyContainingJPanel().getTokens().getBlueTokens().get(chosenToken) == 81 ||
+                    board.getMyContainingJPanel().getTokens().getBlueTokens().get(chosenToken) == 82 || board.getMyContainingJPanel().getTokens().getBlueTokens().get(chosenToken) == 83) && whereTo != 6) {
+                whereTo = 0;
             }
+            else if ((board.getMyContainingJPanel().getTokens().getBlueTokens().get(chosenToken) == 80 || board.getMyContainingJPanel().getTokens().getBlueTokens().get(chosenToken) == 81 ||
+                    board.getMyContainingJPanel().getTokens().getBlueTokens().get(chosenToken) == 82 || board.getMyContainingJPanel().getTokens().getBlueTokens().get(chosenToken) == 83) && whereTo == 6) {
+                board.getMyContainingJPanel().getTokens().getBlueTokens().replace(chosenToken, 14);
+                whereTo = 0;
+            }
+
             whereTo += board.getMyContainingJPanel().getTokens().getBlueTokens().get(chosenToken);
             board.getMyContainingJPanel().getTokens().getBlueTokens().replace(chosenToken, whereTo);
 
@@ -52,9 +67,14 @@ public class Controller {
         else if (whichPlayers.equalsIgnoreCase("green")) {
 
 
-            if (board.getMyContainingJPanel().getTokens().getGreenTokens().get(chosenToken) == 84 || board.getMyContainingJPanel().getTokens().getGreenTokens().get(chosenToken) == 85 ||
-                    board.getMyContainingJPanel().getTokens().getGreenTokens().get(chosenToken) == 86 || board.getMyContainingJPanel().getTokens().getGreenTokens().get(chosenToken) == 87) {
+            if ((board.getMyContainingJPanel().getTokens().getGreenTokens().get(chosenToken) == 84 || board.getMyContainingJPanel().getTokens().getGreenTokens().get(chosenToken) == 85 ||
+                    board.getMyContainingJPanel().getTokens().getGreenTokens().get(chosenToken) == 86 || board.getMyContainingJPanel().getTokens().getGreenTokens().get(chosenToken) == 87) && whereTo != 6)
+                whereTo = 0;
+
+            else if ((board.getMyContainingJPanel().getTokens().getGreenTokens().get(chosenToken) == 84 || board.getMyContainingJPanel().getTokens().getGreenTokens().get(chosenToken) == 85 ||
+                    board.getMyContainingJPanel().getTokens().getGreenTokens().get(chosenToken) == 86 || board.getMyContainingJPanel().getTokens().getGreenTokens().get(chosenToken) == 87) && whereTo == 6) {
                 board.getMyContainingJPanel().getTokens().getGreenTokens().replace(chosenToken, 28);
+                whereTo = 0;
             }
 
             whereTo += board.getMyContainingJPanel().getTokens().getGreenTokens().get(chosenToken);
@@ -63,9 +83,14 @@ public class Controller {
         else {
 
 
-            if (board.getMyContainingJPanel().getTokens().getYellowTokens().get(chosenToken) == 88 || board.getMyContainingJPanel().getTokens().getYellowTokens().get(chosenToken) == 89 ||
-                    board.getMyContainingJPanel().getTokens().getYellowTokens().get(chosenToken) == 90 || board.getMyContainingJPanel().getTokens().getYellowTokens().get(chosenToken) == 91) {
+            if ((board.getMyContainingJPanel().getTokens().getYellowTokens().get(chosenToken) == 88 || board.getMyContainingJPanel().getTokens().getYellowTokens().get(chosenToken) == 89 ||
+                    board.getMyContainingJPanel().getTokens().getYellowTokens().get(chosenToken) == 90 || board.getMyContainingJPanel().getTokens().getYellowTokens().get(chosenToken) == 91) && whereTo != 6 )
+                whereTo = 0;
+
+            else if ((board.getMyContainingJPanel().getTokens().getYellowTokens().get(chosenToken) == 88 || board.getMyContainingJPanel().getTokens().getYellowTokens().get(chosenToken) == 89 ||
+                    board.getMyContainingJPanel().getTokens().getYellowTokens().get(chosenToken) == 90 || board.getMyContainingJPanel().getTokens().getYellowTokens().get(chosenToken) == 91) && whereTo == 6 ) {
                 board.getMyContainingJPanel().getTokens().getYellowTokens().replace(chosenToken, 42);
+                whereTo = 0;
             }
 
             whereTo += board.getMyContainingJPanel().getTokens().getYellowTokens().get(chosenToken);
@@ -79,6 +104,13 @@ public class Controller {
 
         board.getMyContainingJPanel().repaint();
 
+        nextTurn();
+
+    }
+
+    public  void nextTurn() {
+
+
         if (turn < 3) {
             turn += 1;
         }
@@ -87,11 +119,7 @@ public class Controller {
             turn = 0;
         }
 
-        nextTurn();
 
-    }
-
-    public  void nextTurn() {
         if (whoseTurn().equalsIgnoreCase("red")) {
             board.getRedsYard().getDiceRollerButton().setEnabled(true);
             board.getBluesYard().getDiceRollerButton().setEnabled(false);
@@ -114,11 +142,6 @@ public class Controller {
             board.getYellowsYard().getDiceRollerButton().setEnabled(true);
         }
     }
-
-    public  void drawMove() {
-        board.getMyContainingJPanel().refreshMoves();
-    }
-
 
     public  String whoseTurn() {
         return whoseTurnIsIt[turn];
