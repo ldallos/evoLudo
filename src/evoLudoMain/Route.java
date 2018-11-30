@@ -6,6 +6,10 @@ import java.util.ArrayList;
 public class Route {
 
     private ArrayList<Point> route = new ArrayList<>();
+    private ArrayList<Point> redFinishingroute = new ArrayList<>();
+    private ArrayList<Point> blueFinishingroute = new ArrayList<>();
+    private ArrayList<Point> greenFinishingroute = new ArrayList<>();
+    private ArrayList<Point> yellowFinishingroute = new ArrayList<>();
     private static Route instance = null;
 
 
@@ -85,7 +89,49 @@ public class Route {
         //RED MIDDLE LEFT
         route.add(new Point(shiftWidth, scaleUnitHeight + shiftHeight + scaleUnitHeight / 6.0));
 
+        //RED FINISHING ROOT
+        for (int i = 0; i <=4; i++)
+            route.add(new Point(shiftWidth + scaleUnitWidth / 6.0 + scaleUnitWidth / 6.0 * i, shiftHeight + scaleUnitHeight + scaleUnitHeight / 6.0));
 
+        //BLUE FINISHING ROOT
+        for (int i = 1; i <= 5; i++)
+            route.add(new Point(shiftWidth + scaleUnitWidth + scaleUnitWidth / 6.0, shiftHeight + scaleUnitHeight / 6.0 * i));
+
+        //GREEN FINISHING ROOT
+        for (int i = 0; i <= 4; i++)
+            route.add(new Point(shiftWidth + scaleUnitWidth + scaleUnitWidth / 2.0 + scaleUnitWidth / 6.0 * i, shiftHeight + scaleUnitHeight + scaleUnitHeight / 6.0));
+
+        //YELLOW FINISHING ROOT
+        for (int i = 0; i <= 4; i++)
+            route.add(new Point(shiftWidth + scaleUnitWidth + scaleUnitWidth / 6.0, shiftHeight + scaleUnitHeight + scaleUnitHeight / 2.0 + scaleUnitHeight / 6.0 * i));
+
+        //RED STARTING POINTS
+        route.add(new Point(shiftWidth + scaleUnitWidth * 0.3, shiftHeight + scaleUnitHeight * 0.3));
+        route.add(new Point(shiftWidth + scaleUnitWidth * 0.7, shiftHeight + scaleUnitHeight * 0.3));
+        route.add(new Point(shiftWidth + scaleUnitWidth * 0.3, shiftHeight + scaleUnitHeight * 0.7));
+        route.add(new Point(shiftWidth + scaleUnitWidth * 0.7, shiftHeight + scaleUnitHeight * 0.7));
+
+        //BLUE STARTING POINT
+        route.add(new Point(shiftWidth + scaleUnitWidth * 0.3 + scaleUnitWidth + scaleUnitWidth / 2.0, shiftHeight + scaleUnitHeight * 0.3));
+        route.add(new Point(shiftWidth + scaleUnitWidth * 0.7 + scaleUnitWidth + scaleUnitWidth / 2.0, shiftHeight + scaleUnitHeight * 0.3));
+        route.add(new Point(shiftWidth + scaleUnitWidth * 0.3 + scaleUnitWidth + scaleUnitWidth / 2.0, shiftHeight + scaleUnitHeight * 0.7));
+        route.add(new Point(shiftWidth + scaleUnitWidth * 0.7 + scaleUnitWidth + scaleUnitWidth / 2.0, shiftHeight + scaleUnitHeight * 0.7));
+
+        //GREEN STARTING POINT
+        route.add(new Point(shiftWidth + scaleUnitWidth * 0.3 + scaleUnitWidth + scaleUnitWidth / 2.0, shiftHeight + scaleUnitHeight * 0.3 + scaleUnitHeight + scaleUnitHeight / 2.0));
+        route.add(new Point(shiftWidth + scaleUnitWidth * 0.7 + scaleUnitWidth + scaleUnitWidth / 2.0, shiftHeight + scaleUnitHeight * 0.3 + scaleUnitHeight + scaleUnitHeight / 2.0));
+        route.add(new Point(shiftWidth + scaleUnitWidth * 0.3 + scaleUnitWidth + scaleUnitWidth / 2.0, shiftHeight + scaleUnitHeight * 0.7 + scaleUnitHeight + scaleUnitHeight / 2.0));
+        route.add(new Point(shiftWidth + scaleUnitWidth * 0.7 + scaleUnitWidth + scaleUnitWidth / 2.0, shiftHeight + scaleUnitHeight * 0.7 + scaleUnitHeight + scaleUnitHeight / 2.0));
+
+        //YELLOW STARTING POINT
+        route.add(new Point(shiftWidth + scaleUnitWidth * 0.3, shiftHeight + scaleUnitHeight * 0.3 + scaleUnitHeight + scaleUnitHeight / 2.0));
+        route.add(new Point(shiftWidth + scaleUnitWidth * 0.7, shiftHeight + scaleUnitHeight * 0.3 + scaleUnitHeight + scaleUnitHeight / 2.0));
+        route.add(new Point(shiftWidth + scaleUnitWidth * 0.3, shiftHeight + scaleUnitHeight * 0.7 + scaleUnitHeight + scaleUnitHeight / 2.0));
+        route.add(new Point(shiftWidth + scaleUnitWidth * 0.7, shiftHeight + scaleUnitHeight * 0.7 + scaleUnitHeight + scaleUnitHeight / 2.0));
+
+
+
+        System.out.println("ROOT SIZE: \t " + route.size());
     }
 
 

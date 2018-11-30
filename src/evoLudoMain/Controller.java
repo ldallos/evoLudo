@@ -26,21 +26,48 @@ public class Controller {
     public  void moveToken(int whereTo, int chosenToken) {
         String whichPlayers = whoseTurn();
         if (whichPlayers.equalsIgnoreCase("red")) {
+
+
+            if (board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken) == 76 || board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken) == 77 ||
+                    board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken) == 78 || board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken) == 79) {
+                board.getMyContainingJPanel().getTokens().getRedTokens().replace(chosenToken, 0);
+            }
+
             whereTo += board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken);
             board.getMyContainingJPanel().getTokens().getRedTokens().replace(chosenToken, whereTo);
         }
 
         else if (whichPlayers.equalsIgnoreCase("blue")) {
+
+
+            if (board.getMyContainingJPanel().getTokens().getBlueTokens().get(chosenToken) == 80 || board.getMyContainingJPanel().getTokens().getBlueTokens().get(chosenToken) == 81 ||
+                    board.getMyContainingJPanel().getTokens().getBlueTokens().get(chosenToken) == 82 || board.getMyContainingJPanel().getTokens().getBlueTokens().get(chosenToken) == 83) {
+                board.getMyContainingJPanel().getTokens().getBlueTokens().replace(chosenToken, 14);
+            }
             whereTo += board.getMyContainingJPanel().getTokens().getBlueTokens().get(chosenToken);
             board.getMyContainingJPanel().getTokens().getBlueTokens().replace(chosenToken, whereTo);
 
         }
 
         else if (whichPlayers.equalsIgnoreCase("green")) {
+
+
+            if (board.getMyContainingJPanel().getTokens().getGreenTokens().get(chosenToken) == 84 || board.getMyContainingJPanel().getTokens().getGreenTokens().get(chosenToken) == 85 ||
+                    board.getMyContainingJPanel().getTokens().getGreenTokens().get(chosenToken) == 86 || board.getMyContainingJPanel().getTokens().getGreenTokens().get(chosenToken) == 87) {
+                board.getMyContainingJPanel().getTokens().getGreenTokens().replace(chosenToken, 28);
+            }
+
             whereTo += board.getMyContainingJPanel().getTokens().getGreenTokens().get(chosenToken);
             board.getMyContainingJPanel().getTokens().getGreenTokens().replace(chosenToken, whereTo);
         }
         else {
+
+
+            if (board.getMyContainingJPanel().getTokens().getYellowTokens().get(chosenToken) == 88 || board.getMyContainingJPanel().getTokens().getYellowTokens().get(chosenToken) == 89 ||
+                    board.getMyContainingJPanel().getTokens().getYellowTokens().get(chosenToken) == 90 || board.getMyContainingJPanel().getTokens().getYellowTokens().get(chosenToken) == 91) {
+                board.getMyContainingJPanel().getTokens().getYellowTokens().replace(chosenToken, 42);
+            }
+
             whereTo += board.getMyContainingJPanel().getTokens().getYellowTokens().get(chosenToken);
             board.getMyContainingJPanel().getTokens().getYellowTokens().replace(chosenToken, whereTo);
         }

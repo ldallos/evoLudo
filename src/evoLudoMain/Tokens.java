@@ -25,28 +25,28 @@ public class Tokens {
     }
 
     public Tokens() {
-        redTokens.put(1, 0);
-        redTokens.put(2, 0);
-        redTokens.put(3, 0);
-        redTokens.put(4, 0);
+        redTokens.put(1, 76);
+        redTokens.put(2, 77);
+        redTokens.put(3, 78);
+        redTokens.put(4, 79);
 
 
-        blueTokens.put(1, 14);
-        blueTokens.put(2, 14);
-        blueTokens.put(3, 14);
-        blueTokens.put(4, 14);
+        blueTokens.put(1, 80);
+        blueTokens.put(2, 81);
+        blueTokens.put(3, 82);
+        blueTokens.put(4, 83);
 
 
-        greenTokens.put(1, 28);
-        greenTokens.put(2, 28);
-        greenTokens.put(3, 28);
-        greenTokens.put(4, 28);
+        greenTokens.put(1, 84);
+        greenTokens.put(2, 85);
+        greenTokens.put(3, 86);
+        greenTokens.put(4, 87);
 
 
-        yellowTokens.put(1, 42);
-        yellowTokens.put(2, 42);
-        yellowTokens.put(3, 42);
-        yellowTokens.put(4, 42);
+        yellowTokens.put(1, 88);
+        yellowTokens.put(2, 89);
+        yellowTokens.put(3, 90);
+        yellowTokens.put(4, 91);
     }
 
     public Map<Integer, Integer> getRedTokens() {
