@@ -61,30 +61,6 @@ public class MyContainingJPanel extends JPanel {
         //tokens.getRedTokens().get(1) gives back an integer, which represents the number in the route list.
         //route.get(place) gives back a Position, where you should draw the circle.
 
-        g.setColor(new Color(255, 0,0));
-        g.fillOval((int)route.getRoute().get(getTokens().getRedTokens().get(1)).getX(),(int)route.getRoute().get(getTokens().getRedTokens().get(1)).getY(), scaleUnitWidth / 6 , scaleUnitHeight / 6 );
-        g.fillOval((int)route.getRoute().get(getTokens().getRedTokens().get(2)).getX(),(int)route.getRoute().get(getTokens().getRedTokens().get(2)).getY(), scaleUnitWidth / 6 , scaleUnitHeight / 6 );
-        g.fillOval((int)route.getRoute().get(getTokens().getRedTokens().get(3)).getX(),(int)route.getRoute().get(getTokens().getRedTokens().get(3)).getY(), scaleUnitWidth / 6 , scaleUnitHeight / 6 );
-        g.fillOval((int)route.getRoute().get(getTokens().getRedTokens().get(4)).getX(),(int)route.getRoute().get(getTokens().getRedTokens().get(4)).getY(), scaleUnitWidth / 6 , scaleUnitHeight / 6 );
-
-        g.setColor(new Color(0, 0,255));
-        g.fillOval((int)route.getRoute().get(getTokens().getBlueTokens().get(1)).getX(),(int)route.getRoute().get(getTokens().getBlueTokens().get(1)).getY(), scaleUnitWidth / 6 , scaleUnitHeight / 6 );
-        g.fillOval((int)route.getRoute().get(getTokens().getBlueTokens().get(2)).getX(),(int)route.getRoute().get(getTokens().getBlueTokens().get(2)).getY(), scaleUnitWidth / 6 , scaleUnitHeight / 6 );
-        g.fillOval((int)route.getRoute().get(getTokens().getBlueTokens().get(3)).getX(),(int)route.getRoute().get(getTokens().getBlueTokens().get(3)).getY(), scaleUnitWidth / 6 , scaleUnitHeight / 6 );
-        g.fillOval((int)route.getRoute().get(getTokens().getBlueTokens().get(4)).getX(),(int)route.getRoute().get(getTokens().getBlueTokens().get(4)).getY(), scaleUnitWidth / 6 , scaleUnitHeight / 6 );
-
-        g.setColor(new Color(0, 255,0));
-        g.fillOval((int)route.getRoute().get(getTokens().getGreenTokens().get(1)).getX(),(int)route.getRoute().get(getTokens().getGreenTokens().get(1)).getY(), scaleUnitWidth / 6 , scaleUnitHeight / 6 );
-        g.fillOval((int)route.getRoute().get(getTokens().getGreenTokens().get(2)).getX(),(int)route.getRoute().get(getTokens().getGreenTokens().get(2)).getY(), scaleUnitWidth / 6 , scaleUnitHeight / 6 );
-        g.fillOval((int)route.getRoute().get(getTokens().getGreenTokens().get(3)).getX(),(int)route.getRoute().get(getTokens().getGreenTokens().get(3)).getY(), scaleUnitWidth / 6 , scaleUnitHeight / 6 );
-        g.fillOval((int)route.getRoute().get(getTokens().getGreenTokens().get(4)).getX(),(int)route.getRoute().get(getTokens().getGreenTokens().get(4)).getY(), scaleUnitWidth / 6 , scaleUnitHeight / 6 );
-
-        g.setColor(new Color(255, 255,0));
-        g.fillOval((int)route.getRoute().get(getTokens().getYellowTokens().get(1)).getX(),(int)route.getRoute().get(getTokens().getYellowTokens().get(1)).getY(), scaleUnitWidth / 6 , scaleUnitHeight / 6 );
-        g.fillOval((int)route.getRoute().get(getTokens().getYellowTokens().get(2)).getX(),(int)route.getRoute().get(getTokens().getYellowTokens().get(2)).getY(), scaleUnitWidth / 6 , scaleUnitHeight / 6 );
-        g.fillOval((int)route.getRoute().get(getTokens().getYellowTokens().get(3)).getX(),(int)route.getRoute().get(getTokens().getYellowTokens().get(3)).getY(), scaleUnitWidth / 6 , scaleUnitHeight / 6 );
-        g.fillOval((int)route.getRoute().get(getTokens().getYellowTokens().get(4)).getX(),(int)route.getRoute().get(getTokens().getYellowTokens().get(4)).getY(), scaleUnitWidth / 6 , scaleUnitHeight / 6 );
-
 
     }
 
