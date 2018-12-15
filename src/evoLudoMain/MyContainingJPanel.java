@@ -32,6 +32,28 @@ public class MyContainingJPanel extends JPanel {
 
     public void paint(Graphics g) {
         super.paint(g);
+
+        for(int i = 0; i <= 4; i++) {
+            //Drawing red finishing squares.
+            g.setColor(new Color(190, 60, 60));
+            g.fillRect(shiftWidth + scaleUnitWidth / 6 + scaleUnitWidth / 6 * i, shiftHeight + scaleUnitHeight + scaleUnitHeight /6, scaleUnitWidth / 6, scaleUnitHeight /6);
+
+            //Drawing blue finishing squares.
+            g.setColor(new Color(130, 165, 230));
+            g.fillRect(shiftWidth + scaleUnitWidth + scaleUnitWidth /6, shiftHeight + scaleUnitHeight / 6 + scaleUnitHeight / 6 *i, scaleUnitWidth / 6, scaleUnitHeight /6);
+
+            //Drawing green finishing squares.
+            g.setColor(new Color(70, 200, 70));
+            g.fillRect(shiftWidth + scaleUnitWidth + scaleUnitWidth / 2 + scaleUnitWidth / 6 * i, shiftHeight + scaleUnitHeight + scaleUnitHeight /6, scaleUnitWidth / 6, scaleUnitHeight /6);
+
+            //Drawing yellow finishing squares.
+            g.setColor(new Color(220, 220, 130));
+            g.fillRect(shiftWidth + scaleUnitWidth + scaleUnitWidth / 6, shiftHeight + scaleUnitHeight + scaleUnitHeight / 2 + scaleUnitHeight / 6 *i, scaleUnitWidth / 6, scaleUnitHeight /6);
+        }
+
+
+        g.setColor(new Color(0,0,0));
+
         /**
          * Squares for route on the left of blue's yard.
          */
@@ -47,20 +69,14 @@ public class MyContainingJPanel extends JPanel {
                 //yellow route
                 g.drawRect(scaleUnitWidth + shiftWidth, (scaleUnitHeight / 2) * 3 + shiftHeight, (scaleUnitWidth / 6) * j, (scaleUnitHeight / 6) * i);
 
-                /*
-                 * Drawing circles
-                 * I will need the positions from Krisztián's methods. Now it just draws circles in every route positions!
-                 * */
-
-
+            }
         }
-        }
+
 
         //TODO: ÁRON try to draw all of the positions of tokens, based on the values you can query from tokens and route.
         //TODO: for example: int place = tokens.getRedTokens().get(1) gives you the red players first token's number, which refers to the route.get(place)
         //tokens.getRedTokens().get(1) gives back an integer, which represents the number in the route list.
         //route.get(place) gives back a Position, where you should draw the circle.
-
 
     }
 
