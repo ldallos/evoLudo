@@ -116,16 +116,6 @@ public class MyContainingJPanel extends JPanel {
         return shiftHeight;
     }
 
-    //If its called it do nothing, but triggers the paint method with the same size values and the refreshed position values for tokens.
-    public void refreshMoves() {
-        this.WIDTH = getWIDTH();
-        this.HEIGHT = getHEIGHT();
-        this.scaleUnitWidth = getScaleUnitWidth();
-        this.scaleUnitHeight = getShiftHeight();
-        this.shiftWidth = getShiftWidth();
-        this.shiftHeight = getShiftHeight();
-    }
-
 
     public Tokens getTokens() {
         return tokens;

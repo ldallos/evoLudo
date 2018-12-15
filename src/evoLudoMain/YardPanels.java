@@ -1,5 +1,7 @@
 package evoLudoMain;
 
+import jdk.nashorn.internal.scripts.JO;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -110,15 +112,21 @@ public class YardPanels extends JPanel {
     }
 
     private JPanel getSelectorJPanel() {
-        JButton token1 = new JButton("Token 1");
-        JButton token2 = new JButton("Token 2");
-        JButton token3 = new JButton("Token 3");
-        JButton token4 = new JButton("Token 4");
+        JRadioButton token1 = new JRadioButton("Token 1");
+        JRadioButton token2 = new JRadioButton("Token 2");
+        JRadioButton token3 = new JRadioButton("Token 3");
+        JRadioButton token4 = new JRadioButton("Token 4");
+        token1.setSelected(true);
+        setChosenToken(1);
+        ButtonGroup buttonGroup = new ButtonGroup();
+        buttonGroup.add(token1);
+        buttonGroup.add(token2);
+        buttonGroup.add(token3);
+        buttonGroup.add(token4);
         JPanel selector = new JPanel();
         selector.setBounds(0, 0, 300, 150);
 
         selector.setVisible(true);
-
 
         token1.setBounds(10, 10,100, 30);
         token2.setBounds(160, 10,100, 30);
@@ -132,6 +140,7 @@ public class YardPanels extends JPanel {
 
 
         token1.addActionListener(new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 setChosenToken(1);
