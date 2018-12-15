@@ -92,21 +92,17 @@ public class Controller {
 
     private void redsTurn(int whereTo, int chosenToken) {
 
-        if ((board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken) == 76 || board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken) == 77 ||
-                board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken) == 78 || board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken) == 79) && whereTo != 6) {
-            whereTo = 0;
-        }
+            if ((board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken) == 76 || board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken) == 77 ||
+                    board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken) == 78 || board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken) == 79) && whereTo != 6) {
+                whereTo = 0;
+            } else if ((board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken) == 76 || board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken) == 77 ||
+                    board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken) == 78 || board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken) == 79) && whereTo == 6) {
+                board.getMyContainingJPanel().getTokens().getRedTokens().replace(chosenToken, 0);
+                whereTo = 0;
+            }
 
-
-        else if ((board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken) == 76 || board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken) == 77 ||
-                board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken) == 78 || board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken) == 79) && whereTo == 6) {
-            board.getMyContainingJPanel().getTokens().getRedTokens().replace(chosenToken, 0);
-            whereTo = 0;
-        }
-
-
-        whereTo += board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken);
-        board.getMyContainingJPanel().getTokens().getRedTokens().replace(chosenToken, whereTo);
+            whereTo += board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken);
+            board.getMyContainingJPanel().getTokens().getRedTokens().replace(chosenToken, whereTo);
 
     }
 

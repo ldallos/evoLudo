@@ -6,10 +6,6 @@ import java.util.ArrayList;
 public class Route {
 
     private ArrayList<Point> route = new ArrayList<>();
-    private ArrayList<Point> redFinishingroute = new ArrayList<>();
-    private ArrayList<Point> blueFinishingroute = new ArrayList<>();
-    private ArrayList<Point> greenFinishingroute = new ArrayList<>();
-    private ArrayList<Point> yellowFinishingroute = new ArrayList<>();
     private static Route instance = null;
 
 
@@ -98,11 +94,11 @@ public class Route {
             route.add(new Point(shiftWidth + scaleUnitWidth + scaleUnitWidth / 6.0, shiftHeight + scaleUnitHeight / 6.0 * i));
 
         //GREEN FINISHING ROOT
-        for (int i = 0; i <= 4; i++)
+        for (int i = 4; i >= 0; i--)
             route.add(new Point(shiftWidth + scaleUnitWidth + scaleUnitWidth / 2.0 + scaleUnitWidth / 6.0 * i, shiftHeight + scaleUnitHeight + scaleUnitHeight / 6.0));
 
         //YELLOW FINISHING ROOT
-        for (int i = 0; i <= 4; i++)
+        for (int i = 4; i >= 0; i--)
             route.add(new Point(shiftWidth + scaleUnitWidth + scaleUnitWidth / 6.0, shiftHeight + scaleUnitHeight + scaleUnitHeight / 2.0 + scaleUnitHeight / 6.0 * i));
 
         //RED STARTING POINTS
