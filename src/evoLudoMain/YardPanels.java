@@ -1,7 +1,5 @@
 package evoLudoMain;
 
-import jdk.nashorn.internal.scripts.JO;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -50,6 +48,7 @@ public class YardPanels extends JPanel {
                 controller.moveToken(n, chosenToken);
             }
         });
+
         diceRollerButton.setEnabled(false);
 
         add(diceRollerButton);
@@ -79,38 +78,15 @@ public class YardPanels extends JPanel {
         diceRollingResult.setBounds(panelWidth / 10 * 8, 5, panelWidth / 10 * 3, panelHeight / 10);
     }
 
-    public int[] getxCoordinates() {
-        return xCoordinates;
-    }
-
-    public void setxCoordinates(int[] xCoordinates) {
-        this.xCoordinates = xCoordinates;
-    }
-
-    public int[] getyCoordinates() {
-        return yCoordinates;
-    }
-
-    public void setyCoordinates(int[] yCoordinates) {
-        this.yCoordinates = yCoordinates;
-    }
-
-    public int getOvalDiameter() {
-        return ovalDiameter;
-    }
-
-    public void setOvalDiameter(int ovalDiameter) {
-        this.ovalDiameter = ovalDiameter;
-    }
-
-    public JLabel getDiceRollingResult() {
-        return diceRollingResult;
-    }
 
     public JButton getDiceRollerButton() {
         return diceRollerButton;
     }
 
+    /**
+     * The selector panel for JOptionPane
+     * @return Gives back a panel with JRadioButtons on it.
+     */
     private JPanel getSelectorJPanel() {
         JRadioButton token1 = new JRadioButton("Token 1");
         JRadioButton token2 = new JRadioButton("Token 2");
@@ -119,10 +95,7 @@ public class YardPanels extends JPanel {
         token1.setSelected(true);
         setChosenToken(1);
         ButtonGroup buttonGroup = new ButtonGroup();
-        buttonGroup.add(token1);
-        buttonGroup.add(token2);
-        buttonGroup.add(token3);
-        buttonGroup.add(token4);
+
         JPanel selector = new JPanel();
         selector.setBounds(0, 0, 300, 150);
 
@@ -132,6 +105,11 @@ public class YardPanels extends JPanel {
         token2.setBounds(160, 10,100, 30);
         token3.setBounds(10, 70,100, 30);
         token4.setBounds(160, 70,100, 30);
+
+        buttonGroup.add(token1);
+        buttonGroup.add(token2);
+        buttonGroup.add(token3);
+        buttonGroup.add(token4);
 
         token1.setVisible(true);
         token2.setVisible(true);
@@ -179,5 +157,9 @@ public class YardPanels extends JPanel {
         return selector;
     }
 
+    /**
+     * Sets the chosen token according to the JOptionPane's
+     * @param chosen
+     */
     private void setChosenToken(int chosen) { this.chosenToken = chosen;}
 }

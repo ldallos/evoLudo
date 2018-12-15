@@ -145,26 +145,6 @@ public class Board extends JFrame {
         return yellowsYard;
     }
 
-    public GraphicsDevice getGd() {
-        return gd;
-    }
-
-    public double getWIDTH() {
-        return WIDTH;
-    }
-
-    public double getHEIGHT() {
-        return HEIGHT;
-    }
-
-    public int getScaleUnitWidth() {
-        return scaleUnitWidth;
-    }
-
-    public int getScaleUnitHeight() {
-        return scaleUnitHeight;
-    }
-
     public Route getRoute() {
         return myContainingJPanel.getRoute();
     }

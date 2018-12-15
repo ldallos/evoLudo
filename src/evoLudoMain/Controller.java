@@ -20,17 +20,26 @@ public class Controller {
 
     }
 
+    /**
+     * Moves the selected token to a new position.
+     * Whose turn gives that which player's token should be moved.
+     * @param whereTo - The thrown value by the dice.
+     * @param chosenToken - The number of the chosen token which to move.
+     */
     public  void moveToken(int whereTo, int chosenToken) {
         String whichPlayers = whoseTurn();
-        if (whichPlayers.equalsIgnoreCase("red"))
+        if (whichPlayers.equalsIgnoreCase("red")) {
             redsTurn(whereTo, chosenToken);
-        else if (whichPlayers.equalsIgnoreCase("blue"))
+        }
+        else if (whichPlayers.equalsIgnoreCase("blue")) {
             bluesTurn(whereTo, chosenToken);
-
-        else if (whichPlayers.equalsIgnoreCase("green"))
+        }
+        else if (whichPlayers.equalsIgnoreCase("green")) {
             greensTurn(whereTo, chosenToken);
-        else
+        }
+        else {
             yellowsTrun(whereTo, chosenToken);
+        }
 
 
         System.out.println("whoseTurn: \t" + whoseTurn());
@@ -45,7 +54,9 @@ public class Controller {
     }
 
 
-
+    /**
+     * Handles the turn variable, and set the availability of the buttons according to the turn variable.
+     */
     public  void nextTurn() {
 
 
@@ -81,6 +92,10 @@ public class Controller {
         }
     }
 
+    /**
+     * Gives back that whose turn it is now.
+     * @return
+     */
     public  String whoseTurn() {
         return whoseTurnIsIt[turn];
     }
@@ -90,6 +105,11 @@ public class Controller {
         this.board = board;
     }
 
+    /**
+     * Moves the selected red token to a new position.
+     * @param whereTo - The thrown value by the dice.
+     * @param chosenToken - The number of the chosen token which to move.
+     */
     private void redsTurn(int whereTo, int chosenToken) {
 
             if ((board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken) == 76 || board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken) == 77 ||
@@ -106,6 +126,12 @@ public class Controller {
 
     }
 
+
+    /**
+     * Moves the selected blue token to a new position.
+     * @param whereTo - The thrown value by the dice.
+     * @param chosenToken - The number of the chosen token which to move.
+     */
     private void bluesTurn(int whereTo, int chosenToken) {
 
         if ((board.getMyContainingJPanel().getTokens().getBlueTokens().get(chosenToken) == 80 || board.getMyContainingJPanel().getTokens().getBlueTokens().get(chosenToken) == 81 ||
@@ -124,6 +150,11 @@ public class Controller {
     }
 
 
+    /**
+     * Moves the selected green token to a new position.
+     * @param whereTo - The thrown value by the dice.
+     * @param chosenToken - The number of the chosen token which to move.
+     */
 
     private void greensTurn(int whereTo, int chosenToken) {
 
@@ -141,6 +172,13 @@ public class Controller {
         whereTo += board.getMyContainingJPanel().getTokens().getGreenTokens().get(chosenToken);
         board.getMyContainingJPanel().getTokens().getGreenTokens().replace(chosenToken, whereTo);
     }
+
+
+    /**
+     * Moves the selected yellow token to a new position.
+     * @param whereTo - The thrown value by the dice.
+     * @param chosenToken - The number of the chosen token which to move.
+     */
 
     private void yellowsTrun(int whereTo, int chosenToken) {
 
