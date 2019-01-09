@@ -442,6 +442,10 @@ public class Controller {
     }
 
 
+    /**
+     * Puts back the token which can be found at the given field.
+     * @param numberOfField - The field's number, from the token should be put back to its starting point.
+     */
     private void putBackEnemyToken(int numberOfField) {
         ArrayList<Integer> listOfTokenPositions = new ArrayList<>();
         for (int i = 1;i <= 4; i++) {
