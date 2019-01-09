@@ -85,9 +85,6 @@ public class MyContainingJPanel extends JPanel {
             }
         }
 
-
-
-
         //TODO: ÁRON try to draw all of the positions of tokens, based on the values you can query from tokens and route.
         //TODO: for example: int place = tokens.getRedTokens().get(1) gives you the red players first token's number, which refers to the route.get(place)
         //tokens.getRedTokens().get(1) gives back an integer, which represents the number in the route list.

@@ -1,9 +1,7 @@
 package evoLudoMain;
 
 
-import sun.rmi.server.InactiveGroupException;
-
-import javax.swing.text.Position;
+import java.util.ArrayList;
 
 public class Controller {
 
@@ -116,17 +114,28 @@ public class Controller {
      */
     private void redsTurn(int whereTo, int chosenToken) {
 
-            if ((board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken) == 76 || board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken) == 77 ||
-                    board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken) == 78 || board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken) == 79) && whereTo != 6) {
-                whereTo = 0;
-            } else if ((board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken) == 76 || board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken) == 77 ||
-                    board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken) == 78 || board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken) == 79) && whereTo == 6) {
-                board.getMyContainingJPanel().getTokens().getRedTokens().replace(chosenToken, 0);
+        int currentPosition = board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken);
+
+        if (currentPosition == 76 || currentPosition == 77 || currentPosition == 78 || currentPosition == 79) {
+
+             if (whereTo == 6) {
+                    board.getMyContainingJPanel().getTokens().getRedTokens().replace(chosenToken, 0);
+                    whereTo = 0;
+            }
+            else {
                 whereTo = 0;
             }
 
             whereTo += board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken);
             board.getMyContainingJPanel().getTokens().getRedTokens().replace(chosenToken, whereTo);
+
+        }
+        else {
+            putBackEnemyToken((currentPosition+whereTo));
+            board.getMyContainingJPanel().getTokens().getRedTokens().replace(chosenToken, (currentPosition + whereTo));
+        }
+
+
 
     }
 
@@ -138,18 +147,27 @@ public class Controller {
      */
     private void bluesTurn(int whereTo, int chosenToken) {
 
-        if ((board.getMyContainingJPanel().getTokens().getBlueTokens().get(chosenToken) == 80 || board.getMyContainingJPanel().getTokens().getBlueTokens().get(chosenToken) == 81 ||
-                board.getMyContainingJPanel().getTokens().getBlueTokens().get(chosenToken) == 82 || board.getMyContainingJPanel().getTokens().getBlueTokens().get(chosenToken) == 83) && whereTo != 6) {
-            whereTo = 0;
-        }
-        else if ((board.getMyContainingJPanel().getTokens().getBlueTokens().get(chosenToken) == 80 || board.getMyContainingJPanel().getTokens().getBlueTokens().get(chosenToken) == 81 ||
-                board.getMyContainingJPanel().getTokens().getBlueTokens().get(chosenToken) == 82 || board.getMyContainingJPanel().getTokens().getBlueTokens().get(chosenToken) == 83) && whereTo == 6) {
-            board.getMyContainingJPanel().getTokens().getBlueTokens().replace(chosenToken, 14);
-            whereTo = 0;
-        }
+        int currentPosition = board.getMyContainingJPanel().getTokens().getBlueTokens().get(chosenToken);
 
-        whereTo += board.getMyContainingJPanel().getTokens().getBlueTokens().get(chosenToken);
-        board.getMyContainingJPanel().getTokens().getBlueTokens().replace(chosenToken, whereTo);
+        if (currentPosition == 80 || currentPosition == 81 ||
+                currentPosition == 82 || currentPosition == 83) {
+
+            if (whereTo == 6) {
+                board.getMyContainingJPanel().getTokens().getBlueTokens().replace(chosenToken, 14);
+                whereTo = 0;
+            }
+            else {
+                whereTo = 0;
+            }
+
+            whereTo += board.getMyContainingJPanel().getTokens().getBlueTokens().get(chosenToken);
+            board.getMyContainingJPanel().getTokens().getBlueTokens().replace(chosenToken, whereTo);
+
+        }
+        else {
+            putBackEnemyToken((currentPosition + whereTo));
+            board.getMyContainingJPanel().getTokens().getBlueTokens().replace(chosenToken, currentPosition + whereTo);
+        }
 
     }
 
@@ -162,19 +180,26 @@ public class Controller {
 
     private void greensTurn(int whereTo, int chosenToken) {
 
+        int currentPosition = board.getMyContainingJPanel().getTokens().getGreenTokens().get(chosenToken);
 
-        if ((board.getMyContainingJPanel().getTokens().getGreenTokens().get(chosenToken) == 84 || board.getMyContainingJPanel().getTokens().getGreenTokens().get(chosenToken) == 85 ||
-                board.getMyContainingJPanel().getTokens().getGreenTokens().get(chosenToken) == 86 || board.getMyContainingJPanel().getTokens().getGreenTokens().get(chosenToken) == 87) && whereTo != 6)
-            whereTo = 0;
+        if ((currentPosition == 84 || currentPosition == 85 ||
+                currentPosition == 86 || currentPosition == 87)) {
 
-        else if ((board.getMyContainingJPanel().getTokens().getGreenTokens().get(chosenToken) == 84 || board.getMyContainingJPanel().getTokens().getGreenTokens().get(chosenToken) == 85 ||
-                board.getMyContainingJPanel().getTokens().getGreenTokens().get(chosenToken) == 86 || board.getMyContainingJPanel().getTokens().getGreenTokens().get(chosenToken) == 87) && whereTo == 6) {
-            board.getMyContainingJPanel().getTokens().getGreenTokens().replace(chosenToken, 28);
-            whereTo = 0;
+            if (whereTo == 6) {
+                board.getMyContainingJPanel().getTokens().getGreenTokens().replace(chosenToken, 28);
+                whereTo = 0;
+            }
+            else {
+                whereTo = 0;
+            }
+            whereTo += board.getMyContainingJPanel().getTokens().getGreenTokens().get(chosenToken);
+            board.getMyContainingJPanel().getTokens().getGreenTokens().replace(chosenToken, whereTo);
+        }
+        else {
+            putBackEnemyToken((currentPosition + whereTo));
+            board.getMyContainingJPanel().getTokens().getGreenTokens().replace(chosenToken, currentPosition + whereTo);
         }
 
-        whereTo += board.getMyContainingJPanel().getTokens().getGreenTokens().get(chosenToken);
-        board.getMyContainingJPanel().getTokens().getGreenTokens().replace(chosenToken, whereTo);
     }
 
 
@@ -186,20 +211,27 @@ public class Controller {
 
     private void yellowsTrun(int whereTo, int chosenToken) {
 
+        int currentPosition = board.getMyContainingJPanel().getTokens().getYellowTokens().get(chosenToken);
 
-        if ((board.getMyContainingJPanel().getTokens().getYellowTokens().get(chosenToken) == 88 || board.getMyContainingJPanel().getTokens().getYellowTokens().get(chosenToken) == 89 ||
-                board.getMyContainingJPanel().getTokens().getYellowTokens().get(chosenToken) == 90 || board.getMyContainingJPanel().getTokens().getYellowTokens().get(chosenToken) == 91) && whereTo != 6 ) {
-            whereTo = 0;
+        if ((currentPosition == 88 || currentPosition == 89 ||
+                currentPosition == 90 || currentPosition == 91)) {
+
+            if (whereTo == 6) {
+                board.getMyContainingJPanel().getTokens().getYellowTokens().replace(chosenToken, 42);
+                whereTo = 0;
+            }
+            else {
+                whereTo = 0;
+            }
+
+            whereTo += board.getMyContainingJPanel().getTokens().getYellowTokens().get(chosenToken);
+            board.getMyContainingJPanel().getTokens().getYellowTokens().replace(chosenToken, whereTo);
+        }
+        else {
+            putBackEnemyToken((currentPosition + whereTo));
+            board.getMyContainingJPanel().getTokens().getYellowTokens().replace(chosenToken, currentPosition + whereTo);
         }
 
-        else if ((board.getMyContainingJPanel().getTokens().getYellowTokens().get(chosenToken) == 88 || board.getMyContainingJPanel().getTokens().getYellowTokens().get(chosenToken) == 89 ||
-                board.getMyContainingJPanel().getTokens().getYellowTokens().get(chosenToken) == 90 || board.getMyContainingJPanel().getTokens().getYellowTokens().get(chosenToken) == 91) && whereTo == 6 ) {
-            board.getMyContainingJPanel().getTokens().getYellowTokens().replace(chosenToken, 42);
-            whereTo = 0;
-        }
-
-        whereTo += board.getMyContainingJPanel().getTokens().getYellowTokens().get(chosenToken);
-        board.getMyContainingJPanel().getTokens().getYellowTokens().replace(chosenToken, whereTo);
     }
 
 
@@ -408,5 +440,50 @@ public class Controller {
         }
 
     }
+
+
+    private void putBackEnemyToken(int numberOfField) {
+        ArrayList<Integer> listOfTokenPositions = new ArrayList<>();
+        for (int i = 1;i <= 4; i++) {
+            listOfTokenPositions.add(board.getMyContainingJPanel().getTokens().getRedTokens().get(i));
+        }
+        for (int i = 1;i <= 4; i++) {
+            listOfTokenPositions.add(board.getMyContainingJPanel().getTokens().getBlueTokens().get(i));
+        }
+        for (int i = 1;i <= 4; i++) {
+            listOfTokenPositions.add(board.getMyContainingJPanel().getTokens().getGreenTokens().get(i));
+        }
+        for (int i = 1;i <= 4; i++) {
+            listOfTokenPositions.add(board.getMyContainingJPanel().getTokens().getYellowTokens().get(i));
+        }
+
+
+        for (int i = 0; i < listOfTokenPositions.size(); i++) {
+
+            if (listOfTokenPositions.get(i) == numberOfField) {
+                switch (i) {
+                    case 0: board.getMyContainingJPanel().getTokens().getRedTokens().replace(1, Tokens.RED1TOKENSTARTING);break;
+                    case 1: board.getMyContainingJPanel().getTokens().getRedTokens().replace(2, Tokens.RED2TOKENSTARTING);break;
+                    case 2: board.getMyContainingJPanel().getTokens().getRedTokens().replace(3, Tokens.RED3TOKENSTARTING);break;
+                    case 3: board.getMyContainingJPanel().getTokens().getRedTokens().replace(4, Tokens.RED4TOKENSTARTING);break;
+                    case 4: board.getMyContainingJPanel().getTokens().getBlueTokens().replace(1, Tokens.BLUE1TOKENSTARTING);break;
+                    case 5: board.getMyContainingJPanel().getTokens().getBlueTokens().replace(2, Tokens.BLUE2TOKENSTARTING);break;
+                    case 6: board.getMyContainingJPanel().getTokens().getBlueTokens().replace(3, Tokens.BLUE3TOKENSTARTING);break;
+                    case 7: board.getMyContainingJPanel().getTokens().getBlueTokens().replace(4, Tokens.BLUE4TOKENSTARTING);break;
+                    case 8: board.getMyContainingJPanel().getTokens().getGreenTokens().replace(1, Tokens.GREEN1TOKENSTARTING);break;
+                    case 9: board.getMyContainingJPanel().getTokens().getGreenTokens().replace(2, Tokens.GREEN1TOKENSTARTING);break;
+                    case 10: board.getMyContainingJPanel().getTokens().getGreenTokens().replace(3, Tokens.GREEN1TOKENSTARTING);break;
+                    case 11: board.getMyContainingJPanel().getTokens().getGreenTokens().replace(4, Tokens.GREEN1TOKENSTARTING);break;
+                    case 12: board.getMyContainingJPanel().getTokens().getYellowTokens().replace(1, Tokens.YELLOW1TOKENSTARTING);break;
+                    case 13: board.getMyContainingJPanel().getTokens().getYellowTokens().replace(2, Tokens.YELLOW2TOKENSTARTING);break;
+                    case 14: board.getMyContainingJPanel().getTokens().getYellowTokens().replace(3, Tokens.YELLOW3TOKENSTARTING);break;
+                    case 15: board.getMyContainingJPanel().getTokens().getYellowTokens().replace(4, Tokens.YELLOW4TOKENSTARTING);break;
+                }
+            }
+        }
+
+    }
+
+
 
 }
