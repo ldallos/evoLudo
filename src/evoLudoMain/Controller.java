@@ -203,6 +203,12 @@ public class Controller {
     }
 
 
+    /**
+     * This method determines whether the player in the turn could move with the given token.
+     * @param token - The token's number (1, 2, 3, 4)
+     * @param dicedNumber - The number that was diced by the player.
+     * @return - the true, if the player can move with that token, false if he can't.
+     */
     public boolean canMove(int token, int dicedNumber) {
 
 
