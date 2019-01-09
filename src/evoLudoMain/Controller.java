@@ -1,6 +1,10 @@
 package evoLudoMain;
 
 
+import sun.rmi.server.InactiveGroupException;
+
+import javax.swing.text.Position;
+
 public class Controller {
 
     private static Controller instance = null;
@@ -199,5 +203,204 @@ public class Controller {
     }
 
 
+    public boolean canMove(int token, int dicedNumber) {
+
+
+        switch (whoseTurn()) {
+
+            case "red": {
+                int currentPosition = board.getMyContainingJPanel().getTokens().getRedTokens().get(token);
+
+                boolean canMove1;
+                boolean canMove2;
+                boolean canMove3 = false;
+
+                if ((currentPosition == 76 || currentPosition == 77 ||
+                        currentPosition == 78 || currentPosition == 79)) {
+
+                    if (dicedNumber == 6) {
+                        canMove1 = true;
+                    }
+                    else
+                        canMove1 = false;
+
+                }else {
+                    canMove1 = true;
+                }
+                System.out.print("canmove1\t" + canMove1);
+
+
+                if (!(currentPosition == 76 || currentPosition == 77 ||
+                        currentPosition == 78 || currentPosition == 79)) {
+
+                    canMove2 = (currentPosition + dicedNumber < 61);
+
+                }
+                else {
+                    canMove2 = true;
+                }
+
+                System.out.println("\tcanmove2\t" + canMove2);
+
+
+                if (!(board.getMyContainingJPanel().getTokens().getRedTokens().get(1).equals(currentPosition + dicedNumber) || board.getMyContainingJPanel().getTokens().getRedTokens().get(2).equals(currentPosition + dicedNumber)
+                        || board.getMyContainingJPanel().getTokens().getRedTokens().get(3).equals(currentPosition + dicedNumber) || board.getMyContainingJPanel().getTokens().getRedTokens().get(4).equals(currentPosition + dicedNumber))) {
+                    canMove3 = true;
+                }
+
+                System.out.print("\tcanmove3\t" + canMove3);
+
+
+                return (canMove1 && canMove2 && canMove3);
+            }
+
+            case "blue": {
+
+                int currentPosition = board.getMyContainingJPanel().getTokens().getBlueTokens().get(token);
+
+                boolean canMove1;
+                boolean canMove2;
+                boolean canMove3 = false;
+
+                if ((currentPosition == 80 || currentPosition == 81 ||
+                        currentPosition == 82 || currentPosition == 83)) {
+
+                    if (dicedNumber == 6) {
+                        canMove1 = true;
+                    }
+                    else
+                        canMove1 = false;
+
+                }else {
+                    canMove1 = true;
+                }
+                System.out.print("canmove1\t" + canMove1);
+
+
+                if (!(currentPosition == 80 || currentPosition == 81 ||
+                        currentPosition == 82 || currentPosition == 83)) {
+
+                    canMove2 = (currentPosition + dicedNumber < 66);
+
+                }
+                else {
+                    canMove2 = true;
+                }
+
+                System.out.print("\tcanmove2\t" + canMove2);
+
+
+                if (!(board.getMyContainingJPanel().getTokens().getBlueTokens().get(1).equals(currentPosition + dicedNumber) || board.getMyContainingJPanel().getTokens().getBlueTokens().get(2).equals(currentPosition + dicedNumber)
+                        || board.getMyContainingJPanel().getTokens().getBlueTokens().get(3).equals(currentPosition + dicedNumber) || board.getMyContainingJPanel().getTokens().getBlueTokens().get(4).equals(currentPosition + dicedNumber))) {
+                    canMove3 = true;
+                }
+
+                System.out.println("\tcanmove3\t" + canMove3);
+
+
+                return (canMove1 && canMove2 && canMove3);
+
+
+
+            }
+
+            case "green": {
+
+                int currentPosition = board.getMyContainingJPanel().getTokens().getGreenTokens().get(token);
+
+                boolean canMove1;
+                boolean canMove2;
+                boolean canMove3 = false;
+
+                if ((currentPosition == 84 || currentPosition == 85 ||
+                        currentPosition == 86 || currentPosition == 87)) {
+
+                    if (dicedNumber == 6) {
+                        canMove1 = true;
+                    }
+                    else
+                        canMove1 = false;
+
+                }else {
+                    canMove1 = true;
+                }
+                System.out.print("canmove1\t" + canMove1);
+
+
+                if (!(currentPosition == 84 || currentPosition == 85 ||
+                        currentPosition == 86 || currentPosition == 87)) {
+
+                    canMove2 = (currentPosition + dicedNumber < 71);
+
+                }
+                else {
+                    canMove2 = true;
+                }
+
+                System.out.print("\tcanmove2\t" + canMove2);
+
+
+                if (!(board.getMyContainingJPanel().getTokens().getGreenTokens().get(1).equals(currentPosition + dicedNumber) || board.getMyContainingJPanel().getTokens().getGreenTokens().get(2).equals(currentPosition + dicedNumber)
+                        || board.getMyContainingJPanel().getTokens().getGreenTokens().get(3).equals(currentPosition + dicedNumber) || board.getMyContainingJPanel().getTokens().getGreenTokens().get(4).equals(currentPosition + dicedNumber))) {
+                    canMove3 = true;
+                }
+
+                System.out.println("\tcanmove3\t" + canMove3);
+
+
+                return (canMove1 && canMove2 && canMove3);
+
+            }
+
+            case "yellow": {
+
+
+                int currentPosition = board.getMyContainingJPanel().getTokens().getYellowTokens().get(token);
+
+                boolean canMove1;
+                boolean canMove2;
+                boolean canMove3 = false;
+
+                if (currentPosition == 88 || currentPosition == 89 ||
+                        currentPosition == 90 || currentPosition == 91) {
+
+                    canMove1 =(dicedNumber == 6);
+
+                }else {
+                    canMove1 = true;
+                }
+                System.out.print("canmove1\t" + canMove1);
+
+
+                if (!(currentPosition == 88 || currentPosition == 89 ||
+                        currentPosition == 90 || currentPosition == 91)) {
+
+                    canMove2 = (currentPosition + dicedNumber < 76);
+
+                }
+                else {
+                    canMove2 = true;
+                }
+
+                System.out.print("\tcanmove2\t" + canMove2);
+
+
+                if (!(board.getMyContainingJPanel().getTokens().getYellowTokens().get(1).equals(currentPosition + dicedNumber) || board.getMyContainingJPanel().getTokens().getYellowTokens().get(2).equals(currentPosition + dicedNumber)
+                        || board.getMyContainingJPanel().getTokens().getYellowTokens().get(3).equals(currentPosition + dicedNumber) || board.getMyContainingJPanel().getTokens().getYellowTokens().get(4).equals(currentPosition + dicedNumber))) {
+                    canMove3 = true;
+                }
+
+                System.out.println("\tcanmove3\t" + canMove3);
+
+
+                return (canMove1 && canMove2 && canMove3);
+
+
+            }default:return true;
+
+
+        }
+
+    }
 
 }

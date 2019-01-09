@@ -85,6 +85,7 @@ public class Route {
         //RED MIDDLE LEFT
         route.add(new Point(shiftWidth, scaleUnitHeight + shiftHeight + scaleUnitHeight / 6.0));
 
+
         //RED FINISHING ROOT
         for (int i = 0; i <=4; i++)
             route.add(new Point(shiftWidth + scaleUnitWidth / 6.0 + scaleUnitWidth / 6.0 * i, shiftHeight + scaleUnitHeight + scaleUnitHeight / 6.0));

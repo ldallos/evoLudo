@@ -12,8 +12,6 @@ public class LudoProgram {
 
         controller.setBoard(board);
 
-
-
         board.addComponentListener(new ComponentAdapter() {
             public void componentResized(ComponentEvent evt) {
                 board.refreshSizes();

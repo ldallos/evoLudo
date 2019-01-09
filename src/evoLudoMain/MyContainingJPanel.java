@@ -8,8 +8,8 @@ public class MyContainingJPanel extends JPanel {
     private GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
     private double WIDTH = gd.getDisplayMode().getWidth();
     private double HEIGHT = gd.getDisplayMode().getHeight();
-    private int scaleUnitWidth = (int) (WIDTH / 5);
-    private int scaleUnitHeight = (int) (HEIGHT / 5);
+    private int scaleUnitWidth;
+    private int scaleUnitHeight;
     private int shiftWidth;
     private int shiftHeight;
     private static MyContainingJPanel instance = null;
@@ -27,6 +27,19 @@ public class MyContainingJPanel extends JPanel {
 
     public MyContainingJPanel() {
         setBounds(0, 0, (int)WIDTH, (int)HEIGHT);
+        if (this.WIDTH < this.HEIGHT) {
+            shiftHeight = (int) ((this.HEIGHT - this.WIDTH) /2);
+            this.HEIGHT = this.WIDTH;
+        }else {
+            shiftWidth = (int) ((WIDTH - HEIGHT) /2);
+            this.WIDTH = this.HEIGHT;
+        }
+
+
+
+        this.scaleUnitWidth = (int) (this.WIDTH / 5 * 2);
+        this.scaleUnitHeight = (int) (this.HEIGHT / 5 * 2);
+        route.resetPointPositions(scaleUnitWidth, scaleUnitHeight, shiftWidth, shiftHeight);
     }
 
 
@@ -71,6 +84,8 @@ public class MyContainingJPanel extends JPanel {
 
             }
         }
+
+
 
 
         //TODO: ÁRON try to draw all of the positions of tokens, based on the values you can query from tokens and route.

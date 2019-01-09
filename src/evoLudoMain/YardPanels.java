@@ -111,10 +111,10 @@ public class YardPanels extends JPanel {
         buttonGroup.add(token3);
         buttonGroup.add(token4);
 
-        token1.setVisible(true);
-        token2.setVisible(true);
-        token3.setVisible(true);
-        token4.setVisible(true);
+        token1.setVisible(controller.canMove(1, Integer.parseInt(this.diceRollingResult.getText())));
+        token2.setVisible(controller.canMove(2, Integer.parseInt(this.diceRollingResult.getText())));
+        token3.setVisible(controller.canMove(3, Integer.parseInt(this.diceRollingResult.getText())));
+        token4.setVisible(controller.canMove(4, Integer.parseInt(this.diceRollingResult.getText())));
 
 
         token1.addActionListener(new ActionListener() {
