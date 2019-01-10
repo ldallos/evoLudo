@@ -85,11 +85,62 @@ public class MyContainingJPanel extends JPanel {
             }
         }
 
+        g.setColor(new Color(255, 0, 0));
+        g.fillOval((int)(route.getRoute().get(tokens.getRedTokens().get(1)).getX()), (int)(route.getRoute().get(tokens.getRedTokens().get(1)).getY()), scaleUnitWidth / 6, scaleUnitHeight / 6);
+        g.fillOval((int)(route.getRoute().get(tokens.getRedTokens().get(2)).getX()), (int)(route.getRoute().get(tokens.getRedTokens().get(2)).getY()), scaleUnitWidth / 6, scaleUnitHeight / 6);
+        g.fillOval((int)(route.getRoute().get(tokens.getRedTokens().get(3)).getX()), (int)(route.getRoute().get(tokens.getRedTokens().get(3)).getY()), scaleUnitWidth / 6, scaleUnitHeight / 6);
+        g.fillOval((int)(route.getRoute().get(tokens.getRedTokens().get(4)).getX()), (int)(route.getRoute().get(tokens.getRedTokens().get(4)).getY()), scaleUnitWidth / 6, scaleUnitHeight / 6);
 
-        //TODO: ÁRON try to draw all of the positions of tokens, based on the values you can query from tokens and route.
-        //TODO: for example: int place = tokens.getRedTokens().get(1) gives you the red players first token's number, which refers to the route.get(place)
-        //tokens.getRedTokens().get(1) gives back an integer, which represents the number in the route list.
-        //route.get(place) gives back a Position, where you should draw the circle.
+        g.setColor(new Color(0,0,0));
+        g.setFont(new Font("Arial", Font.PLAIN, scaleUnitWidth / 12));
+        g.drawString("1",(int) route.getRoute().get(tokens.getRedTokens().get(1)).getX()+(scaleUnitWidth / 18), (int)(route.getRoute().get(tokens.getRedTokens().get(1)).getY()+(scaleUnitHeight / 9)));
+        g.drawString("2",(int) route.getRoute().get(tokens.getRedTokens().get(2)).getX()+(scaleUnitWidth / 18), (int)(route.getRoute().get(tokens.getRedTokens().get(2)).getY()+(scaleUnitHeight / 9)));
+        g.drawString("3",(int) route.getRoute().get(tokens.getRedTokens().get(3)).getX()+(scaleUnitWidth / 18), (int)(route.getRoute().get(tokens.getRedTokens().get(3)).getY()+(scaleUnitHeight / 9)));
+        g.drawString("4",(int) route.getRoute().get(tokens.getRedTokens().get(4)).getX()+(scaleUnitWidth / 18), (int)(route.getRoute().get(tokens.getRedTokens().get(4)).getY()+(scaleUnitHeight / 9)));
+
+
+        g.setColor(new Color(0, 0, 255));
+        g.fillOval((int)(route.getRoute().get(tokens.getBlueTokens().get(1)).getX()), (int)(route.getRoute().get(tokens.getBlueTokens().get(1)).getY()), scaleUnitWidth / 6, scaleUnitHeight / 6);
+        g.fillOval((int)(route.getRoute().get(tokens.getBlueTokens().get(2)).getX()), (int)(route.getRoute().get(tokens.getBlueTokens().get(2)).getY()), scaleUnitWidth / 6, scaleUnitHeight / 6);
+        g.fillOval((int)(route.getRoute().get(tokens.getBlueTokens().get(3)).getX()), (int)(route.getRoute().get(tokens.getBlueTokens().get(3)).getY()), scaleUnitWidth / 6, scaleUnitHeight / 6);
+        g.fillOval((int)(route.getRoute().get(tokens.getBlueTokens().get(4)).getX()), (int)(route.getRoute().get(tokens.getBlueTokens().get(4)).getY()), scaleUnitWidth / 6, scaleUnitHeight / 6);
+
+        g.setColor(new Color(0,0,0));
+        g.drawString("1",(int)(route.getRoute().get(tokens.getBlueTokens().get(1)).getX()+(scaleUnitWidth / 18)), (int)(route.getRoute().get(tokens.getBlueTokens().get(1)).getY()+(scaleUnitHeight / 9)));
+        g.drawString("2",(int)(route.getRoute().get(tokens.getBlueTokens().get(2)).getX()+(scaleUnitWidth / 18)), (int)(route.getRoute().get(tokens.getBlueTokens().get(2)).getY()+(scaleUnitHeight / 9)));
+        g.drawString("3",(int)(route.getRoute().get(tokens.getBlueTokens().get(3)).getX()+(scaleUnitWidth / 18)), (int)(route.getRoute().get(tokens.getBlueTokens().get(3)).getY()+(scaleUnitHeight / 9)));
+        g.drawString("4",(int)(route.getRoute().get(tokens.getBlueTokens().get(4)).getX()+(scaleUnitWidth / 18)), (int)(route.getRoute().get(tokens.getBlueTokens().get(3)).getY()+(scaleUnitHeight / 9)));
+
+        g.setColor(new Color(0, 255, 0));
+        g.fillOval((int)(route.getRoute().get(tokens.getGreenTokens().get(1)).getX()), (int)(route.getRoute().get(tokens.getGreenTokens().get(1)).getY()), scaleUnitWidth / 6, scaleUnitHeight / 6);
+        g.fillOval((int)(route.getRoute().get(tokens.getGreenTokens().get(2)).getX()), (int)(route.getRoute().get(tokens.getGreenTokens().get(2)).getY()), scaleUnitWidth / 6, scaleUnitHeight / 6);
+        g.fillOval((int)(route.getRoute().get(tokens.getGreenTokens().get(3)).getX()), (int)(route.getRoute().get(tokens.getGreenTokens().get(3)).getY()), scaleUnitWidth / 6, scaleUnitHeight / 6);
+        g.fillOval((int)(route.getRoute().get(tokens.getGreenTokens().get(4)).getX()), (int)(route.getRoute().get(tokens.getGreenTokens().get(4)).getY()), scaleUnitWidth / 6, scaleUnitHeight / 6);
+
+        g.setColor(new Color(0,0,0));
+        g.drawString("1",(int)(route.getRoute().get(tokens.getGreenTokens().get(1)).getX()+(scaleUnitWidth / 18)), (int)(route.getRoute().get(tokens.getGreenTokens().get(1)).getY()+(scaleUnitHeight / 9)));
+        g.drawString("2",(int)(route.getRoute().get(tokens.getGreenTokens().get(2)).getX()+(scaleUnitWidth / 18)), (int)(route.getRoute().get(tokens.getGreenTokens().get(2)).getY()+(scaleUnitHeight / 9)));
+        g.drawString("3",(int)(route.getRoute().get(tokens.getGreenTokens().get(3)).getX()+(scaleUnitWidth / 18)), (int)(route.getRoute().get(tokens.getGreenTokens().get(3)).getY()+(scaleUnitHeight / 9)));
+        g.drawString("4",(int)(route.getRoute().get(tokens.getGreenTokens().get(4)).getX()+(scaleUnitWidth / 18)), (int)(route.getRoute().get(tokens.getGreenTokens().get(3)).getY()+(scaleUnitHeight / 9)));
+
+
+        g.setColor(new Color(255, 230, 0));
+        g.fillOval((int)(route.getRoute().get(tokens.getYellowTokens().get(1)).getX()), (int)(route.getRoute().get(tokens.getYellowTokens().get(1)).getY()), scaleUnitWidth / 6, scaleUnitHeight / 6);
+        g.fillOval((int)(route.getRoute().get(tokens.getYellowTokens().get(2)).getX()), (int)(route.getRoute().get(tokens.getYellowTokens().get(2)).getY()), scaleUnitWidth / 6, scaleUnitHeight / 6);
+        g.fillOval((int)(route.getRoute().get(tokens.getYellowTokens().get(3)).getX()), (int)(route.getRoute().get(tokens.getYellowTokens().get(3)).getY()), scaleUnitWidth / 6, scaleUnitHeight / 6);
+        g.fillOval((int)(route.getRoute().get(tokens.getYellowTokens().get(4)).getX()), (int)(route.getRoute().get(tokens.getYellowTokens().get(4)).getY()), scaleUnitWidth / 6, scaleUnitHeight / 6);
+
+        g.setColor(new Color(0,0,0));
+        g.drawString("1",(int)(route.getRoute().get(tokens.getYellowTokens().get(1)).getX()+(scaleUnitWidth / 18)), (int)(route.getRoute().get(tokens.getYellowTokens().get(1)).getY()+(scaleUnitHeight / 9)));
+        g.drawString("2",(int)(route.getRoute().get(tokens.getYellowTokens().get(2)).getX()+(scaleUnitWidth / 18)), (int)(route.getRoute().get(tokens.getYellowTokens().get(2)).getY()+(scaleUnitHeight / 9)));
+        g.drawString("3",(int)(route.getRoute().get(tokens.getYellowTokens().get(3)).getX()+(scaleUnitWidth / 18)), (int)(route.getRoute().get(tokens.getYellowTokens().get(3)).getY()+(scaleUnitHeight / 9)));
+        g.drawString("4",(int)(route.getRoute().get(tokens.getYellowTokens().get(4)).getX()+(scaleUnitWidth / 18)), (int)(route.getRoute().get(tokens.getYellowTokens().get(3)).getY()+(scaleUnitHeight / 9)));
+
+
+        g.drawRect(shiftWidth + scaleUnitWidth, scaleUnitHeight + shiftHeight, scaleUnitWidth /6, scaleUnitHeight /6);
+        g.drawRect(shiftWidth + scaleUnitWidth + scaleUnitWidth / 6 * 2, scaleUnitHeight + shiftHeight, scaleUnitWidth /6, scaleUnitHeight /6);
+        g.drawRect(shiftWidth + scaleUnitWidth, scaleUnitHeight + shiftHeight + scaleUnitHeight / 6 * 2, scaleUnitWidth /6, scaleUnitHeight /6);
+        g.drawRect(shiftWidth + scaleUnitWidth  + scaleUnitWidth / 6 * 2, scaleUnitHeight + shiftHeight + scaleUnitHeight / 6 * 2, scaleUnitWidth /6, scaleUnitHeight /6);
 
     }
 
