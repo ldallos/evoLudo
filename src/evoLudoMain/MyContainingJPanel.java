@@ -85,6 +85,7 @@ public class MyContainingJPanel extends JPanel {
             }
         }
 
+
         //TODO: ÁRON try to draw all of the positions of tokens, based on the values you can query from tokens and route.
         //TODO: for example: int place = tokens.getRedTokens().get(1) gives you the red players first token's number, which refers to the route.get(place)
         //tokens.getRedTokens().get(1) gives back an integer, which represents the number in the route list.
@@ -101,31 +102,6 @@ public class MyContainingJPanel extends JPanel {
         this.shiftWidth = (int) shiftWidth;
         this.shiftHeight = (int) shiftHeight;
 
-    }
-
-
-    public double getWIDTH() {
-        return WIDTH;
-    }
-
-    public double getHEIGHT() {
-        return HEIGHT;
-    }
-
-    public int getScaleUnitWidth() {
-        return scaleUnitWidth;
-    }
-
-    public int getScaleUnitHeight() {
-        return scaleUnitHeight;
-    }
-
-    public int getShiftWidth() {
-        return shiftWidth;
-    }
-
-    public int getShiftHeight() {
-        return shiftHeight;
     }
 
 

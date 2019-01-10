@@ -21,9 +21,7 @@ public class YardPanels extends JPanel {
 
     public void paint(Graphics g) {
         super.paint(g);
-
-
-        //TODO Elődnek ide kell rajzolnia a köröket.
+        //TODO: Ide rajzolhatod a köröket a xCoordinates és yCoordinates alapján.
     }
 
 
