@@ -109,7 +109,7 @@ public class MyContainingJPanel extends JPanel {
         g.drawString("1",(int)(route.getRoute().get(tokens.getBlueTokens().get(1)).getX()+(scaleUnitWidth / 18)), (int)(route.getRoute().get(tokens.getBlueTokens().get(1)).getY()+(scaleUnitHeight / 9)));
         g.drawString("2",(int)(route.getRoute().get(tokens.getBlueTokens().get(2)).getX()+(scaleUnitWidth / 18)), (int)(route.getRoute().get(tokens.getBlueTokens().get(2)).getY()+(scaleUnitHeight / 9)));
         g.drawString("3",(int)(route.getRoute().get(tokens.getBlueTokens().get(3)).getX()+(scaleUnitWidth / 18)), (int)(route.getRoute().get(tokens.getBlueTokens().get(3)).getY()+(scaleUnitHeight / 9)));
-        g.drawString("4",(int)(route.getRoute().get(tokens.getBlueTokens().get(4)).getX()+(scaleUnitWidth / 18)), (int)(route.getRoute().get(tokens.getBlueTokens().get(3)).getY()+(scaleUnitHeight / 9)));
+        g.drawString("4",(int)(route.getRoute().get(tokens.getBlueTokens().get(4)).getX()+(scaleUnitWidth / 18)), (int)(route.getRoute().get(tokens.getBlueTokens().get(4)).getY()+(scaleUnitHeight / 9)));
 
         g.setColor(new Color(0, 255, 0));
         g.fillOval((int)(route.getRoute().get(tokens.getGreenTokens().get(1)).getX()), (int)(route.getRoute().get(tokens.getGreenTokens().get(1)).getY()), scaleUnitWidth / 6, scaleUnitHeight / 6);
@@ -121,7 +121,7 @@ public class MyContainingJPanel extends JPanel {
         g.drawString("1",(int)(route.getRoute().get(tokens.getGreenTokens().get(1)).getX()+(scaleUnitWidth / 18)), (int)(route.getRoute().get(tokens.getGreenTokens().get(1)).getY()+(scaleUnitHeight / 9)));
         g.drawString("2",(int)(route.getRoute().get(tokens.getGreenTokens().get(2)).getX()+(scaleUnitWidth / 18)), (int)(route.getRoute().get(tokens.getGreenTokens().get(2)).getY()+(scaleUnitHeight / 9)));
         g.drawString("3",(int)(route.getRoute().get(tokens.getGreenTokens().get(3)).getX()+(scaleUnitWidth / 18)), (int)(route.getRoute().get(tokens.getGreenTokens().get(3)).getY()+(scaleUnitHeight / 9)));
-        g.drawString("4",(int)(route.getRoute().get(tokens.getGreenTokens().get(4)).getX()+(scaleUnitWidth / 18)), (int)(route.getRoute().get(tokens.getGreenTokens().get(3)).getY()+(scaleUnitHeight / 9)));
+        g.drawString("4",(int)(route.getRoute().get(tokens.getGreenTokens().get(4)).getX()+(scaleUnitWidth / 18)), (int)(route.getRoute().get(tokens.getGreenTokens().get(4)).getY()+(scaleUnitHeight / 9)));
 
 
         g.setColor(new Color(255, 230, 0));
@@ -134,7 +134,7 @@ public class MyContainingJPanel extends JPanel {
         g.drawString("1",(int)(route.getRoute().get(tokens.getYellowTokens().get(1)).getX()+(scaleUnitWidth / 18)), (int)(route.getRoute().get(tokens.getYellowTokens().get(1)).getY()+(scaleUnitHeight / 9)));
         g.drawString("2",(int)(route.getRoute().get(tokens.getYellowTokens().get(2)).getX()+(scaleUnitWidth / 18)), (int)(route.getRoute().get(tokens.getYellowTokens().get(2)).getY()+(scaleUnitHeight / 9)));
         g.drawString("3",(int)(route.getRoute().get(tokens.getYellowTokens().get(3)).getX()+(scaleUnitWidth / 18)), (int)(route.getRoute().get(tokens.getYellowTokens().get(3)).getY()+(scaleUnitHeight / 9)));
-        g.drawString("4",(int)(route.getRoute().get(tokens.getYellowTokens().get(4)).getX()+(scaleUnitWidth / 18)), (int)(route.getRoute().get(tokens.getYellowTokens().get(3)).getY()+(scaleUnitHeight / 9)));
+        g.drawString("4",(int)(route.getRoute().get(tokens.getYellowTokens().get(4)).getX()+(scaleUnitWidth / 18)), (int)(route.getRoute().get(tokens.getYellowTokens().get(4)).getY()+(scaleUnitHeight / 9)));
 
 
         g.drawRect(shiftWidth + scaleUnitWidth, scaleUnitHeight + shiftHeight, scaleUnitWidth /6, scaleUnitHeight /6);
