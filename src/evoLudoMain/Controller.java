@@ -3,6 +3,8 @@ package evoLudoMain;
 
 import java.util.ArrayList;
 
+import static java.lang.Math.abs;
+
 public class Controller {
 
     private static Controller instance = null;
@@ -127,6 +129,7 @@ public class Controller {
             }
 
             whereTo += board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken);
+            putBackEnemyToken((currentPosition+whereTo));
             board.getMyContainingJPanel().getTokens().getRedTokens().replace(chosenToken, whereTo);
 
         }
@@ -161,12 +164,14 @@ public class Controller {
             }
 
             whereTo += board.getMyContainingJPanel().getTokens().getBlueTokens().get(chosenToken);
+            putBackEnemyToken((currentPosition+whereTo));
             board.getMyContainingJPanel().getTokens().getBlueTokens().replace(chosenToken, whereTo);
 
         }
         else {
-            putBackEnemyToken((currentPosition + whereTo));
-            board.getMyContainingJPanel().getTokens().getBlueTokens().replace(chosenToken, currentPosition + whereTo);
+            int whereToStep = isEndOfTrack(currentPosition, whereTo);
+            putBackEnemyToken(whereToStep);
+            board.getMyContainingJPanel().getTokens().getBlueTokens().replace(chosenToken, whereToStep);
         }
 
     }
@@ -193,11 +198,13 @@ public class Controller {
                 whereTo = 0;
             }
             whereTo += board.getMyContainingJPanel().getTokens().getGreenTokens().get(chosenToken);
+            putBackEnemyToken((currentPosition+whereTo));
             board.getMyContainingJPanel().getTokens().getGreenTokens().replace(chosenToken, whereTo);
         }
         else {
-            putBackEnemyToken((currentPosition + whereTo));
-            board.getMyContainingJPanel().getTokens().getGreenTokens().replace(chosenToken, currentPosition + whereTo);
+            int whereToStep = isEndOfTrack(currentPosition, whereTo);
+            putBackEnemyToken(whereToStep);
+            board.getMyContainingJPanel().getTokens().getGreenTokens().replace(chosenToken, whereToStep);
         }
 
     }
@@ -225,11 +232,26 @@ public class Controller {
             }
 
             whereTo += board.getMyContainingJPanel().getTokens().getYellowTokens().get(chosenToken);
+            putBackEnemyToken((currentPosition+whereTo));
             board.getMyContainingJPanel().getTokens().getYellowTokens().replace(chosenToken, whereTo);
         }
         else {
-            putBackEnemyToken((currentPosition + whereTo));
-            board.getMyContainingJPanel().getTokens().getYellowTokens().replace(chosenToken, currentPosition + whereTo);
+            int whereToStep = isEndOfTrack(currentPosition, whereTo);
+            putBackEnemyToken(whereToStep);
+            board.getMyContainingJPanel().getTokens().getYellowTokens().replace(chosenToken, whereToStep);
+        }
+
+    }
+
+    private int isEndOfTrack(int currentPosition, int dicedNumber) {
+
+        if (currentPosition+dicedNumber > 55) {
+            System.out.println("osszeg: \t" + (currentPosition+dicedNumber));
+            System.out.println("kivonas utan\t" + abs(((currentPosition + dicedNumber) - 56)));
+            return abs(((currentPosition + dicedNumber) - 56));
+        }
+        else {
+            return currentPosition + dicedNumber;
         }
 
     }

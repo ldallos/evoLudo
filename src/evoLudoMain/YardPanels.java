@@ -17,6 +17,7 @@ public class YardPanels extends JPanel {
     private int panelHeight = (int) getSize().getHeight();
     private Controller controller = Controller.getInstance();
     private int chosenToken = 0;
+    private int dicedNumber = 0;
 
 
     public void paint(Graphics g) {
@@ -40,10 +41,10 @@ public class YardPanels extends JPanel {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 Random rand = new Random();
-                int n = rand.nextInt(6) + 1;
-                diceRollingResult.setText(String.valueOf(n));
-                JOptionPane.showMessageDialog(null, getSelectorJPanel(), "You have " + n + " steps to go. Please choose your token to move.", JOptionPane.INFORMATION_MESSAGE);
-                controller.moveToken(n, chosenToken);
+                dicedNumber = rand.nextInt(6) + 1;
+                diceRollingResult.setText(String.valueOf(dicedNumber));
+                JOptionPane.showMessageDialog(null, getSelectorJPanel(), "You have " + dicedNumber + " steps to go. Please choose your token to move.", JOptionPane.INFORMATION_MESSAGE);
+                controller.moveToken(dicedNumber, chosenToken);
             }
         });
 
