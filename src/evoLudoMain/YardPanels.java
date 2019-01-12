@@ -15,12 +15,13 @@ public class YardPanels extends JPanel {
     private JLabel diceRollingResult = new JLabel();
     private int panelWidth = (int) getSize().getWidth();
     private int panelHeight = (int) getSize().getHeight();
+    private Controller controller = Controller.getInstance();
+    private int chosenToken = 0;
 
 
     public void paint(Graphics g) {
         super.paint(g);
-
-        //TODO Elődnek ide kell rajzolnia a köröket.
+        //TODO: Ide rajzolhatod a köröket a xCoordinates és yCoordinates alapján.
     }
 
 
@@ -41,8 +42,12 @@ public class YardPanels extends JPanel {
                 Random rand = new Random();
                 int n = rand.nextInt(6) + 1;
                 diceRollingResult.setText(String.valueOf(n));
+                JOptionPane.showMessageDialog(null, getSelectorJPanel(), "You have " + n + " steps to go. Please choose your token to move.", JOptionPane.INFORMATION_MESSAGE);
+                controller.moveToken(n, chosenToken);
             }
         });
+
+        diceRollerButton.setEnabled(false);
 
         add(diceRollerButton);
         add(diceRollingResult);
@@ -71,28 +76,88 @@ public class YardPanels extends JPanel {
         diceRollingResult.setBounds(panelWidth / 10 * 8, 5, panelWidth / 10 * 3, panelHeight / 10);
     }
 
-    public int[] getxCoordinates() {
-        return xCoordinates;
+
+    public JButton getDiceRollerButton() {
+        return diceRollerButton;
     }
 
-    public void setxCoordinates(int[] xCoordinates) {
-        this.xCoordinates = xCoordinates;
+    /**
+     * The selector panel for JOptionPane
+     * @return Gives back a panel with JRadioButtons on it.
+     */
+    private JPanel getSelectorJPanel() {
+        JRadioButton token1 = new JRadioButton("Token 1");
+        JRadioButton token2 = new JRadioButton("Token 2");
+        JRadioButton token3 = new JRadioButton("Token 3");
+        JRadioButton token4 = new JRadioButton("Token 4");
+        token1.setSelected(true);
+        setChosenToken(1);
+        ButtonGroup buttonGroup = new ButtonGroup();
+
+        JPanel selector = new JPanel();
+        selector.setBounds(0, 0, 300, 150);
+
+        selector.setVisible(true);
+
+        token1.setBounds(10, 10,100, 30);
+        token2.setBounds(160, 10,100, 30);
+        token3.setBounds(10, 70,100, 30);
+        token4.setBounds(160, 70,100, 30);
+
+        buttonGroup.add(token1);
+        buttonGroup.add(token2);
+        buttonGroup.add(token3);
+        buttonGroup.add(token4);
+
+        token1.setVisible(controller.canMove(1, Integer.parseInt(this.diceRollingResult.getText())));
+        token2.setVisible(controller.canMove(2, Integer.parseInt(this.diceRollingResult.getText())));
+        token3.setVisible(controller.canMove(3, Integer.parseInt(this.diceRollingResult.getText())));
+        token4.setVisible(controller.canMove(4, Integer.parseInt(this.diceRollingResult.getText())));
+
+
+        token1.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                setChosenToken(1);
+            }
+        });
+
+        token2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                setChosenToken(2);
+            }
+        });
+
+        token3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                setChosenToken(3);
+            }
+        });
+
+        token4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                setChosenToken(4);
+            }
+        });
+
+
+        selector.add(token1);
+        selector.add(token2);
+        selector.add(token3);
+        selector.add(token4);
+
+
+
+        return selector;
     }
 
-    public int[] getyCoordinates() {
-        return yCoordinates;
-    }
-
-    public void setyCoordinates(int[] yCoordinates) {
-        this.yCoordinates = yCoordinates;
-    }
-
-    public int getOvalDiameter() {
-        return ovalDiameter;
-    }
-
-    public void setOvalDiameter(int ovalDiameter) {
-        this.ovalDiameter = ovalDiameter;
-    }
-
+    /**
+     * Sets the chosen token according to the JOptionPane's
+     * @param chosen
+     */
+    private void setChosenToken(int chosen) { this.chosenToken = chosen;}
 }
