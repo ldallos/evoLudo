@@ -127,8 +127,6 @@ public class Route {
         route.add(new Point(shiftWidth + scaleUnitWidth * 0.7, shiftHeight + scaleUnitHeight * 0.7 + scaleUnitHeight + scaleUnitHeight / 2.0));
 
 
-
-        System.out.println("ROOT SIZE: \t " + route.size());
     }
 
 

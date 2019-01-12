@@ -48,7 +48,8 @@ public class Controller {
 
         System.out.println("whoseTurn: \t" + whoseTurn());
         System.out.println("whichToken: \t" + chosenToken);
-        System.out.println("whereTo: \t" + whereTo);
+        System.out.println("dicedNumber: \t" + whereTo);
+
 
 
         board.getMyContainingJPanel().repaint();
@@ -118,9 +119,12 @@ public class Controller {
 
         int currentPosition = board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken);
 
+        System.out.println("currentPosition\t " + currentPosition);
+        System.out.println("0.babu erteke\t " + board.getMyContainingJPanel().getTokens().getRedTokens().get(0));
         if (currentPosition == 76 || currentPosition == 77 || currentPosition == 78 || currentPosition == 79) {
 
              if (whereTo == 6) {
+                    putBackEnemyToken(0);
                     board.getMyContainingJPanel().getTokens().getRedTokens().replace(chosenToken, 0);
                     whereTo = 0;
             }
@@ -134,8 +138,16 @@ public class Controller {
 
         }
         else {
-            putBackEnemyToken((currentPosition+whereTo));
-            board.getMyContainingJPanel().getTokens().getRedTokens().replace(chosenToken, (currentPosition + whereTo));
+            putBackEnemyToken(currentPosition+whereTo);
+
+            if (currentPosition + whereTo > 59) {
+                board.getMyContainingJPanel().getTokens().getRedTokens().replace(chosenToken, 60);
+            }
+            else {
+                board.getMyContainingJPanel().getTokens().getRedTokens().replace(chosenToken, (currentPosition + whereTo));
+            }
+
+
         }
 
 
@@ -145,33 +157,62 @@ public class Controller {
 
     /**
      * Moves the selected blue token to a new position.
-     * @param whereTo - The thrown value by the dice.
+     * @param dicedNumber - The thrown value by the dice.
      * @param chosenToken - The number of the chosen token which to move.
      */
-    private void bluesTurn(int whereTo, int chosenToken) {
+    private void bluesTurn(int dicedNumber, int chosenToken) {
 
         int currentPosition = board.getMyContainingJPanel().getTokens().getBlueTokens().get(chosenToken);
 
-        if (currentPosition == 80 || currentPosition == 81 ||
-                currentPosition == 82 || currentPosition == 83) {
+        System.out.println("currentPosition\t " + currentPosition);
+        System.out.println("0.babu erteke\t " + board.getMyContainingJPanel().getTokens().getBlueTokens().get(0));
+        if (currentPosition == 80 || currentPosition == 81 ||currentPosition == 82 || currentPosition == 83) {
 
-            if (whereTo == 6) {
+            if (dicedNumber == 6) {
+                putBackEnemyToken(14);
                 board.getMyContainingJPanel().getTokens().getBlueTokens().replace(chosenToken, 14);
-                whereTo = 0;
+                dicedNumber = 0;
             }
             else {
-                whereTo = 0;
+                dicedNumber = 0;
             }
 
-            whereTo += board.getMyContainingJPanel().getTokens().getBlueTokens().get(chosenToken);
-            putBackEnemyToken((currentPosition+whereTo));
-            board.getMyContainingJPanel().getTokens().getBlueTokens().replace(chosenToken, whereTo);
+            dicedNumber += board.getMyContainingJPanel().getTokens().getBlueTokens().get(chosenToken);
+            putBackEnemyToken(currentPosition+dicedNumber);
+            board.getMyContainingJPanel().getTokens().getBlueTokens().replace(chosenToken, dicedNumber);
 
         }
         else {
-            int whereToStep = isEndOfTrack(currentPosition, whereTo);
-            putBackEnemyToken(whereToStep);
-            board.getMyContainingJPanel().getTokens().getBlueTokens().replace(chosenToken, whereToStep);
+
+            int whereToStep = currentPosition + dicedNumber;
+
+            if (board.getMyContainingJPanel().getTokens().getHadReachTheEnd().get(chosenToken -1 + 4)) {
+
+                if (currentPosition + dicedNumber > 13) {
+                    whereToStep = abs(currentPosition + dicedNumber - 14) + 61;
+                }
+                else if (currentPosition > 60) {
+                    whereToStep = currentPosition + dicedNumber;
+                }
+                else {
+                    putBackEnemyToken(whereToStep);
+                }
+
+
+                if (currentPosition + dicedNumber > 64) {
+                    whereToStep = 65;
+                }
+
+                board.getMyContainingJPanel().getTokens().getBlueTokens().replace(chosenToken, whereToStep);
+
+            }
+            else {
+                whereToStep = isEndOfTrack(currentPosition, dicedNumber, chosenToken);
+                putBackEnemyToken(whereToStep);
+                board.getMyContainingJPanel().getTokens().getBlueTokens().replace(chosenToken, whereToStep);
+            }
+
+
         }
 
     }
@@ -187,10 +228,13 @@ public class Controller {
 
         int currentPosition = board.getMyContainingJPanel().getTokens().getGreenTokens().get(chosenToken);
 
+        System.out.println("currentPosition\t " + currentPosition);
+        System.out.println("0.babu erteke\t " + board.getMyContainingJPanel().getTokens().getGreenTokens().get(0));
         if ((currentPosition == 84 || currentPosition == 85 ||
                 currentPosition == 86 || currentPosition == 87)) {
 
             if (whereTo == 6) {
+                putBackEnemyToken(28);
                 board.getMyContainingJPanel().getTokens().getGreenTokens().replace(chosenToken, 28);
                 whereTo = 0;
             }
@@ -202,7 +246,7 @@ public class Controller {
             board.getMyContainingJPanel().getTokens().getGreenTokens().replace(chosenToken, whereTo);
         }
         else {
-            int whereToStep = isEndOfTrack(currentPosition, whereTo);
+            int whereToStep = isEndOfTrack(currentPosition, whereTo, chosenToken);
             putBackEnemyToken(whereToStep);
             board.getMyContainingJPanel().getTokens().getGreenTokens().replace(chosenToken, whereToStep);
         }
@@ -220,10 +264,12 @@ public class Controller {
 
         int currentPosition = board.getMyContainingJPanel().getTokens().getYellowTokens().get(chosenToken);
 
-        if ((currentPosition == 88 || currentPosition == 89 ||
-                currentPosition == 90 || currentPosition == 91)) {
+        System.out.println("currentPosition\t " + currentPosition);
+        System.out.println("0.babu erteke\t " + board.getMyContainingJPanel().getTokens().getYellowTokens().get(0));
+        if (currentPosition == 88 || currentPosition == 89 || currentPosition == 90 || currentPosition == 91) {
 
             if (whereTo == 6) {
+                putBackEnemyToken(42);
                 board.getMyContainingJPanel().getTokens().getYellowTokens().replace(chosenToken, 42);
                 whereTo = 0;
             }
@@ -232,22 +278,29 @@ public class Controller {
             }
 
             whereTo += board.getMyContainingJPanel().getTokens().getYellowTokens().get(chosenToken);
-            putBackEnemyToken((currentPosition+whereTo));
+            putBackEnemyToken(currentPosition+whereTo);
             board.getMyContainingJPanel().getTokens().getYellowTokens().replace(chosenToken, whereTo);
         }
         else {
-            int whereToStep = isEndOfTrack(currentPosition, whereTo);
+            int whereToStep = isEndOfTrack(currentPosition, whereTo, chosenToken);
             putBackEnemyToken(whereToStep);
             board.getMyContainingJPanel().getTokens().getYellowTokens().replace(chosenToken, whereToStep);
         }
 
     }
 
-    private int isEndOfTrack(int currentPosition, int dicedNumber) {
+    private int isEndOfTrack(int currentPosition, int dicedNumber, int chosenToken) {
 
         if (currentPosition+dicedNumber > 55) {
-            System.out.println("osszeg: \t" + (currentPosition+dicedNumber));
-            System.out.println("kivonas utan\t" + abs(((currentPosition + dicedNumber) - 56)));
+
+            switch (whoseTurn()) {
+                case "red": board.getMyContainingJPanel().getTokens().getHadReachTheEnd().set(chosenToken - 1, true);break;
+                case "blue": board.getMyContainingJPanel().getTokens().getHadReachTheEnd().set(chosenToken -1 + 4, true);break;
+                case "green": board.getMyContainingJPanel().getTokens().getHadReachTheEnd().set(chosenToken - 1 + 8, true);break;
+                case "yellow": board.getMyContainingJPanel().getTokens().getHadReachTheEnd().set(chosenToken - 1 + 12, true); break;
+            }
+
+
             return abs(((currentPosition + dicedNumber) - 56));
         }
         else {
@@ -287,7 +340,6 @@ public class Controller {
                 }else {
                     canMove1 = true;
                 }
-                System.out.print("canmove1\t" + canMove1);
 
 
                 if (!(currentPosition == 76 || currentPosition == 77 ||
@@ -300,7 +352,6 @@ public class Controller {
                     canMove2 = true;
                 }
 
-                System.out.println("\tcanmove2\t" + canMove2);
 
 
                 if (!(board.getMyContainingJPanel().getTokens().getRedTokens().get(1).equals(currentPosition + dicedNumber) || board.getMyContainingJPanel().getTokens().getRedTokens().get(2).equals(currentPosition + dicedNumber)
@@ -308,7 +359,6 @@ public class Controller {
                     canMove3 = true;
                 }
 
-                System.out.print("\tcanmove3\t" + canMove3);
 
 
                 return (canMove1 && canMove2 && canMove3);
@@ -334,7 +384,6 @@ public class Controller {
                 }else {
                     canMove1 = true;
                 }
-                System.out.print("canmove1\t" + canMove1);
 
 
                 if (!(currentPosition == 80 || currentPosition == 81 ||
@@ -347,7 +396,6 @@ public class Controller {
                     canMove2 = true;
                 }
 
-                System.out.print("\tcanmove2\t" + canMove2);
 
 
                 if (!(board.getMyContainingJPanel().getTokens().getBlueTokens().get(1).equals(currentPosition + dicedNumber) || board.getMyContainingJPanel().getTokens().getBlueTokens().get(2).equals(currentPosition + dicedNumber)
@@ -355,7 +403,6 @@ public class Controller {
                     canMove3 = true;
                 }
 
-                System.out.println("\tcanmove3\t" + canMove3);
 
 
                 return (canMove1 && canMove2 && canMove3);
@@ -375,16 +422,11 @@ public class Controller {
                 if ((currentPosition == 84 || currentPosition == 85 ||
                         currentPosition == 86 || currentPosition == 87)) {
 
-                    if (dicedNumber == 6) {
-                        canMove1 = true;
-                    }
-                    else
-                        canMove1 = false;
+                    canMove1 = (dicedNumber == 6);
 
                 }else {
                     canMove1 = true;
                 }
-                System.out.print("canmove1\t" + canMove1);
 
 
                 if (!(currentPosition == 84 || currentPosition == 85 ||
@@ -397,7 +439,6 @@ public class Controller {
                     canMove2 = true;
                 }
 
-                System.out.print("\tcanmove2\t" + canMove2);
 
 
                 if (!(board.getMyContainingJPanel().getTokens().getGreenTokens().get(1).equals(currentPosition + dicedNumber) || board.getMyContainingJPanel().getTokens().getGreenTokens().get(2).equals(currentPosition + dicedNumber)
@@ -405,7 +446,6 @@ public class Controller {
                     canMove3 = true;
                 }
 
-                System.out.println("\tcanmove3\t" + canMove3);
 
 
                 return (canMove1 && canMove2 && canMove3);
@@ -429,7 +469,6 @@ public class Controller {
                 }else {
                     canMove1 = true;
                 }
-                System.out.print("canmove1\t" + canMove1);
 
 
                 if (!(currentPosition == 88 || currentPosition == 89 ||
@@ -442,7 +481,6 @@ public class Controller {
                     canMove2 = true;
                 }
 
-                System.out.print("\tcanmove2\t" + canMove2);
 
 
                 if (!(board.getMyContainingJPanel().getTokens().getYellowTokens().get(1).equals(currentPosition + dicedNumber) || board.getMyContainingJPanel().getTokens().getYellowTokens().get(2).equals(currentPosition + dicedNumber)
@@ -450,7 +488,6 @@ public class Controller {
                     canMove3 = true;
                 }
 
-                System.out.println("\tcanmove3\t" + canMove3);
 
 
                 return (canMove1 && canMove2 && canMove3);
@@ -497,14 +534,15 @@ public class Controller {
                     case 6: board.getMyContainingJPanel().getTokens().getBlueTokens().replace(3, Tokens.BLUE3TOKENSTARTING);break;
                     case 7: board.getMyContainingJPanel().getTokens().getBlueTokens().replace(4, Tokens.BLUE4TOKENSTARTING);break;
                     case 8: board.getMyContainingJPanel().getTokens().getGreenTokens().replace(1, Tokens.GREEN1TOKENSTARTING);break;
-                    case 9: board.getMyContainingJPanel().getTokens().getGreenTokens().replace(2, Tokens.GREEN1TOKENSTARTING);break;
-                    case 10: board.getMyContainingJPanel().getTokens().getGreenTokens().replace(3, Tokens.GREEN1TOKENSTARTING);break;
-                    case 11: board.getMyContainingJPanel().getTokens().getGreenTokens().replace(4, Tokens.GREEN1TOKENSTARTING);break;
+                    case 9: board.getMyContainingJPanel().getTokens().getGreenTokens().replace(2, Tokens.GREEN2TOKENSTARTING);break;
+                    case 10: board.getMyContainingJPanel().getTokens().getGreenTokens().replace(3, Tokens.GREEN3TOKENSTARTING);break;
+                    case 11: board.getMyContainingJPanel().getTokens().getGreenTokens().replace(4, Tokens.GREEN4TOKENSTARTING);break;
                     case 12: board.getMyContainingJPanel().getTokens().getYellowTokens().replace(1, Tokens.YELLOW1TOKENSTARTING);break;
                     case 13: board.getMyContainingJPanel().getTokens().getYellowTokens().replace(2, Tokens.YELLOW2TOKENSTARTING);break;
                     case 14: board.getMyContainingJPanel().getTokens().getYellowTokens().replace(3, Tokens.YELLOW3TOKENSTARTING);break;
                     case 15: board.getMyContainingJPanel().getTokens().getYellowTokens().replace(4, Tokens.YELLOW4TOKENSTARTING);break;
                 }
+                board.getMyContainingJPanel().getTokens().getHadReachTheEnd().set(i, false);
             }
         }
 

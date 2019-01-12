@@ -18,6 +18,12 @@ public class YardPanels extends JPanel {
     private Controller controller = Controller.getInstance();
     private int chosenToken = 0;
     private int dicedNumber = 0;
+    private ButtonGroup buttonGroup = new ButtonGroup();
+    private JRadioButton token1 = new JRadioButton("Token 1");
+    private JRadioButton token2 = new JRadioButton("Token 2");
+    private JRadioButton token3 = new JRadioButton("Token 3");
+    private JRadioButton token4 = new JRadioButton("Token 4");
+
 
 
     public void paint(Graphics g) {
@@ -43,7 +49,10 @@ public class YardPanels extends JPanel {
                 Random rand = new Random();
                 dicedNumber = rand.nextInt(6) + 1;
                 diceRollingResult.setText(String.valueOf(dicedNumber));
-                JOptionPane.showMessageDialog(null, getSelectorJPanel(), "You have " + dicedNumber + " steps to go. Please choose your token to move.", JOptionPane.INFORMATION_MESSAGE);
+                getSelectorJPanel();
+                if (!(!token1.isVisible() && !token2.isVisible() && !token3.isVisible() && !token4.isVisible())) {
+                    JOptionPane.showMessageDialog(null, getSelectorJPanel(), "You have " + dicedNumber + " steps to go. Please choose your token to move.", JOptionPane.INFORMATION_MESSAGE);
+                }
                 controller.moveToken(dicedNumber, chosenToken);
             }
         });
@@ -87,13 +96,7 @@ public class YardPanels extends JPanel {
      * @return Gives back a panel with JRadioButtons on it.
      */
     private JPanel getSelectorJPanel() {
-        JRadioButton token1 = new JRadioButton("Token 1");
-        JRadioButton token2 = new JRadioButton("Token 2");
-        JRadioButton token3 = new JRadioButton("Token 3");
-        JRadioButton token4 = new JRadioButton("Token 4");
-        token1.setSelected(true);
-        setChosenToken(1);
-        ButtonGroup buttonGroup = new ButtonGroup();
+
 
         JPanel selector = new JPanel();
         selector.setBounds(0, 0, 300, 150);
@@ -105,10 +108,12 @@ public class YardPanels extends JPanel {
         token3.setBounds(10, 70,100, 30);
         token4.setBounds(160, 70,100, 30);
 
+
         buttonGroup.add(token1);
         buttonGroup.add(token2);
         buttonGroup.add(token3);
         buttonGroup.add(token4);
+
 
         token1.setVisible(controller.canMove(1, Integer.parseInt(this.diceRollingResult.getText())));
         token2.setVisible(controller.canMove(2, Integer.parseInt(this.diceRollingResult.getText())));
@@ -145,14 +150,12 @@ public class YardPanels extends JPanel {
             }
         });
 
-
         selector.add(token1);
         selector.add(token2);
         selector.add(token3);
         selector.add(token4);
 
-
-
+        selector.setVisible(true);
         return selector;
     }
 
