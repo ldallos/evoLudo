@@ -96,18 +96,14 @@ public class YardPanels extends JPanel {
      * @return Gives back a panel with JRadioButtons on it.
      */
     private JPanel getSelectorJPanel() {
-
-
         JPanel selector = new JPanel();
         selector.setBounds(0, 0, 300, 150);
-
         selector.setVisible(true);
 
         token1.setBounds(10, 10,100, 30);
         token2.setBounds(160, 10,100, 30);
         token3.setBounds(10, 70,100, 30);
         token4.setBounds(160, 70,100, 30);
-
 
         buttonGroup.add(token1);
         buttonGroup.add(token2);
