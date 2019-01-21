@@ -161,64 +161,28 @@ public class YardPanels extends JPanel {
      */
     private void setChosenToken(int chosen) { this.chosenToken = chosen;}
 
-    public int getDicedNumber() {
-        return dicedNumber;
-    }
-
-    public void setDicedNumber(int dicedNumber) {
-        this.dicedNumber = dicedNumber;
-    }
-
     public JLabel getDiceRollingResult() {
         return diceRollingResult;
-    }
-
-    public void setDiceRollingResult(JLabel diceRollingResult) {
-        this.diceRollingResult = diceRollingResult;
     }
 
     public int getChosenToken() {
         return chosenToken;
     }
 
-    public ButtonGroup getButtonGroup() {
-        return buttonGroup;
-    }
-
-    public void setButtonGroup(ButtonGroup buttonGroup) {
-        this.buttonGroup = buttonGroup;
-    }
-
     public JRadioButton getToken1() {
         return token1;
-    }
-
-    public void setToken1(JRadioButton token1) {
-        this.token1 = token1;
     }
 
     public JRadioButton getToken2() {
         return token2;
     }
 
-    public void setToken2(JRadioButton token2) {
-        this.token2 = token2;
-    }
-
     public JRadioButton getToken3() {
         return token3;
     }
 
-    public void setToken3(JRadioButton token3) {
-        this.token3 = token3;
-    }
-
     public JRadioButton getToken4() {
         return token4;
-    }
-
-    public void setToken4(JRadioButton token4) {
-        this.token4 = token4;
     }
 
 

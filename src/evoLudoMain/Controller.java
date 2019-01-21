@@ -361,13 +361,13 @@ public class Controller {
                 boolean canMove3 = false;
 
                 if ((currentPosition == 76 || currentPosition == 77 || currentPosition == 78 || currentPosition == 79)) {
-
-                    if (dicedNumber == 6) {
+                    if (dicedNumber == 6 && !(board.getMyContainingJPanel().getTokens().getRedTokens().get(1).equals(0) || board.getMyContainingJPanel().getTokens().getRedTokens().get(2).equals(0)
+                            || board.getMyContainingJPanel().getTokens().getRedTokens().get(3).equals(0) || board.getMyContainingJPanel().getTokens().getRedTokens().get(4).equals(0))) {
                         canMove1 = true;
                     }
-                    else
+                    else {
                         canMove1 = false;
-
+                    }
                 }else {
                     canMove1 = true;
                 }
@@ -407,12 +407,13 @@ public class Controller {
 
                 if ((currentPosition == 80 || currentPosition == 81 || currentPosition == 82 || currentPosition == 83)) {
 
-                    if (dicedNumber == 6) {
+                    if (dicedNumber == 6 && !(board.getMyContainingJPanel().getTokens().getBlueTokens().get(1).equals(14) || board.getMyContainingJPanel().getTokens().getBlueTokens().get(2).equals(14)
+                            || board.getMyContainingJPanel().getTokens().getBlueTokens().get(3).equals(14) || board.getMyContainingJPanel().getTokens().getBlueTokens().get(4).equals(14))) {
                         canMove1 = true;
                     }
-                    else
+                    else {
                         canMove1 = false;
-
+                    }
                 }else {
                     canMove1 = true;
                 }
@@ -455,8 +456,13 @@ public class Controller {
 
                 if ((currentPosition == 84 || currentPosition == 85 || currentPosition == 86 || currentPosition == 87)) {
 
-                    canMove1 = (dicedNumber == 6);
-
+                    if (dicedNumber == 6 && !(board.getMyContainingJPanel().getTokens().getGreenTokens().get(1).equals(28) || board.getMyContainingJPanel().getTokens().getGreenTokens().get(2).equals(28)
+                            || board.getMyContainingJPanel().getTokens().getGreenTokens().get(3).equals(28) || board.getMyContainingJPanel().getTokens().getGreenTokens().get(4).equals(28))) {
+                        canMove1 = true;
+                    }
+                    else {
+                        canMove1 = false;
+                    }
                 }else {
                     canMove1 = true;
                 }
@@ -494,10 +500,16 @@ public class Controller {
                 boolean canMove2;
                 boolean canMove3 = false;
 
-                if (currentPosition == 88 || currentPosition == 89 ||
-                        currentPosition == 90 || currentPosition == 91) {
+                if (currentPosition == 88 || currentPosition == 89 || currentPosition == 90 || currentPosition == 91) {
 
-                    canMove1 =(dicedNumber == 6);
+                    if (dicedNumber == 6 && !(board.getMyContainingJPanel().getTokens().getYellowTokens().get(1).equals(42) || board.getMyContainingJPanel().getTokens().getYellowTokens().get(2).equals(42)
+                            || board.getMyContainingJPanel().getTokens().getYellowTokens().get(3).equals(42) || board.getMyContainingJPanel().getTokens().getYellowTokens().get(4).equals(42))) {
+                        canMove1 = true;
+                    }
+                    else {
+                        canMove1 = false;
+                    }
+
 
                 }else {
                     canMove1 = true;
@@ -647,8 +659,6 @@ public class Controller {
             }
         });
     }
-
-
 
 
 }
