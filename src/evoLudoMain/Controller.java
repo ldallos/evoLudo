@@ -605,7 +605,12 @@ public class Controller {
                         board.getRedsYard().getDiceRollingResult().setText(String.valueOf(moveBy));
                         board.getRedsYard().getSelectorJPanel();
                         if (!(!board.getRedsYard().getToken1().isVisible() && !board.getRedsYard().getToken2().isVisible() && !board.getRedsYard().getToken3().isVisible() && !board.getRedsYard().getToken4().isVisible())) {
-                            JOptionPane.showMessageDialog(null, board.getRedsYard().getSelectorJPanel(), "You have " + moveBy + " steps to go. Please choose your token to move.", JOptionPane.INFORMATION_MESSAGE);
+
+                            do {
+                                JOptionPane.showMessageDialog(null, board.getRedsYard().getSelectorJPanel(), "You have " + moveBy + " steps to go. Please choose your token to move.", JOptionPane.INFORMATION_MESSAGE);
+                            }while(!(board.getRedsYard().getToken1().isSelected() || board.getRedsYard().getToken2().isSelected() || board.getRedsYard().getToken3().isSelected() || board.getRedsYard().getToken4().isSelected()));
+
+
                         }
                         moveToken(moveBy, board.getRedsYard().getChosenToken());
 
@@ -619,7 +624,11 @@ public class Controller {
                         board.getBluesYard().getDiceRollingResult().setText(String.valueOf(moveBy));
                         board.getBluesYard().getSelectorJPanel();
                         if (!(!board.getBluesYard().getToken1().isVisible() && !board.getBluesYard().getToken2().isVisible() && !board.getBluesYard().getToken3().isVisible() && !board.getBluesYard().getToken4().isVisible())) {
-                            JOptionPane.showMessageDialog(null, board.getBluesYard().getSelectorJPanel(), "You have " + moveBy + " steps to go. Please choose your token to move.", JOptionPane.INFORMATION_MESSAGE);
+
+                            do {
+                                JOptionPane.showMessageDialog(null, board.getBluesYard().getSelectorJPanel(), "You have " + moveBy + " steps to go. Please choose your token to move.", JOptionPane.INFORMATION_MESSAGE);
+                            }while(!(board.getBluesYard().getToken1().isSelected() || board.getBluesYard().getToken2().isSelected() || board.getBluesYard().getToken3().isSelected() || board.getBluesYard().getToken4().isSelected()));
+
                         }
                         moveToken(moveBy, board.getBluesYard().getChosenToken());
 
@@ -632,7 +641,11 @@ public class Controller {
                         board.getGreensYard().getDiceRollingResult().setText(String.valueOf(moveBy));
                         board.getGreensYard().getSelectorJPanel();
                         if (!(!board.getGreensYard().getToken1().isVisible() && !board.getGreensYard().getToken2().isVisible() && !board.getGreensYard().getToken3().isVisible() && !board.getGreensYard().getToken4().isVisible())) {
-                            JOptionPane.showMessageDialog(null, board.getGreensYard().getSelectorJPanel(), "You have " + moveBy + " steps to go. Please choose your token to move.", JOptionPane.INFORMATION_MESSAGE);
+
+                            do {
+                                JOptionPane.showMessageDialog(null, board.getGreensYard().getSelectorJPanel(), "You have " + moveBy + " steps to go. Please choose your token to move.", JOptionPane.INFORMATION_MESSAGE);
+                            }while(!(board.getGreensYard().getToken1().isSelected() || board.getGreensYard().getToken2().isSelected() || board.getGreensYard().getToken3().isSelected() || board.getGreensYard().getToken4().isSelected()));
+
                         }
                         moveToken(moveBy, board.getGreensYard().getChosenToken());
 
@@ -647,7 +660,10 @@ public class Controller {
                         board.getYellowsYard().getDiceRollingResult().setText(String.valueOf(moveBy));
                         board.getYellowsYard().getSelectorJPanel();
                         if (!(!board.getYellowsYard().getToken1().isVisible() && !board.getYellowsYard().getToken2().isVisible() && !board.getYellowsYard().getToken3().isVisible() && !board.getYellowsYard().getToken4().isVisible())) {
-                            JOptionPane.showMessageDialog(null, board.getYellowsYard().getSelectorJPanel(), "You have " + moveBy + " steps to go. Please choose your token to move.", JOptionPane.INFORMATION_MESSAGE);
+                            do {
+                                JOptionPane.showMessageDialog(null, board.getYellowsYard().getSelectorJPanel(), "You have " + moveBy + " steps to go. Please choose your token to move.", JOptionPane.INFORMATION_MESSAGE);
+                            }while(!(board.getYellowsYard().getToken1().isSelected() || board.getYellowsYard().getToken2().isSelected() || board.getYellowsYard().getToken3().isSelected() || board.getYellowsYard().getToken4().isSelected()));
+
                         }
                         moveToken(moveBy, board.getYellowsYard().getChosenToken());
 

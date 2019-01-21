@@ -51,7 +51,10 @@ public class YardPanels extends JPanel {
                 diceRollingResult.setText(String.valueOf(dicedNumber));
                 getSelectorJPanel();
                 if (!(!token1.isVisible() && !token2.isVisible() && !token3.isVisible() && !token4.isVisible())) {
-                    JOptionPane.showMessageDialog(null, getSelectorJPanel(), "You have " + dicedNumber + " steps to go. Please choose your token to move.", JOptionPane.INFORMATION_MESSAGE);
+                    do {
+                        JOptionPane.showMessageDialog(null, getSelectorJPanel(), "You have " + dicedNumber + " steps to go. Please choose your token to move.", JOptionPane.INFORMATION_MESSAGE);
+                    }while(!(token1.isSelected() || token2.isSelected() || token3.isSelected() || token4.isSelected()));
+
                 }
                 controller.moveToken(dicedNumber, chosenToken);
             }
