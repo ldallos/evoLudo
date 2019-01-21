@@ -92,4 +92,46 @@ public class Tokens {
 
     public ArrayList<Boolean> getHadReachTheEnd() { return this.hadReachTheEnd;}
 
+    public int getRedFinished() {
+        int result = 0;
+        for (int i = 1; i <5; i++) {
+            if ( getRedTokens().get(i) == 60) {
+                result++;
+            }
+        }
+        return result;
+    }
+
+    public int getBlueFinished() {
+        int result = 0;
+        for (int i = 1; i <5; i++) {
+            if ( getBlueTokens().get(i) == 65) {
+                result++;
+            }
+        }
+        return result;
+    }
+
+    public int getGreenFinished() {
+        int result = 0;
+        for (int i = 1; i <5; i++) {
+            if (getGreenTokens().get(i) == 70) {
+                result++;
+            }
+        }
+        return result;
+    }
+
+    public int getYellowFinished() {
+        int result = 0;
+        for (int i = 1; i <5; i++) {
+            if ( getYellowTokens().get(i) == 75) {
+                result++;
+            }
+        }
+        return result;
+    }
+
+
+
 }

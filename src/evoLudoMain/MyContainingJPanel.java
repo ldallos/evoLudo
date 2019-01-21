@@ -15,6 +15,7 @@ public class MyContainingJPanel extends JPanel {
     private static MyContainingJPanel instance = null;
     private Route route = Route.getInstance();
     private Tokens tokens = Tokens.getInstance();
+    private JButton testButton2 = new JButton("Test");
 
 
 
@@ -35,7 +36,8 @@ public class MyContainingJPanel extends JPanel {
             this.WIDTH = this.HEIGHT;
         }
 
-
+        add(testButton2);
+        testButton2.setVisible(true);
 
         this.scaleUnitWidth = (int) (this.WIDTH / 5 * 2);
         this.scaleUnitHeight = (int) (this.HEIGHT / 5 * 2);
@@ -142,6 +144,11 @@ public class MyContainingJPanel extends JPanel {
         g.drawRect(shiftWidth + scaleUnitWidth, scaleUnitHeight + shiftHeight + scaleUnitHeight / 6 * 2, scaleUnitWidth /6, scaleUnitHeight /6);
         g.drawRect(shiftWidth + scaleUnitWidth  + scaleUnitWidth / 6 * 2, scaleUnitHeight + shiftHeight + scaleUnitHeight / 6 * 2, scaleUnitWidth /6, scaleUnitHeight /6);
 
+        g.drawString(String.valueOf(tokens.getRedFinished()), shiftWidth + scaleUnitWidth, shiftHeight + scaleUnitHeight + scaleUnitHeight / 6 * 2);
+        g.drawString(String.valueOf(tokens.getBlueFinished()), shiftWidth + scaleUnitWidth + scaleUnitWidth / 6, shiftHeight + scaleUnitHeight + scaleUnitHeight / 6);
+        g.drawString(String.valueOf(tokens.getGreenFinished()), shiftWidth + scaleUnitWidth + scaleUnitWidth / 6 * 2, shiftHeight + scaleUnitHeight + scaleUnitHeight / 6 * 2);
+        g.drawString(String.valueOf(tokens.getYellowFinished()), shiftWidth + scaleUnitWidth + scaleUnitWidth / 6, shiftHeight + scaleUnitHeight + scaleUnitHeight / 6 * 3);
+
     }
 
 
@@ -153,6 +160,7 @@ public class MyContainingJPanel extends JPanel {
         this.shiftWidth = (int) shiftWidth;
         this.shiftHeight = (int) shiftHeight;
 
+        testButton2.setBounds((int)shiftWidth + scaleUnitWidth + scaleUnitWidth / 6, (int)shiftHeight + scaleUnitHeight + scaleUnitHeight / 6, scaleUnitWidth / 6, scaleUnitHeight / 6);
     }
 
 
@@ -163,4 +171,9 @@ public class MyContainingJPanel extends JPanel {
     public Route getRoute() {
         return route;
     }
+
+    public JButton getTestButton2() {
+        return testButton2;
+    }
+
 }

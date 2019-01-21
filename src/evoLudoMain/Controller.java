@@ -1,6 +1,9 @@
 package evoLudoMain;
 
 
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import static java.lang.Math.abs;
@@ -12,6 +15,7 @@ public class Controller {
     private  int turn = 0;
     private  Board board;
 
+
     public static Controller getInstance() {
         if (instance == null)
             instance = new Controller();
@@ -22,6 +26,7 @@ public class Controller {
 
     public Controller() {
 
+
     }
 
     /**
@@ -31,13 +36,6 @@ public class Controller {
      * @param chosenToken - The number of the chosen token which to move.
      */
     public  void moveToken(int dicedNumber, int chosenToken) {
-
-/*
-        board.getMyContainingJPanel().getTokens().getRedTokens().replace(0,0);
-        board.getMyContainingJPanel().getTokens().getBlueTokens().replace(0,0);
-        board.getMyContainingJPanel().getTokens().getGreenTokens().replace(0,0);
-        board.getMyContainingJPanel().getTokens().getYellowTokens().replace(0,0);
-*/
 
         if (chosenToken != 0) {
             String whichPlayers = whoseTurn();
@@ -139,7 +137,10 @@ public class Controller {
 
             if (currentPosition > 55) {
                 whereToStep = currentPosition + dicedNumber;
-            }else {
+            }
+            else if (currentPosition + dicedNumber > 55) {
+
+            }else{
                 putBackEnemyToken(whereToStep);
             }
 
@@ -193,7 +194,7 @@ public class Controller {
                 }
 
 
-                if (currentPosition + dicedNumber > 64) {
+                if (whereToStep > 64) {
                     whereToStep = 65;
                 }
 
@@ -249,7 +250,7 @@ public class Controller {
                 }
 
 
-                if (currentPosition + dicedNumber > 69) {
+                if (whereToStep > 69) {
                     whereToStep = 70;
                 }
 
@@ -300,7 +301,7 @@ public class Controller {
                 }
 
 
-                if (currentPosition + dicedNumber > 74) {
+                if (whereToStep > 74) {
                     whereToStep = 75;
                 }
 
@@ -580,6 +581,73 @@ public class Controller {
         }
 
     }
+
+    public void setTestButton() {
+        board.getMyContainingJPanel().getTestButton2().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                switch (whoseTurn()) {
+                    case "red": {
+                        Integer moveBy = Integer.parseInt(JOptionPane.showInputDialog("Set diced number to exact value!", 6));
+
+                        board.getRedsYard().getDiceRollingResult().setText(String.valueOf(moveBy));
+                        board.getRedsYard().getSelectorJPanel();
+                        if (!(!board.getRedsYard().getToken1().isVisible() && !board.getRedsYard().getToken2().isVisible() && !board.getRedsYard().getToken3().isVisible() && !board.getRedsYard().getToken4().isVisible())) {
+                            JOptionPane.showMessageDialog(null, board.getRedsYard().getSelectorJPanel(), "You have " + moveBy + " steps to go. Please choose your token to move.", JOptionPane.INFORMATION_MESSAGE);
+                        }
+                        moveToken(moveBy, board.getRedsYard().getChosenToken());
+
+
+                    }break;
+
+                    case "blue": {
+
+                        Integer moveBy = Integer.parseInt(JOptionPane.showInputDialog("Set diced number to exact value!", 6));
+
+                        board.getBluesYard().getDiceRollingResult().setText(String.valueOf(moveBy));
+                        board.getBluesYard().getSelectorJPanel();
+                        if (!(!board.getBluesYard().getToken1().isVisible() && !board.getBluesYard().getToken2().isVisible() && !board.getBluesYard().getToken3().isVisible() && !board.getBluesYard().getToken4().isVisible())) {
+                            JOptionPane.showMessageDialog(null, board.getBluesYard().getSelectorJPanel(), "You have " + moveBy + " steps to go. Please choose your token to move.", JOptionPane.INFORMATION_MESSAGE);
+                        }
+                        moveToken(moveBy, board.getBluesYard().getChosenToken());
+
+                    }break;
+
+                    case "green": {
+
+                        Integer moveBy = Integer.parseInt(JOptionPane.showInputDialog("Set diced number to exact value!", 6));
+
+                        board.getGreensYard().getDiceRollingResult().setText(String.valueOf(moveBy));
+                        board.getGreensYard().getSelectorJPanel();
+                        if (!(!board.getGreensYard().getToken1().isVisible() && !board.getGreensYard().getToken2().isVisible() && !board.getGreensYard().getToken3().isVisible() && !board.getGreensYard().getToken4().isVisible())) {
+                            JOptionPane.showMessageDialog(null, board.getGreensYard().getSelectorJPanel(), "You have " + moveBy + " steps to go. Please choose your token to move.", JOptionPane.INFORMATION_MESSAGE);
+                        }
+                        moveToken(moveBy, board.getGreensYard().getChosenToken());
+
+
+                    }break;
+
+                    case "yellow": {
+
+
+                        Integer moveBy = Integer.parseInt(JOptionPane.showInputDialog("Set diced number to exact value!", 6));
+
+                        board.getYellowsYard().getDiceRollingResult().setText(String.valueOf(moveBy));
+                        board.getYellowsYard().getSelectorJPanel();
+                        if (!(!board.getYellowsYard().getToken1().isVisible() && !board.getYellowsYard().getToken2().isVisible() && !board.getYellowsYard().getToken3().isVisible() && !board.getYellowsYard().getToken4().isVisible())) {
+                            JOptionPane.showMessageDialog(null, board.getYellowsYard().getSelectorJPanel(), "You have " + moveBy + " steps to go. Please choose your token to move.", JOptionPane.INFORMATION_MESSAGE);
+                        }
+                        moveToken(moveBy, board.getYellowsYard().getChosenToken());
+
+                    }break;
+                    default:
+                        System.out.println("Eliratad...");
+
+                }
+            }
+        });
+    }
+
 
 
 
