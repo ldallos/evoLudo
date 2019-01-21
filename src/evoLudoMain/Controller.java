@@ -50,11 +50,6 @@ public class Controller {
             }
         }
 
-        System.out.println("whoseTurn: \t" + whoseTurn());
-        System.out.println("whichToken: \t" + chosenToken);
-        System.out.println("dicedNumber: \t" + dicedNumber);
-
-
 
         board.getMyContainingJPanel().repaint();
 
@@ -123,8 +118,6 @@ public class Controller {
 
         int currentPosition = board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken);
 
-        System.out.println("currentPosition\t " + currentPosition);
-        System.out.println("0.babu erteke\t " + board.getMyContainingJPanel().getTokens().getRedTokens().get(0));
         if (currentPosition == 76 || currentPosition == 77 || currentPosition == 78 || currentPosition == 79) {
              if (dicedNumber == 6) {
                     putBackEnemyToken(0);
@@ -167,8 +160,6 @@ public class Controller {
 
         int currentPosition = board.getMyContainingJPanel().getTokens().getBlueTokens().get(chosenToken);
 
-        System.out.println("currentPosition\t " + currentPosition);
-        System.out.println("0.babu erteke\t " + board.getMyContainingJPanel().getTokens().getBlueTokens().get(0));
         if (currentPosition == 80 || currentPosition == 81 ||currentPosition == 82 || currentPosition == 83) {
 
             if (dicedNumber == 6) {
@@ -223,8 +214,6 @@ public class Controller {
 
         int currentPosition = board.getMyContainingJPanel().getTokens().getGreenTokens().get(chosenToken);
 
-        System.out.println("currentPosition\t " + currentPosition);
-        System.out.println("0.babu erteke\t " + board.getMyContainingJPanel().getTokens().getGreenTokens().get(0));
         if ((currentPosition == 84 || currentPosition == 85 || currentPosition == 86 || currentPosition == 87)) {
 
             if (dicedNumber == 6) {
@@ -278,8 +267,6 @@ public class Controller {
 
         int currentPosition = board.getMyContainingJPanel().getTokens().getYellowTokens().get(chosenToken);
 
-        System.out.println("currentPosition\t " + currentPosition);
-        System.out.println("0.babu erteke\t " + board.getMyContainingJPanel().getTokens().getYellowTokens().get(0));
         if (currentPosition == 88 || currentPosition == 89 || currentPosition == 90 || currentPosition == 91) {
 
             if (dicedNumber == 6) {
