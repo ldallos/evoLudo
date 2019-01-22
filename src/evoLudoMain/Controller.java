@@ -53,8 +53,29 @@ public class Controller {
 
         board.getMyContainingJPanel().repaint();
 
+        isItFinished();
+
         nextTurn();
 
+    }
+
+    private void isItFinished() {
+        if (board.getMyContainingJPanel().getTokens().getRedFinished() == 4) {
+            JOptionPane.showMessageDialog(null, "The RED player won the game!", "Game over", JOptionPane.INFORMATION_MESSAGE);
+            System.exit(0);
+        }
+        else if (board.getMyContainingJPanel().getTokens().getBlueFinished() == 4) {
+            JOptionPane.showMessageDialog(null, "The BLUE player won the game!", "Game over", JOptionPane.INFORMATION_MESSAGE);
+            System.exit(0);
+        }
+        else if (board.getMyContainingJPanel().getTokens().getGreenFinished() == 4) {
+            JOptionPane.showMessageDialog(null, "The GREEN player won the game!", "Game over", JOptionPane.INFORMATION_MESSAGE);
+            System.exit(0);
+        }
+        else if (board.getMyContainingJPanel().getTokens().getYellowFinished() == 4) {
+            JOptionPane.showMessageDialog(null, "The YELLOW player won the game!", "Game over", JOptionPane.INFORMATION_MESSAGE);
+            System.exit(0);
+        }
     }
 
 
