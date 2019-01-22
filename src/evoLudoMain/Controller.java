@@ -2,6 +2,7 @@ package evoLudoMain;
 
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -60,20 +61,30 @@ public class Controller {
     }
 
     private void isItFinished() {
+        JLabel message = new JLabel("");
+        message.setFont(new Font("Arial", Font.BOLD, 18));
         if (board.getMyContainingJPanel().getTokens().getRedFinished() == 4) {
-            JOptionPane.showMessageDialog(null, "The RED player won the game!", "Game over", JOptionPane.INFORMATION_MESSAGE);
+            message.setForeground(Color.RED);
+            message.setText("The RED player won the game!");
+            JOptionPane.showMessageDialog(null, message, "Game over", JOptionPane.INFORMATION_MESSAGE);
             System.exit(0);
         }
         else if (board.getMyContainingJPanel().getTokens().getBlueFinished() == 4) {
-            JOptionPane.showMessageDialog(null, "The BLUE player won the game!", "Game over", JOptionPane.INFORMATION_MESSAGE);
+            message.setForeground(Color.BLUE);
+            message.setText("The BLUE player won the game!");
+            JOptionPane.showMessageDialog(null, message, "Game over", JOptionPane.INFORMATION_MESSAGE);
             System.exit(0);
         }
         else if (board.getMyContainingJPanel().getTokens().getGreenFinished() == 4) {
-            JOptionPane.showMessageDialog(null, "The GREEN player won the game!", "Game over", JOptionPane.INFORMATION_MESSAGE);
+            message.setForeground(Color.GREEN);
+            message.setText("The GREEN player won the game!");
+            JOptionPane.showMessageDialog(null, message, "Game over", JOptionPane.INFORMATION_MESSAGE);
             System.exit(0);
         }
         else if (board.getMyContainingJPanel().getTokens().getYellowFinished() == 4) {
-            JOptionPane.showMessageDialog(null, "The YELLOW player won the game!", "Game over", JOptionPane.INFORMATION_MESSAGE);
+            message.setForeground(Color.YELLOW);
+            message.setText("The YELLOW player won the game!");
+            JOptionPane.showMessageDialog(null, message, "Game over", JOptionPane.INFORMATION_MESSAGE);
             System.exit(0);
         }
     }
