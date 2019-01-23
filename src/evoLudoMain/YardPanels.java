@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.Ellipse2D;
 import java.util.Random;
 
 
@@ -28,7 +29,10 @@ public class YardPanels extends JPanel {
 
     public void paint(Graphics g) {
         super.paint(g);
-        //TODO: Ide rajzolhatod a köröket a xCoordinates és yCoordinates alapján.
+        g.drawOval(panelWidth / 5 + panelWidth / 2 - panelWidth / 55, panelHeight / 5 + panelHeight / 2 - panelHeight / 55, panelWidth / 5, panelHeight / 5);
+        g.drawOval(panelWidth / 5 + panelWidth / 12, panelHeight / 5 + panelHeight / 12, panelWidth / 5, panelHeight / 5);
+        g.drawOval(panelWidth / 5 + panelWidth / 2 - panelHeight / 55, panelHeight / 5 + panelHeight / 12, panelWidth / 5, panelHeight / 5);
+        g.drawOval(panelWidth / 5 + panelWidth / 12, panelHeight / 5 + panelHeight / 2 - panelHeight / 55, panelWidth / 5, panelHeight / 5);
     }
 
 
