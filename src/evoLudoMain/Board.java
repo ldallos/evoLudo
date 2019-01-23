@@ -35,6 +35,7 @@ public class Board extends JFrame {
         getRedsYard().getDiceRollerButton().setEnabled(true);
 
 
+
     }
 
     public void refreshSizes() {

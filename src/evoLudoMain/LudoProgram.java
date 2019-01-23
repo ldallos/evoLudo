@@ -17,6 +17,9 @@ public class LudoProgram {
                 board.refreshSizes();
             }
         });
+
+        controller.setTestButton();
+        //board.getMyContainingJPanel().getTestButton().setVisible(false);
     }
 
 }
