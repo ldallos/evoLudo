@@ -9,8 +9,6 @@ import java.util.Random;
 
 
 public class YardPanels extends JPanel {
-    private int[] xCoordinates = new int[4];
-    private int[] yCoordinates = new int[4];
     private int ovalDiameter = 0;
     private JButton diceRollerButton = new JButton("Dice me!");
     private JLabel diceRollingResult = new JLabel();
@@ -55,9 +53,11 @@ public class YardPanels extends JPanel {
                 diceRollingResult.setText(String.valueOf(dicedNumber));
                 getSelectorJPanel();
                 if (!(!token1.isVisible() && !token2.isVisible() && !token3.isVisible() && !token4.isVisible())) {
+                    boolean toContinue;
                     do {
                         JOptionPane.showMessageDialog(null, getSelectorJPanel(), "You have " + dicedNumber + " steps to go. Please choose your token to move.", JOptionPane.INFORMATION_MESSAGE);
-                    }while(!(token1.isSelected() || token2.isSelected() || token3.isSelected() || token4.isSelected()));
+                        toContinue = checkChosenTokenIsValid();
+                    }while(toContinue);
 
                 }
                 controller.moveToken(dicedNumber, chosenToken);
@@ -72,23 +72,9 @@ public class YardPanels extends JPanel {
 
 
     public void refreshSizes() {
-
         panelWidth = (int) getSize().getWidth();
         panelHeight = (int) getSize().getHeight();
-
-        xCoordinates[0] = (panelWidth / 10 * 3) - (ovalDiameter/2);
-        xCoordinates[1] = (panelWidth / 10 * 7) - (ovalDiameter/2);
-        xCoordinates[2] = (panelWidth / 10 * 3) - (ovalDiameter/2);
-        xCoordinates[3] = (panelWidth / 10 * 7) - (ovalDiameter/2);
-
-        yCoordinates[0] = (panelHeight / 10 * 3) - (ovalDiameter/2);
-        yCoordinates[1] = (panelHeight / 10 * 3)- (ovalDiameter/2);
-        yCoordinates[2] = (panelHeight / 10 * 7) - (ovalDiameter/2);
-        yCoordinates[3] = (panelHeight / 10 * 7) - (ovalDiameter/2);
-
         this.ovalDiameter = panelWidth / 5;
-
-
         diceRollerButton.setBounds(panelWidth / 10 , 5 , panelWidth/10 * 5, panelHeight / 10 );
         diceRollingResult.setBounds(panelWidth / 10 * 8, 5, panelWidth / 10 * 3, panelHeight / 10);
     }
@@ -164,7 +150,7 @@ public class YardPanels extends JPanel {
 
     /**
      * Sets the chosen token according to the JOptionPane's
-     * @param chosen
+     * @param chosen - The number of the token which is chosen.
      */
     private void setChosenToken(int chosen) { this.chosenToken = chosen;}
 
@@ -193,6 +179,25 @@ public class YardPanels extends JPanel {
     }
 
 
+    public Boolean checkChosenTokenIsValid() {
+
+        boolean toContinue = true;
+
+        Boolean[] cont = new Boolean[4];
+
+        cont[0] = !(token1.isVisible() && token1.isSelected());
+        cont[1] = !(token2.isVisible() && token2.isSelected());
+        cont[2] = !(token3.isVisible() && token3.isSelected());
+        cont[3] = !(token4.isVisible() && token4.isSelected());
+
+        for (int i = 0; i < 4; i++) {
+            if (!cont[i]) {
+                toContinue = false;
+            }
+        }
+
+        return toContinue;
+    }
 
 
 }

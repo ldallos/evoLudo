@@ -92,46 +92,43 @@ public class Tokens {
 
     public ArrayList<Boolean> getHadReachTheEnd() { return this.hadReachTheEnd;}
 
-    public int getRedFinished() {
+    public int getFinished(String player, int finishPosition) {
         int result = 0;
-        for (int i = 1; i <5; i++) {
-            if ( getRedTokens().get(i) == 60) {
-                result++;
+        ArrayList<Integer> tokenPositions = new ArrayList<>();
+        switch (player) {
+            case "red":
+                tokenPositions.add(redTokens.get(1));
+                tokenPositions.add(redTokens.get(2));
+                tokenPositions.add(redTokens.get(3));
+                tokenPositions.add(redTokens.get(4));
+                break;
+            case "blue":
+                tokenPositions.add(blueTokens.get(1));
+                tokenPositions.add(blueTokens.get(2));
+                tokenPositions.add(blueTokens.get(3));
+                tokenPositions.add(blueTokens.get(4));
+                break;
+            case "green":
+                tokenPositions.add(greenTokens.get(1));
+                tokenPositions.add(greenTokens.get(2));
+                tokenPositions.add(greenTokens.get(3));
+                tokenPositions.add(greenTokens.get(4));
+                break;
+            case "yellow":
+                tokenPositions.add(yellowTokens.get(1));
+                tokenPositions.add(yellowTokens.get(2));
+                tokenPositions.add(yellowTokens.get(3));
+                tokenPositions.add(yellowTokens.get(4));
+                break;
+        }
+
+        for (int i = 0; i < 4; i++) {
+            if (tokenPositions.get(i) == finishPosition) {
+                result ++;
             }
         }
         return result;
     }
-
-    public int getBlueFinished() {
-        int result = 0;
-        for (int i = 1; i <5; i++) {
-            if ( getBlueTokens().get(i) == 65) {
-                result++;
-            }
-        }
-        return result;
-    }
-
-    public int getGreenFinished() {
-        int result = 0;
-        for (int i = 1; i <5; i++) {
-            if (getGreenTokens().get(i) == 70) {
-                result++;
-            }
-        }
-        return result;
-    }
-
-    public int getYellowFinished() {
-        int result = 0;
-        for (int i = 1; i <5; i++) {
-            if ( getYellowTokens().get(i) == 75) {
-                result++;
-            }
-        }
-        return result;
-    }
-
 
 
 }

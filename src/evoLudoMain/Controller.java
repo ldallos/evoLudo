@@ -6,6 +6,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Map;
 
 import static java.lang.Math.abs;
 
@@ -43,50 +44,21 @@ public class Controller {
             if (whichPlayers.equalsIgnoreCase("red")) {
                 redsTurn(dicedNumber, chosenToken);
             } else if (whichPlayers.equalsIgnoreCase("blue")) {
-                bluesTurn(dicedNumber, chosenToken);
+                xTurn(dicedNumber, chosenToken, 80, 14, board.getMyContainingJPanel().getTokens().getBlueTokens(), 4, 65, 13);
             } else if (whichPlayers.equalsIgnoreCase("green")) {
-                greensTurn(dicedNumber, chosenToken);
+                xTurn(dicedNumber, chosenToken, 84, 28, board.getMyContainingJPanel().getTokens().getGreenTokens(), 8, 70, 27);
             } else {
-                yellowsTrun(dicedNumber, chosenToken);
+                xTurn(dicedNumber, chosenToken, 88, 42, board.getMyContainingJPanel().getTokens().getYellowTokens(), 12, 75, 41);
             }
         }
 
 
         board.getMyContainingJPanel().repaint();
 
-        isItFinished();
+        isTheGameFinished();
 
         nextTurn();
 
-    }
-
-    private void isItFinished() {
-        JLabel message = new JLabel("");
-        message.setFont(new Font("Arial", Font.BOLD, 18));
-        if (board.getMyContainingJPanel().getTokens().getRedFinished() == 4) {
-            message.setForeground(Color.RED);
-            message.setText("The RED player won the game!");
-            JOptionPane.showMessageDialog(null, message, "Game over", JOptionPane.INFORMATION_MESSAGE);
-            System.exit(0);
-        }
-        else if (board.getMyContainingJPanel().getTokens().getBlueFinished() == 4) {
-            message.setForeground(Color.BLUE);
-            message.setText("The BLUE player won the game!");
-            JOptionPane.showMessageDialog(null, message, "Game over", JOptionPane.INFORMATION_MESSAGE);
-            System.exit(0);
-        }
-        else if (board.getMyContainingJPanel().getTokens().getGreenFinished() == 4) {
-            message.setForeground(Color.GREEN);
-            message.setText("The GREEN player won the game!");
-            JOptionPane.showMessageDialog(null, message, "Game over", JOptionPane.INFORMATION_MESSAGE);
-            System.exit(0);
-        }
-        else if (board.getMyContainingJPanel().getTokens().getYellowFinished() == 4) {
-            message.setForeground(Color.YELLOW);
-            message.setText("The YELLOW player won the game!");
-            JOptionPane.showMessageDialog(null, message, "Game over", JOptionPane.INFORMATION_MESSAGE);
-            System.exit(0);
-        }
     }
 
 
@@ -94,8 +66,6 @@ public class Controller {
      * Handles the turn variable, and set the availability of the buttons according to the turn variable.
      */
     public  void nextTurn() {
-
-
         if (turn < 3) {
             turn += 1;
         }
@@ -103,7 +73,6 @@ public class Controller {
         else if (turn == 3) {
             turn = 0;
         }
-
 
         if (whoseTurn().equalsIgnoreCase("red")) {
             board.getRedsYard().getDiceRollerButton().setEnabled(true);
@@ -163,176 +132,54 @@ public class Controller {
             if (currentPosition > 55) {
                 whereToStep = currentPosition + dicedNumber;
             }
-            else if (currentPosition + dicedNumber > 55) {
-
-            }else{
+            else if (currentPosition + dicedNumber > 55) {}
+            else{
                 putBackEnemyToken(whereToStep);
             }
-
             if (currentPosition + dicedNumber > 59) {
                 whereToStep = 60;
             }
-
             board.getMyContainingJPanel().getTokens().getRedTokens().replace(chosenToken, whereToStep);
-
-
         }
-
-
-
     }
 
+    private void xTurn(int dicedNumber, int chosenToken, int startMin, int boardStart, Map<Integer, Integer> playerTokens, int shiftForHadReachedTheEndList, int lastField, int lastFieldBeforeColorFields) {
+        int currentPosition = playerTokens.get(chosenToken);
 
-    /**
-     * Moves the selected blue token to a new position.
-     * @param dicedNumber - The thrown value by the dice.
-     * @param chosenToken - The number of the chosen token which to move.
-     */
-    private void bluesTurn(int dicedNumber, int chosenToken) {
-
-        int currentPosition = board.getMyContainingJPanel().getTokens().getBlueTokens().get(chosenToken);
-
-        if (currentPosition == 80 || currentPosition == 81 ||currentPosition == 82 || currentPosition == 83) {
+        if (currentPosition == startMin || currentPosition == startMin + 1 || currentPosition == startMin + 2 || currentPosition == startMin + 3) {
 
             if (dicedNumber == 6) {
-                putBackEnemyToken(14);
-                board.getMyContainingJPanel().getTokens().getBlueTokens().replace(chosenToken, 14);
-            }
-
-        }
-        else {
-
-            int whereToStep = currentPosition + dicedNumber;
-
-            if (board.getMyContainingJPanel().getTokens().getHadReachTheEnd().get(chosenToken -1 + 4)) {
-
-
-                if (currentPosition > 60) {
-                    whereToStep = currentPosition + dicedNumber;
-                }else if (currentPosition + dicedNumber > 13) {
-                    whereToStep = abs(currentPosition + dicedNumber - 14) + 61;
-                }
-                else {
-                    putBackEnemyToken(whereToStep);
-                }
-
-
-                if (whereToStep > 64) {
-                    whereToStep = 65;
-                }
-
-                board.getMyContainingJPanel().getTokens().getBlueTokens().replace(chosenToken, whereToStep);
-
-            }
-            else {
-                whereToStep = isEndOfTrack(currentPosition, dicedNumber, chosenToken);
-                putBackEnemyToken(whereToStep);
-                board.getMyContainingJPanel().getTokens().getBlueTokens().replace(chosenToken, whereToStep);
-            }
-
-
-        }
-
-    }
-
-
-    /**
-     * Moves the selected green token to a new position.
-     * @param dicedNumber - The thrown value by the dice.
-     * @param chosenToken - The number of the chosen token which to move.
-     */
-
-    private void greensTurn(int dicedNumber, int chosenToken) {
-
-        int currentPosition = board.getMyContainingJPanel().getTokens().getGreenTokens().get(chosenToken);
-
-        if ((currentPosition == 84 || currentPosition == 85 || currentPosition == 86 || currentPosition == 87)) {
-
-            if (dicedNumber == 6) {
-                putBackEnemyToken(28);
-                board.getMyContainingJPanel().getTokens().getGreenTokens().replace(chosenToken, 28);
-            }
-        }
-        else {
-
-
-            int whereToStep = currentPosition + dicedNumber;
-
-            if (board.getMyContainingJPanel().getTokens().getHadReachTheEnd().get(chosenToken -1 + 8)) {
-
-
-                if (currentPosition > 65) {
-                    whereToStep = currentPosition + dicedNumber;
-                }else if (currentPosition + dicedNumber > 27) {
-                    whereToStep = abs(currentPosition + dicedNumber - 28) + 66;
-                }
-                else {
-                    putBackEnemyToken(whereToStep);
-                }
-
-
-                if (whereToStep > 69) {
-                    whereToStep = 70;
-                }
-
-                board.getMyContainingJPanel().getTokens().getGreenTokens().replace(chosenToken, whereToStep);
-
-            }
-            else {
-                whereToStep = isEndOfTrack(currentPosition, dicedNumber, chosenToken);
-                putBackEnemyToken(whereToStep);
-                board.getMyContainingJPanel().getTokens().getGreenTokens().replace(chosenToken, whereToStep);
-            }
-
-        }
-
-    }
-
-
-    /**
-     * Moves the selected yellow token to a new position.
-     * @param dicedNumber - The thrown value by the dice.
-     * @param chosenToken - The number of the chosen token which to move.
-     */
-
-    private void yellowsTrun(int dicedNumber, int chosenToken) {
-
-        int currentPosition = board.getMyContainingJPanel().getTokens().getYellowTokens().get(chosenToken);
-
-        if (currentPosition == 88 || currentPosition == 89 || currentPosition == 90 || currentPosition == 91) {
-
-            if (dicedNumber == 6) {
-                putBackEnemyToken(42);
-                board.getMyContainingJPanel().getTokens().getYellowTokens().replace(chosenToken, 42);
+                putBackEnemyToken(boardStart);
+                playerTokens.replace(chosenToken, boardStart);
             }
 
         } else {
             int whereToStep = currentPosition + dicedNumber;
 
-            if (board.getMyContainingJPanel().getTokens().getHadReachTheEnd().get(chosenToken - 1 + 12)) {
+            if (board.getMyContainingJPanel().getTokens().getHadReachTheEnd().get(chosenToken - 1 + shiftForHadReachedTheEndList)) {
 
-                if (currentPosition > 70) {
+                if (currentPosition > lastField - 5) {
                     whereToStep = currentPosition + dicedNumber;
-                }else if (currentPosition + dicedNumber > 41) {
-                    whereToStep = abs(currentPosition + dicedNumber - 42) + 71;
+                }else if (currentPosition + dicedNumber > lastFieldBeforeColorFields) {
+                    whereToStep = abs(currentPosition + dicedNumber - boardStart) + lastField - 4;
                 }else {
                     putBackEnemyToken(whereToStep);
                 }
 
-
-                if (whereToStep > 74) {
-                    whereToStep = 75;
+                if (whereToStep > lastField - 1) {
+                    whereToStep = lastField;
                 }
 
-                board.getMyContainingJPanel().getTokens().getYellowTokens().replace(chosenToken, whereToStep);
+                playerTokens.replace(chosenToken, whereToStep);
 
             } else {
                 whereToStep = isEndOfTrack(currentPosition, dicedNumber, chosenToken);
                 putBackEnemyToken(whereToStep);
-                board.getMyContainingJPanel().getTokens().getYellowTokens().replace(chosenToken, whereToStep);
+                playerTokens.replace(chosenToken, whereToStep);
             }
         }
     }
+
 
     /**
      * Checks if the given token reached the end of the white fields.
@@ -363,208 +210,103 @@ public class Controller {
 
     /**
      * This method determines whether the player in the turn could move with the given token.
-     * @param token - The token's number (1, 2, 3, 4)
+     * @param chosenToken - The token's number (1, 2, 3, 4)
      * @param dicedNumber - The number that was diced by the player.
      * @return - the true, if the player can move with that token, false if he can't.
      */
-    public boolean canMove(int token, int dicedNumber) {
-
-
+    public boolean canMove(int chosenToken, int dicedNumber) {
         switch (whoseTurn()) {
-
-            case "red": {
-                int currentPosition = board.getMyContainingJPanel().getTokens().getRedTokens().get(token);
-
-                boolean canMove1;
-                boolean canMove2;
-                boolean canMove3 = false;
-
-                if ((currentPosition == 76 || currentPosition == 77 || currentPosition == 78 || currentPosition == 79)) {
-                    if (dicedNumber == 6 && !(board.getMyContainingJPanel().getTokens().getRedTokens().get(1).equals(0) || board.getMyContainingJPanel().getTokens().getRedTokens().get(2).equals(0)
-                            || board.getMyContainingJPanel().getTokens().getRedTokens().get(3).equals(0) || board.getMyContainingJPanel().getTokens().getRedTokens().get(4).equals(0))) {
-                        canMove1 = true;
-                    }
-                    else {
-                        canMove1 = false;
-                    }
-                }else {
-                    canMove1 = true;
-                }
-
-
-                if (!(currentPosition == 76 || currentPosition == 77 || currentPosition == 78 || currentPosition == 79)) {
-                    canMove2 = !(currentPosition == 60);
-
-                }
-                else {
-                    canMove2 = true;
-                }
-
-
-                if (currentPosition < 55) {
-                    if (!(board.getMyContainingJPanel().getTokens().getRedTokens().get(1).equals(currentPosition + dicedNumber) || board.getMyContainingJPanel().getTokens().getRedTokens().get(2).equals(currentPosition + dicedNumber)
-                            || board.getMyContainingJPanel().getTokens().getRedTokens().get(3).equals(currentPosition + dicedNumber) || board.getMyContainingJPanel().getTokens().getRedTokens().get(4).equals(currentPosition + dicedNumber))) {
-                        canMove3 = true;
-                    }
-                }
-                else {
-                    canMove3 = true;
-                }
-
-
-
-                return (canMove1 && canMove2 && canMove3);
-            }
-
-            case "blue": {
-
-                int currentPosition = board.getMyContainingJPanel().getTokens().getBlueTokens().get(token);
-
-                boolean canMove1;
-                boolean canMove2;
-                boolean canMove3 = false;
-
-                if ((currentPosition == 80 || currentPosition == 81 || currentPosition == 82 || currentPosition == 83)) {
-
-                    if (dicedNumber == 6 && !(board.getMyContainingJPanel().getTokens().getBlueTokens().get(1).equals(14) || board.getMyContainingJPanel().getTokens().getBlueTokens().get(2).equals(14)
-                            || board.getMyContainingJPanel().getTokens().getBlueTokens().get(3).equals(14) || board.getMyContainingJPanel().getTokens().getBlueTokens().get(4).equals(14))) {
-                        canMove1 = true;
-                    }
-                    else {
-                        canMove1 = false;
-                    }
-                }else {
-                    canMove1 = true;
-                }
-
-
-                if (!(currentPosition == 80 || currentPosition == 81 || currentPosition == 82 || currentPosition == 83)) {
-
-                    canMove2 = !(currentPosition == 65);
-
-                }
-                else {
-                    canMove2 = true;
-                }
-
-
-
-
-                if (currentPosition < 60) {
-                    if (!(board.getMyContainingJPanel().getTokens().getBlueTokens().get(1).equals(currentPosition + dicedNumber) || board.getMyContainingJPanel().getTokens().getBlueTokens().get(2).equals(currentPosition + dicedNumber)
-                            || board.getMyContainingJPanel().getTokens().getBlueTokens().get(3).equals(currentPosition + dicedNumber) || board.getMyContainingJPanel().getTokens().getBlueTokens().get(4).equals(currentPosition + dicedNumber))) {
-                        canMove3 = true;
-                    }
-                }else {
-                    canMove3 = true;
-                }
-
-                return (canMove1 && canMove2 && canMove3);
-
-
-
-            }
-
-            case "green": {
-
-                int currentPosition = board.getMyContainingJPanel().getTokens().getGreenTokens().get(token);
-
-                boolean canMove1;
-                boolean canMove2;
-                boolean canMove3 = false;
-
-                if ((currentPosition == 84 || currentPosition == 85 || currentPosition == 86 || currentPosition == 87)) {
-
-                    if (dicedNumber == 6 && !(board.getMyContainingJPanel().getTokens().getGreenTokens().get(1).equals(28) || board.getMyContainingJPanel().getTokens().getGreenTokens().get(2).equals(28)
-                            || board.getMyContainingJPanel().getTokens().getGreenTokens().get(3).equals(28) || board.getMyContainingJPanel().getTokens().getGreenTokens().get(4).equals(28))) {
-                        canMove1 = true;
-                    }
-                    else {
-                        canMove1 = false;
-                    }
-                }else {
-                    canMove1 = true;
-                }
-
-
-                if (!(currentPosition == 84 || currentPosition == 85 || currentPosition == 86 || currentPosition == 87)) {
-
-                    canMove2 = !(currentPosition == 70);
-
-                }
-                else {
-                    canMove2 = true;
-                }
-
-
-                if (currentPosition < 65) {
-                    if (!(board.getMyContainingJPanel().getTokens().getGreenTokens().get(1).equals(currentPosition + dicedNumber) || board.getMyContainingJPanel().getTokens().getGreenTokens().get(2).equals(currentPosition + dicedNumber)
-                            || board.getMyContainingJPanel().getTokens().getGreenTokens().get(3).equals(currentPosition + dicedNumber) || board.getMyContainingJPanel().getTokens().getGreenTokens().get(4).equals(currentPosition + dicedNumber))) {
-                        canMove3 = true;
-                    }
-                }else {
-                    canMove3 = true;
-                }
-
-                return (canMove1 && canMove2 && canMove3);
-
-            }
-
-            case "yellow": {
-
-
-                int currentPosition = board.getMyContainingJPanel().getTokens().getYellowTokens().get(token);
-
-                boolean canMove1;
-                boolean canMove2;
-                boolean canMove3 = false;
-
-                if (currentPosition == 88 || currentPosition == 89 || currentPosition == 90 || currentPosition == 91) {
-
-                    if (dicedNumber == 6 && !(board.getMyContainingJPanel().getTokens().getYellowTokens().get(1).equals(42) || board.getMyContainingJPanel().getTokens().getYellowTokens().get(2).equals(42)
-                            || board.getMyContainingJPanel().getTokens().getYellowTokens().get(3).equals(42) || board.getMyContainingJPanel().getTokens().getYellowTokens().get(4).equals(42))) {
-                        canMove1 = true;
-                    }
-                    else {
-                        canMove1 = false;
-                    }
-
-
-                }else {
-                    canMove1 = true;
-                }
-
-
-                if (!(currentPosition == 88 || currentPosition == 89 || currentPosition == 90 || currentPosition == 91)) {
-                    canMove2 = !(currentPosition == 75);
-                }
-                else {
-                    canMove2 = true;
-                }
-
-
-                if (currentPosition < 70) {
-                    if (!(board.getMyContainingJPanel().getTokens().getYellowTokens().get(1).equals(currentPosition + dicedNumber) || board.getMyContainingJPanel().getTokens().getYellowTokens().get(2).equals(currentPosition + dicedNumber)
-                            || board.getMyContainingJPanel().getTokens().getYellowTokens().get(3).equals(currentPosition + dicedNumber) || board.getMyContainingJPanel().getTokens().getYellowTokens().get(4).equals(currentPosition + dicedNumber))) {
-                        canMove3 = true;
-                    }
-                }else {
-                    canMove3 = true;
-                }
-
-
-
-
-                return (canMove1 && canMove2 && canMove3);
-
-
-            }default:return true;
-
-
+            case "red":
+                return redCanMove(dicedNumber, chosenToken);
+            case "blue":
+                return xCanMove(dicedNumber, chosenToken, board.getMyContainingJPanel().getTokens().getBlueTokens(), 80, 14, 65);
+            case "green":
+                return xCanMove(dicedNumber, chosenToken, board.getMyContainingJPanel().getTokens().getGreenTokens(), 84, 28, 70);
+            case "yellow":
+                return xCanMove(dicedNumber, chosenToken, board.getMyContainingJPanel().getTokens().getYellowTokens(), 88, 42, 75);
+            default:return true;
         }
-
     }
 
+    private boolean redCanMove(int dicedNumber, int chosenToken) {
+        int currentPosition = board.getMyContainingJPanel().getTokens().getRedTokens().get(chosenToken);
+
+        boolean canMove1;
+        boolean canMove2;
+        boolean canMove3 = false;
+
+        if ((currentPosition == 76 || currentPosition == 77 || currentPosition == 78 || currentPosition == 79)) {
+            if (dicedNumber == 6 && !(board.getMyContainingJPanel().getTokens().getRedTokens().get(1).equals(0) || board.getMyContainingJPanel().getTokens().getRedTokens().get(2).equals(0)
+                    || board.getMyContainingJPanel().getTokens().getRedTokens().get(3).equals(0) || board.getMyContainingJPanel().getTokens().getRedTokens().get(4).equals(0))) {
+                canMove1 = true;
+            }
+            else {
+                canMove1 = false;
+            }
+        }else {
+            canMove1 = true;
+        }
+        if (!(currentPosition == 76 || currentPosition == 77 || currentPosition == 78 || currentPosition == 79)) {
+            canMove2 = !(currentPosition == 60);
+        }
+        else {
+            canMove2 = true;
+        }
+        if (currentPosition < 55) {
+            if (!(board.getMyContainingJPanel().getTokens().getRedTokens().get(1).equals(currentPosition + dicedNumber) || board.getMyContainingJPanel().getTokens().getRedTokens().get(2).equals(currentPosition + dicedNumber)
+                    || board.getMyContainingJPanel().getTokens().getRedTokens().get(3).equals(currentPosition + dicedNumber) || board.getMyContainingJPanel().getTokens().getRedTokens().get(4).equals(currentPosition + dicedNumber))) {
+                canMove3 = true;
+            }
+        }
+        else {
+            canMove3 = true;
+        }
+        return (canMove1 && canMove2 && canMove3);
+    }
+
+
+    private boolean xCanMove(int dicedNumber, int chosenToken, Map<Integer, Integer> playerTokens, int startMin, int boardStart, int lastField) {
+
+        int currentPosition = playerTokens.get(chosenToken);
+
+        boolean canMove1;
+        boolean canMove2;
+        boolean canMove3 = false;
+
+        if (currentPosition == startMin || currentPosition == startMin + 1 || currentPosition == startMin + 2 || currentPosition == startMin + 3) {
+
+            if (dicedNumber == 6 && !(playerTokens.get(1).equals(boardStart) || playerTokens.get(2).equals(boardStart)
+                    || playerTokens.get(3).equals(boardStart) || playerTokens.get(4).equals(boardStart))) {
+                canMove1 = true;
+            }
+            else {
+                canMove1 = false;
+            }
+
+        }else {
+            canMove1 = true;
+        }
+
+
+        if (!(currentPosition == startMin || currentPosition == startMin + 1 || currentPosition == startMin + 2 || currentPosition == startMin + 3)) {
+            canMove2 = !(currentPosition == lastField);
+        }
+        else {
+            canMove2 = true;
+        }
+
+
+        if (currentPosition < lastField - 5) {
+            if (!(playerTokens.get(1).equals(currentPosition + dicedNumber) || playerTokens.get(2).equals(currentPosition + dicedNumber)
+                    || playerTokens.get(3).equals(currentPosition + dicedNumber) || playerTokens.get(4).equals(currentPosition + dicedNumber))) {
+                canMove3 = true;
+            }
+        }else {
+            canMove3 = true;
+        }
+
+        return (canMove1 && canMove2 && canMove3);
+    }
 
     /**
      * Puts back the token which can be found at the given field.
@@ -584,7 +326,6 @@ public class Controller {
         for (int i = 1;i <= 4; i++) {
             listOfTokenPositions.add(board.getMyContainingJPanel().getTokens().getYellowTokens().get(i));
         }
-
 
         for (int i = 0; i < listOfTokenPositions.size(); i++) {
 
@@ -613,87 +354,106 @@ public class Controller {
 
     }
 
+    private void isTheGameFinished() {
+        JLabel message = new JLabel("");
+        message.setFont(new Font("Arial", Font.BOLD, 18));
+        if (board.getMyContainingJPanel().getTokens().getFinished("red", 60) == 4) {
+            message.setForeground(Color.RED);
+            message.setText("The RED player won the game!");
+            JOptionPane.showMessageDialog(null, message, "Game over", JOptionPane.INFORMATION_MESSAGE);
+            System.exit(0);
+        }
+        else if (board.getMyContainingJPanel().getTokens().getFinished("blue", 65) == 4) {
+            message.setForeground(Color.BLUE);
+            message.setText("The BLUE player won the game!");
+            JOptionPane.showMessageDialog(null, message, "Game over", JOptionPane.INFORMATION_MESSAGE);
+            System.exit(0);
+        }
+        else if (board.getMyContainingJPanel().getTokens().getFinished("green", 70) == 4) {
+            message.setForeground(Color.GREEN);
+            message.setText("The GREEN player won the game!");
+            JOptionPane.showMessageDialog(null, message, "Game over", JOptionPane.INFORMATION_MESSAGE);
+            System.exit(0);
+        }
+        else if (board.getMyContainingJPanel().getTokens().getFinished("yellow", 75) == 4) {
+            message.setForeground(Color.YELLOW);
+            message.setText("The YELLOW player won the game!");
+            JOptionPane.showMessageDialog(null, message, "Game over", JOptionPane.INFORMATION_MESSAGE);
+            System.exit(0);
+        }
+    }
+
+
+
     public void setTestButton() {
-        board.getMyContainingJPanel().getTestButton2().addActionListener(new ActionListener() {
+        board.getMyContainingJPanel().getTestButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                boolean toContinue;
                 switch (whoseTurn()) {
+
                     case "red": {
                         Integer moveBy = Integer.parseInt(JOptionPane.showInputDialog("Set diced number to exact value!", 6));
-
                         board.getRedsYard().getDiceRollingResult().setText(String.valueOf(moveBy));
                         board.getRedsYard().getSelectorJPanel();
                         if (!(!board.getRedsYard().getToken1().isVisible() && !board.getRedsYard().getToken2().isVisible() && !board.getRedsYard().getToken3().isVisible() && !board.getRedsYard().getToken4().isVisible())) {
-
                             do {
                                 JOptionPane.showMessageDialog(null, board.getRedsYard().getSelectorJPanel(), "You have " + moveBy + " steps to go. Please choose your token to move.", JOptionPane.INFORMATION_MESSAGE);
-                            }while(!(board.getRedsYard().getToken1().isSelected() || board.getRedsYard().getToken2().isSelected() || board.getRedsYard().getToken3().isSelected() || board.getRedsYard().getToken4().isSelected()));
-
-
+                                toContinue = board.getRedsYard().checkChosenTokenIsValid();
+                            }while(toContinue);
                         }
                         moveToken(moveBy, board.getRedsYard().getChosenToken());
-
-
                     }break;
 
                     case "blue": {
-
                         Integer moveBy = Integer.parseInt(JOptionPane.showInputDialog("Set diced number to exact value!", 6));
-
                         board.getBluesYard().getDiceRollingResult().setText(String.valueOf(moveBy));
                         board.getBluesYard().getSelectorJPanel();
                         if (!(!board.getBluesYard().getToken1().isVisible() && !board.getBluesYard().getToken2().isVisible() && !board.getBluesYard().getToken3().isVisible() && !board.getBluesYard().getToken4().isVisible())) {
 
                             do {
                                 JOptionPane.showMessageDialog(null, board.getBluesYard().getSelectorJPanel(), "You have " + moveBy + " steps to go. Please choose your token to move.", JOptionPane.INFORMATION_MESSAGE);
-                            }while(!(board.getBluesYard().getToken1().isSelected() || board.getBluesYard().getToken2().isSelected() || board.getBluesYard().getToken3().isSelected() || board.getBluesYard().getToken4().isSelected()));
+                                toContinue = board.getRedsYard().checkChosenTokenIsValid();
+                            }while(toContinue);
 
                         }
                         moveToken(moveBy, board.getBluesYard().getChosenToken());
-
                     }break;
 
                     case "green": {
-
                         Integer moveBy = Integer.parseInt(JOptionPane.showInputDialog("Set diced number to exact value!", 6));
-
                         board.getGreensYard().getDiceRollingResult().setText(String.valueOf(moveBy));
                         board.getGreensYard().getSelectorJPanel();
                         if (!(!board.getGreensYard().getToken1().isVisible() && !board.getGreensYard().getToken2().isVisible() && !board.getGreensYard().getToken3().isVisible() && !board.getGreensYard().getToken4().isVisible())) {
 
                             do {
                                 JOptionPane.showMessageDialog(null, board.getGreensYard().getSelectorJPanel(), "You have " + moveBy + " steps to go. Please choose your token to move.", JOptionPane.INFORMATION_MESSAGE);
-                            }while(!(board.getGreensYard().getToken1().isSelected() || board.getGreensYard().getToken2().isSelected() || board.getGreensYard().getToken3().isSelected() || board.getGreensYard().getToken4().isSelected()));
+                                toContinue = board.getRedsYard().checkChosenTokenIsValid();
+                            }while(toContinue);
 
                         }
                         moveToken(moveBy, board.getGreensYard().getChosenToken());
-
-
                     }break;
 
                     case "yellow": {
-
-
                         Integer moveBy = Integer.parseInt(JOptionPane.showInputDialog("Set diced number to exact value!", 6));
-
                         board.getYellowsYard().getDiceRollingResult().setText(String.valueOf(moveBy));
                         board.getYellowsYard().getSelectorJPanel();
                         if (!(!board.getYellowsYard().getToken1().isVisible() && !board.getYellowsYard().getToken2().isVisible() && !board.getYellowsYard().getToken3().isVisible() && !board.getYellowsYard().getToken4().isVisible())) {
                             do {
                                 JOptionPane.showMessageDialog(null, board.getYellowsYard().getSelectorJPanel(), "You have " + moveBy + " steps to go. Please choose your token to move.", JOptionPane.INFORMATION_MESSAGE);
-                            }while(!(board.getYellowsYard().getToken1().isSelected() || board.getYellowsYard().getToken2().isSelected() || board.getYellowsYard().getToken3().isSelected() || board.getYellowsYard().getToken4().isSelected()));
+                                toContinue = board.getRedsYard().checkChosenTokenIsValid();
+                            }while(toContinue);
 
                         }
                         moveToken(moveBy, board.getYellowsYard().getChosenToken());
-
                     }break;
                     default:
-                        System.out.println("Eliratad...");
+                        System.out.println("Not existing player!");
 
                 }
             }
         });
     }
-
 
 }
