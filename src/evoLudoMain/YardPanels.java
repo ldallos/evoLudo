@@ -9,7 +9,6 @@ import java.util.Random;
 
 
 public class YardPanels extends JPanel {
-    private int ovalDiameter = 0;
     private JButton diceRollerButton = new JButton("Dice me!");
     private JLabel diceRollingResult = new JLabel();
     private int panelWidth = (int) getSize().getWidth();
@@ -50,14 +49,16 @@ public class YardPanels extends JPanel {
             public void actionPerformed(ActionEvent actionEvent) {
                 Random rand = new Random();
                 dicedNumber = rand.nextInt(6) + 1;
-                diceRollingResult.setText(String.valueOf(dicedNumber));
+                //diceRollingResult.setText(String.valueOf(dicedNumber));
+
+                setPrintOutText(dicedNumber);
+
                 getSelectorJPanel();
-                if (!(!token1.isVisible() && !token2.isVisible() && !token3.isVisible() && !token4.isVisible())) {
-                    boolean toContinue;
+
+                if (token1.isVisible() || token2.isVisible() || token3.isVisible() || token4.isVisible()) {
                     do {
                         JOptionPane.showMessageDialog(null, getSelectorJPanel(), "You have " + dicedNumber + " steps to go. Please choose your token to move.", JOptionPane.INFORMATION_MESSAGE);
-                        toContinue = checkChosenTokenIsValid();
-                    }while(toContinue);
+                    }while(checkChosenTokenIsValid());
 
                 }
                 controller.moveToken(dicedNumber, chosenToken);
@@ -70,11 +71,29 @@ public class YardPanels extends JPanel {
         add(diceRollingResult);
     }
 
+    public void setPrintOutText(int dicedNumber) {
+        diceRollingResult.setFont(new Font("Unicode", Font.PLAIN, panelWidth / 8));
+
+        if (dicedNumber == 1)
+            diceRollingResult.setText("\u2680");
+        else if (dicedNumber == 2)
+            diceRollingResult.setText("\u2681");
+        else if (dicedNumber == 3)
+            diceRollingResult.setText("\u2682");
+        else if (dicedNumber == 4)
+            diceRollingResult.setText("\u2683");
+        else if (dicedNumber == 5)
+            diceRollingResult.setText("\u2684");
+        else if (dicedNumber == 6)
+            diceRollingResult.setText("\u2685");
+        else
+            diceRollingResult.setText(String.valueOf(dicedNumber));
+    }
+
 
     public void refreshSizes() {
         panelWidth = (int) getSize().getWidth();
         panelHeight = (int) getSize().getHeight();
-        this.ovalDiameter = panelWidth / 5;
         diceRollerButton.setBounds(panelWidth / 10 , 5 , panelWidth/10 * 5, panelHeight / 10 );
         diceRollingResult.setBounds(panelWidth / 10 * 8, 5, panelWidth / 10 * 3, panelHeight / 10);
     }
@@ -104,10 +123,10 @@ public class YardPanels extends JPanel {
         buttonGroup.add(token4);
 
 
-        token1.setVisible(controller.canMove(1, Integer.parseInt(this.diceRollingResult.getText())));
-        token2.setVisible(controller.canMove(2, Integer.parseInt(this.diceRollingResult.getText())));
-        token3.setVisible(controller.canMove(3, Integer.parseInt(this.diceRollingResult.getText())));
-        token4.setVisible(controller.canMove(4, Integer.parseInt(this.diceRollingResult.getText())));
+        token1.setVisible(controller.canMove(1, dicedNumber));
+        token2.setVisible(controller.canMove(2, dicedNumber));
+        token3.setVisible(controller.canMove(3, dicedNumber));
+        token4.setVisible(controller.canMove(4, dicedNumber));
 
 
         token1.addActionListener(new ActionListener() {
@@ -200,4 +219,7 @@ public class YardPanels extends JPanel {
     }
 
 
+    public void setDicedNumber(int moveBy) {
+        this.dicedNumber = moveBy;
+    }
 }
