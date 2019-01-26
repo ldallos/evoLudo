@@ -3,6 +3,7 @@ package evoLudoMain;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 public class Board extends JFrame {
 
@@ -16,9 +17,10 @@ public class Board extends JFrame {
     private double HEIGHT = gd.getDisplayMode().getHeight();
     private int scaleUnitWidth = (int) (WIDTH / 5);
     private int scaleUnitHeight = (int) (HEIGHT / 5);
+    private StartFrame startFrame;
 
 
-    public Board() {
+    public Board(StartFrame startFrame) {
         /**
          * Setting up the basic information about the frame.
          */
@@ -34,7 +36,7 @@ public class Board extends JFrame {
         setVisible(true);
         getRedsYard().getDiceRollerButton().setEnabled(true);
 
-
+        this.startFrame = startFrame;
 
     }
 
@@ -146,8 +148,8 @@ public class Board extends JFrame {
         return yellowsYard;
     }
 
-    public Route getRoute() {
-        return myContainingJPanel.getRoute();
+    public StartFrame getStartFrame() {
+        return startFrame;
     }
 }
 

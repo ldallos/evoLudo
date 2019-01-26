@@ -5,6 +5,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -361,25 +363,35 @@ public class Controller {
             message.setForeground(Color.RED);
             message.setText("The RED player won the game!");
             JOptionPane.showMessageDialog(null, message, "Game over", JOptionPane.INFORMATION_MESSAGE);
-            System.exit(0);
+            board.getStartFrame().setVisible(true);
+            turn = turn - 1;
+            board.dispose();
+
         }
         else if (board.getMyContainingJPanel().getTokens().getFinished("blue", 65) == 4) {
             message.setForeground(Color.BLUE);
             message.setText("The BLUE player won the game!");
             JOptionPane.showMessageDialog(null, message, "Game over", JOptionPane.INFORMATION_MESSAGE);
-            System.exit(0);
+            board.getStartFrame().setVisible(true);
+            turn = turn - 1;
+            board.dispose();
+
         }
         else if (board.getMyContainingJPanel().getTokens().getFinished("green", 70) == 4) {
             message.setForeground(Color.GREEN);
             message.setText("The GREEN player won the game!");
             JOptionPane.showMessageDialog(null, message, "Game over", JOptionPane.INFORMATION_MESSAGE);
-            System.exit(0);
+            board.getStartFrame().setVisible(true);
+            turn = turn - 1;
+            board.dispose();
         }
         else if (board.getMyContainingJPanel().getTokens().getFinished("yellow", 75) == 4) {
             message.setForeground(Color.YELLOW);
             message.setText("The YELLOW player won the game!");
             JOptionPane.showMessageDialog(null, message, "Game over", JOptionPane.INFORMATION_MESSAGE);
-            System.exit(0);
+            board.getStartFrame().setVisible(true);
+            turn = turn - 1;
+            board.dispose();
         }
     }
 

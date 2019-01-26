@@ -1,25 +1,19 @@
 package evoLudoMain;
 
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
+import javax.swing.*;
+import java.io.IOException;
 
 public class LudoProgram {
 
     public static void main(String[] args) {
-        final Board board = new Board();
 
-        Controller controller = Controller.getInstance();
+        try {
+            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+            StartFrame startFrame = new StartFrame();
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException | IOException e1) {
+            e1.printStackTrace();
+        }
 
-        controller.setBoard(board);
-
-        board.addComponentListener(new ComponentAdapter() {
-            public void componentResized(ComponentEvent evt) {
-                board.refreshSizes();
-            }
-        });
-
-        controller.setTestButton();
-        //board.getMyContainingJPanel().getTestButton().setVisible(false);
     }
 
 }
