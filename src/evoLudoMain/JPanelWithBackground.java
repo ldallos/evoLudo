@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class JPanelWithBackground extends JPanel {
 
-    private BufferedImage backgroundImage = ImageIO.read(new File("background.png"));
+    private BufferedImage backgroundImage = ImageIO.read(new File(new File(".").getCanonicalPath() + "/resources/background.png"));
     private float opacity = 0.08f;
 
     public void paint(Graphics g) {
