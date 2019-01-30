@@ -5,6 +5,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -361,25 +363,35 @@ public class Controller {
             message.setForeground(Color.RED);
             message.setText("The RED player won the game!");
             JOptionPane.showMessageDialog(null, message, "Game over", JOptionPane.INFORMATION_MESSAGE);
-            System.exit(0);
+            board.getStartFrame().setVisible(true);
+            turn = turn - 1;
+            board.dispose();
+
         }
         else if (board.getMyContainingJPanel().getTokens().getFinished("blue", 65) == 4) {
             message.setForeground(Color.BLUE);
             message.setText("The BLUE player won the game!");
             JOptionPane.showMessageDialog(null, message, "Game over", JOptionPane.INFORMATION_MESSAGE);
-            System.exit(0);
+            board.getStartFrame().setVisible(true);
+            turn = turn - 1;
+            board.dispose();
+
         }
         else if (board.getMyContainingJPanel().getTokens().getFinished("green", 70) == 4) {
             message.setForeground(Color.GREEN);
             message.setText("The GREEN player won the game!");
             JOptionPane.showMessageDialog(null, message, "Game over", JOptionPane.INFORMATION_MESSAGE);
-            System.exit(0);
+            board.getStartFrame().setVisible(true);
+            turn = turn - 1;
+            board.dispose();
         }
         else if (board.getMyContainingJPanel().getTokens().getFinished("yellow", 75) == 4) {
             message.setForeground(Color.YELLOW);
             message.setText("The YELLOW player won the game!");
             JOptionPane.showMessageDialog(null, message, "Game over", JOptionPane.INFORMATION_MESSAGE);
-            System.exit(0);
+            board.getStartFrame().setVisible(true);
+            turn = turn - 1;
+            board.dispose();
         }
     }
 
@@ -389,32 +401,30 @@ public class Controller {
         board.getMyContainingJPanel().getTestButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                boolean toContinue;
                 switch (whoseTurn()) {
 
                     case "red": {
                         Integer moveBy = Integer.parseInt(JOptionPane.showInputDialog("Set diced number to exact value!", 6));
-                        board.getRedsYard().getDiceRollingResult().setText(String.valueOf(moveBy));
+                        board.getRedsYard().setPrintOutText(moveBy);
+                        board.getRedsYard().setDicedNumber(moveBy);
                         board.getRedsYard().getSelectorJPanel();
-                        if (!(!board.getRedsYard().getToken1().isVisible() && !board.getRedsYard().getToken2().isVisible() && !board.getRedsYard().getToken3().isVisible() && !board.getRedsYard().getToken4().isVisible())) {
+                        if (board.getRedsYard().getToken1().isVisible() || board.getRedsYard().getToken2().isVisible() || board.getRedsYard().getToken3().isVisible() || board.getRedsYard().getToken4().isVisible()) {
                             do {
                                 JOptionPane.showMessageDialog(null, board.getRedsYard().getSelectorJPanel(), "You have " + moveBy + " steps to go. Please choose your token to move.", JOptionPane.INFORMATION_MESSAGE);
-                                toContinue = board.getRedsYard().checkChosenTokenIsValid();
-                            }while(toContinue);
+                            }while(board.getRedsYard().checkChosenTokenIsValid());
                         }
                         moveToken(moveBy, board.getRedsYard().getChosenToken());
                     }break;
 
                     case "blue": {
                         Integer moveBy = Integer.parseInt(JOptionPane.showInputDialog("Set diced number to exact value!", 6));
-                        board.getBluesYard().getDiceRollingResult().setText(String.valueOf(moveBy));
+                        board.getBluesYard().setPrintOutText(moveBy);
+                        board.getBluesYard().setDicedNumber(moveBy);
                         board.getBluesYard().getSelectorJPanel();
-                        if (!(!board.getBluesYard().getToken1().isVisible() && !board.getBluesYard().getToken2().isVisible() && !board.getBluesYard().getToken3().isVisible() && !board.getBluesYard().getToken4().isVisible())) {
-
+                        if (board.getBluesYard().getToken1().isVisible() || board.getBluesYard().getToken2().isVisible() || board.getBluesYard().getToken3().isVisible() || board.getBluesYard().getToken4().isVisible()) {
                             do {
                                 JOptionPane.showMessageDialog(null, board.getBluesYard().getSelectorJPanel(), "You have " + moveBy + " steps to go. Please choose your token to move.", JOptionPane.INFORMATION_MESSAGE);
-                                toContinue = board.getRedsYard().checkChosenTokenIsValid();
-                            }while(toContinue);
+                            }while(board.getBluesYard().checkChosenTokenIsValid());
 
                         }
                         moveToken(moveBy, board.getBluesYard().getChosenToken());
@@ -422,14 +432,14 @@ public class Controller {
 
                     case "green": {
                         Integer moveBy = Integer.parseInt(JOptionPane.showInputDialog("Set diced number to exact value!", 6));
-                        board.getGreensYard().getDiceRollingResult().setText(String.valueOf(moveBy));
+                        board.getGreensYard().setPrintOutText(moveBy);
+                        board.getGreensYard().setDicedNumber(moveBy);
                         board.getGreensYard().getSelectorJPanel();
-                        if (!(!board.getGreensYard().getToken1().isVisible() && !board.getGreensYard().getToken2().isVisible() && !board.getGreensYard().getToken3().isVisible() && !board.getGreensYard().getToken4().isVisible())) {
+                        if (board.getGreensYard().getToken1().isVisible() || board.getGreensYard().getToken2().isVisible() || board.getGreensYard().getToken3().isVisible() || board.getGreensYard().getToken4().isVisible()) {
 
                             do {
                                 JOptionPane.showMessageDialog(null, board.getGreensYard().getSelectorJPanel(), "You have " + moveBy + " steps to go. Please choose your token to move.", JOptionPane.INFORMATION_MESSAGE);
-                                toContinue = board.getRedsYard().checkChosenTokenIsValid();
-                            }while(toContinue);
+                            }while(board.getGreensYard().checkChosenTokenIsValid());
 
                         }
                         moveToken(moveBy, board.getGreensYard().getChosenToken());
@@ -437,14 +447,13 @@ public class Controller {
 
                     case "yellow": {
                         Integer moveBy = Integer.parseInt(JOptionPane.showInputDialog("Set diced number to exact value!", 6));
-                        board.getYellowsYard().getDiceRollingResult().setText(String.valueOf(moveBy));
+                        board.getYellowsYard().setPrintOutText(moveBy);
+                        board.getYellowsYard().setDicedNumber(moveBy);
                         board.getYellowsYard().getSelectorJPanel();
-                        if (!(!board.getYellowsYard().getToken1().isVisible() && !board.getYellowsYard().getToken2().isVisible() && !board.getYellowsYard().getToken3().isVisible() && !board.getYellowsYard().getToken4().isVisible())) {
+                        if (board.getYellowsYard().getToken1().isVisible() || board.getYellowsYard().getToken2().isVisible() || board.getYellowsYard().getToken3().isVisible() || board.getYellowsYard().getToken4().isVisible()) {
                             do {
                                 JOptionPane.showMessageDialog(null, board.getYellowsYard().getSelectorJPanel(), "You have " + moveBy + " steps to go. Please choose your token to move.", JOptionPane.INFORMATION_MESSAGE);
-                                toContinue = board.getRedsYard().checkChosenTokenIsValid();
-                            }while(toContinue);
-
+                            }while(board.getYellowsYard().checkChosenTokenIsValid());
                         }
                         moveToken(moveBy, board.getYellowsYard().getChosenToken());
                     }break;
